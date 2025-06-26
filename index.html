@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Messmisan Messenger</title>
+  <title>Messtruee Messenger</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
@@ -152,11 +152,17 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
     .hamburger {
-      display: none; /* Hidden by default on desktop */
+      display: flex; /* Always visible on mobile */
       font-size: 28px; /* Larger icon */
       cursor: pointer;
       color: var(--accent-color);
       transition: color 0.2s ease;
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none; /* Hidden on desktop */
+      }
     }
     .hamburger:hover {
       color: var(--secondary-color);
@@ -388,7 +394,7 @@
 <body>
   <div id="auth">
     <div id="loginForm" class="auth-container">
-      <h2>Login to Messmisan</h2>
+      <h2>Login to Messtruee</h2>
       <input id="loginEmail" type="email" placeholder="Email" />
       <input id="loginPassword" type="password" placeholder="Password" />
       <button onclick="login()"><i class="fas fa-sign-in-alt"></i> Log In</button>
@@ -429,7 +435,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-  import { getDatabase, ref, set, get, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+  import { getDatabase, ref, set, get, push, onChildAdded, off } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
   const firebaseConfig = {
@@ -448,6 +454,8 @@
 
   let currentUser = null;
   let currentChatUID = null;
+  let currentMessagesRef = null; // To store the reference to the current messages path
+  let currentOnChildAddedListener = null; // To store the listener function
 
   window.toggleAuthForm = function () {
     const login = document.getElementById("loginForm");
@@ -577,14 +585,19 @@
   };
 
   function startChat(friendUID, nickname) {
+    // If there's an existing listener, detach it first
+    if (currentMessagesRef && currentOnChildAddedListener) {
+      off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+    }
+
     currentChatUID = friendUID;
     document.getElementById("chatWith").innerText = nickname;
     const chatId = getChatID(currentUser.uid, friendUID);
-    const messagesRef = ref(db, 'messages/' + chatId);
+    currentMessagesRef = ref(db, 'messages/' + chatId); // Store the reference
     document.getElementById("messages").innerHTML = ""; // Clear previous messages
 
-    // Listen for new messages
-    onChildAdded(messagesRef, snapshot => {
+    // Define the listener function
+    currentOnChildAddedListener = snapshot => {
       const msg = snapshot.val();
       const div = document.createElement("div");
       div.className = "bubble " + (msg.sender === currentUser.uid ? "sent" : "received");
@@ -592,7 +605,10 @@
       document.getElementById("messages").appendChild(div);
       // Scroll to bottom
       document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-    });
+    };
+
+    // Attach the new listener
+    onChildAdded(currentMessagesRef, currentOnChildAddedListener);
   }
 
   window.sendMessage = function () {
@@ -619,8 +635,27 @@
     }
   });
 
-  // Initial display setup
-  document.getElementById("auth").style.display = "flex"; // Use flex for auth container
+  // Check auth state on load and initialize UI
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      currentUser = user;
+      const uid = currentUser.uid;
+      get(ref(db, 'users/' + uid)).then(snap => {
+        const nickname = snap.val().nickname || "User";
+        document.getElementById("userNickname").innerText = "Hi, " + nickname;
+        document.getElementById("auth").style.display = "none";
+        document.getElementById("chatUI").style.display = "flex";
+        loadFriendList();
+        
+        // Show sidebar by default on desktop
+        if (window.innerWidth > 768) {
+          document.getElementById("sidebar").classList.add("visible");
+        }
+      });
+    } else {
+      document.getElementById("auth").style.display = "flex";
+    }
+  });
 </script>
 </body>
 </html>
