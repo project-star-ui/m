@@ -844,6 +844,68 @@
       border-color: var(--primary-color);
     }
 
+    /* Gallery Modal Styles */
+    .gallery-modal-content {
+      max-width: 700px; /* Wider for gallery */
+      max-height: 80vh; /* Limit height */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      padding: 10px;
+      overflow-y: auto;
+      flex-grow: 1;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background-color: var(--input-bg);
+    }
+
+    .gallery-item {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: var(--background-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item img, .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item .remove-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .gallery-actions {
+      display: flex;
+      justify-content: space-around;
+      gap: 15px;
+    }
 
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
@@ -941,6 +1003,21 @@
         right: 0;
         top: 35px;
       }
+
+      /* Gallery Modal Mobile Adjustments */
+      .gallery-modal-content {
+        width: 95%;
+        max-height: 90vh;
+        padding: 15px;
+      }
+      .gallery-preview {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 5px;
+      }
+      .gallery-item {
+        width: 80px;
+        height: 80px;
+      }
     }
   </style>
 </head>
@@ -1007,7 +1084,7 @@
         <div class="emoji-panel" id="emojiPanel"></div>
         <!-- File attachment input and button -->
         <div class="file-input-container">
-          <input type="file" id="fileInput" accept="image/*,video/*" />
+          <input type="file" id="fileInput" accept="image/*,video/*" multiple /> <!-- Added 'multiple' -->
           <label for="fileInput" class="file-input-button">
             <i class="fas fa-paperclip"></i>
           </label>
@@ -1026,6 +1103,20 @@
       <div class="modal-buttons">
         <button class="yes" onclick="confirmAddFriend(true)">Yes</button>
         <button class="no" onclick="confirmAddFriend(false)">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Modal -->
+  <div class="modal-overlay" id="galleryModal">
+    <div class="modal-content gallery-modal-content">
+      <h3>Select Files to Send</h3>
+      <div class="gallery-preview" id="galleryPreview">
+        <!-- File previews will be displayed here -->
+      </div>
+      <div class="modal-buttons gallery-actions">
+        <button class="no" onclick="closeGalleryModal()">Cancel</button>
+        <button class="yes" onclick="sendAllFiles()">Send All</button>
       </div>
     </div>
   </div>
@@ -1066,6 +1157,7 @@
   let currentOnChildChangedListener = null; // New listener for message updates
   let pendingFriendToAdd = null; // To store friend data for the confirmation modal
   let allFriendsListeners = {}; // To keep track of listeners for new messages from friends
+  let selectedFiles = []; // New: Array to store files selected for sending
 
   // Audio for notification
   const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3'); // A cute little beep!
@@ -1478,41 +1570,133 @@
     document.getElementById("messages").appendChild(div);
   }
 
+  // New: Handle file selection from input
+  window.handleFileSelection = function(event) {
+    const files = event.target.files;
+    if (files.length === 0) return;
+
+    selectedFiles = Array.from(files); // Store files in the global array
+    displayGalleryPreviews();
+    document.getElementById('galleryModal').classList.add('visible');
+  };
+
+  function displayGalleryPreviews() {
+    const galleryPreviewDiv = document.getElementById('galleryPreview');
+    galleryPreviewDiv.innerHTML = ''; // Clear previous previews
+
+    selectedFiles.forEach((file, index) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (file.type.startsWith('image/')) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          galleryItem.appendChild(img);
+        } else if (file.type.startsWith('video/')) {
+          const video = document.createElement('video');
+          video.src = e.target.result;
+          video.controls = false; // No controls in preview
+          video.muted = true; // Mute video in preview
+          video.autoplay = true; // Autoplay for preview
+          video.loop = true; // Loop for preview
+          galleryItem.appendChild(video);
+        }
+      };
+      reader.readAsDataURL(file);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-btn';
+      removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+      removeBtn.onclick = () => removeFileFromGallery(index);
+      galleryItem.appendChild(removeBtn);
+
+      galleryPreviewDiv.appendChild(galleryItem);
+    });
+  }
+
+  window.removeFileFromGallery = function(index) {
+    selectedFiles.splice(index, 1); // Remove file from array
+    if (selectedFiles.length === 0) {
+      closeGalleryModal();
+    } else {
+      displayGalleryPreviews(); // Re-render previews
+    }
+  };
+
+  window.closeGalleryModal = function() {
+    document.getElementById('galleryModal').classList.remove('visible');
+    clearGallery();
+  };
+
+  function clearGallery() {
+    selectedFiles = [];
+    document.getElementById('galleryPreview').innerHTML = '';
+    document.getElementById('fileInput').value = ''; // Clear the file input
+  }
+
+  window.sendAllFiles = async function() {
+    if (currentChatUID === null) {
+      alert("Please select a friend to chat with first.");
+      return;
+    }
+
+    const msgText = document.getElementById("messageInput").value.trim();
+    const chatId = getChatID(currentUser.uid, currentChatUID);
+
+    // Send text message first if it exists
+    if (msgText) {
+      await push(ref(db, 'messages/' + chatId), {
+        sender: currentUser.uid,
+        text: msgText,
+        timestamp: Date.now(),
+        seenBy: { [currentUser.uid]: true }
+      });
+      document.getElementById("messageInput").value = ""; // Clear text input
+    }
+
+    // Send each selected file
+    for (const file of selectedFiles) {
+      const filePath = `chat_files/${chatId}/${Date.now()}_${file.name}`;
+      const fileRef = storageRef(storage, filePath);
+
+      try {
+        const snapshot = await uploadBytes(fileRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        await push(ref(db, 'messages/' + chatId), {
+          sender: currentUser.uid,
+          text: "", // No text for file-only messages, or could include original msgText
+          timestamp: Date.now(),
+          fileUrl: downloadURL,
+          fileType: file.type,
+          fileName: file.name,
+          seenBy: { [currentUser.uid]: true }
+        });
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        alert("Error uploading file: " + file.name + " - " + error.message);
+      }
+    }
+
+    closeGalleryModal(); // Close the gallery after sending all files
+  };
+
+
   window.sendMessage = function () {
     const msgInput = document.getElementById("messageInput");
     const msgText = msgInput.value.trim();
-    const fileInput = document.getElementById("fileInput");
-    const file = fileInput.files[0];
 
-    if (!msgText && !file) return; // Don't send empty messages or no file
-
-    const chatId = getChatID(currentUser.uid, currentChatUID);
-
-    if (file) {
-        // Handle file upload
-        const filePath = `chat_files/${chatId}/${Date.now()}_${file.name}`;
-        const fileRef = storageRef(storage, filePath);
-
-        uploadBytes(fileRef, file).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((downloadURL) => {
-                push(ref(db, 'messages/' + chatId), {
-                    sender: currentUser.uid,
-                    text: msgText, // Allow text message with file
-                    timestamp: Date.now(),
-                    fileUrl: downloadURL,
-                    fileType: file.type,
-                    fileName: file.name,
-                    seenBy: { [currentUser.uid]: true }
-                });
-                msgInput.value = "";
-                fileInput.value = ""; // Clear the file input
-            });
-        }).catch((error) => {
-            console.error("Error uploading file:", error);
-            alert("Error uploading file: " + error.message);
-        });
-    } else {
-        // Handle text message only
+    if (selectedFiles.length > 0) {
+        // If there are files in the gallery, use sendAllFiles
+        sendAllFiles();
+    } else if (msgText) {
+        // If only text, send as before
+        if (currentChatUID === null) {
+            alert("Please select a friend to chat with first.");
+            return;
+        }
+        const chatId = getChatID(currentUser.uid, currentChatUID);
         push(ref(db, 'messages/' + chatId), {
             sender: currentUser.uid,
             text: msgText,
@@ -1520,6 +1704,9 @@
             seenBy: { [currentUser.uid]: true }
         });
         msgInput.value = "";
+    } else {
+        // No text and no files selected
+        alert("Please type a message or select files to send.");
     }
   };
 
@@ -1562,9 +1749,19 @@
     }
 
     const addFriendModal = document.getElementById("addFriendModal");
-    const modalContent = document.querySelector("#addFriendModal .modal-content");
-    if (addFriendModal.classList.contains("visible") && modalContent && !modalContent.contains(event.target)) {
+    const addFriendModalContent = document.querySelector("#addFriendModal .modal-content");
+    if (addFriendModal.classList.contains("visible") && addFriendModalContent && !addFriendModalContent.contains(event.target)) {
       confirmAddFriend(false);
+    }
+
+    const galleryModal = document.getElementById("galleryModal");
+    const galleryModalContent = document.querySelector("#galleryModal .modal-content");
+    if (galleryModal.classList.contains("visible") && galleryModalContent && !galleryModalContent.contains(event.target)) {
+      // Only close if the click is outside the modal content AND not on the file input label
+      const fileInputLabel = document.querySelector('.file-input-button');
+      if (event.target !== fileInputLabel && !fileInputLabel.contains(event.target)) {
+        closeGalleryModal();
+      }
     }
   });
 
@@ -1574,6 +1771,10 @@
       sendMessage();
     }
   });
+
+  // New: Add event listener for file input change
+  document.getElementById('fileInput').addEventListener('change', handleFileSelection);
+
 
   // --- New Message Notification and Seen Functionality ---
 
