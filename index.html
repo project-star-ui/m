@@ -104,7 +104,7 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+      /* Removed transition for theme changes to make them instant */
     }
     .main {
       display: flex;
@@ -112,6 +112,7 @@
       height: 100%;
       background-color: var(--background-dark);
       position: relative;
+      transition: background-color 0.3s ease; /* Keep transition for other background changes */
     }
     /* Removed sidebar styles */
 
@@ -1006,7 +1007,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-  import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+  import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update, onChildChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
   const firebaseConfig = {
@@ -1027,6 +1028,7 @@
   let currentChatUID = null;
   let currentMessagesRef = null;
   let currentOnChildAddedListener = null;
+  let currentOnChildChangedListener = null; // New listener for message updates
   let pendingFriendToAdd = null; // To store friend data for the confirmation modal
   let allFriendsListeners = {}; // To keep track of listeners for new messages from friends
 
@@ -1128,7 +1130,25 @@
       off(chatRef, 'child_added', listener);
     }
     allFriendsListeners = {}; // Clear the object
-    signOut(auth).then(() => location.reload());
+
+    // Detach current chat listeners
+    if (currentMessagesRef && currentOnChildAddedListener) {
+        off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+    }
+    if (currentMessagesRef && currentOnChildChangedListener) {
+        off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
+    }
+
+    signOut(auth).then(() => {
+        // Instead of location.reload(), directly hide chat UI and show auth UI
+        document.getElementById("chatUI").style.display = "none";
+        document.getElementById("auth").style.display = "flex";
+        // Clear current chat state
+        currentChatUID = null;
+        document.getElementById("chatWith").innerText = "None";
+        document.getElementById("messages").innerHTML = "";
+        currentUser = null; // Clear current user
+    });
   };
 
   async function addFriendConfirmed(friendData) {
@@ -1168,8 +1188,12 @@
           currentChatUID = null;
           document.getElementById("chatWith").innerText = "None";
           document.getElementById("messages").innerHTML = "";
+          // Detach current chat listeners
           if (currentMessagesRef && currentOnChildAddedListener) {
             off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+          }
+          if (currentMessagesRef && currentOnChildChangedListener) {
+            off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
           }
         }
         // Also remove the new message listener for this friend
@@ -1312,9 +1336,12 @@
   };
 
   function startChat(friendUID, nickname) {
-    // Detach existing listener for the current chat
+    // Detach existing listeners for the current chat
     if (currentMessagesRef && currentOnChildAddedListener) {
       off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+    }
+    if (currentMessagesRef && currentOnChildChangedListener) {
+      off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
     }
 
     currentChatUID = friendUID;
@@ -1338,19 +1365,53 @@
       document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
     });
 
-    // Attach new listener for real-time updates
+    // Attach new listener for real-time updates (new messages)
     currentOnChildAddedListener = snapshot => {
       const msg = snapshot.val();
       const msgId = snapshot.key;
       appendMessageToChat(msg, msgId);
 
       // Mark message as seen if it's received and not already seen
-      if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
+      if (msg.sender === currentUser.uid && msg.seenBy?.[currentChatUID]) {
+        // If it's a sent message and the other user has seen it, update the indicator
+        const messageBubble = document.getElementById(`msg-${msgId}`);
+        if (messageBubble) {
+          const seenIndicator = messageBubble.querySelector('.seen-indicator');
+          if (seenIndicator) {
+            seenIndicator.innerText = "Seen";
+          }
+        }
+      } else if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
         update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
       }
       document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
     };
     onChildAdded(currentMessagesRef, currentOnChildAddedListener);
+
+    // Attach new listener for real-time updates (changes to existing messages, e.g., seen status)
+    currentOnChildChangedListener = snapshot => {
+        const msg = snapshot.val();
+        const msgId = snapshot.key;
+        const messageBubble = document.getElementById(`msg-${msgId}`);
+
+        if (messageBubble && msg.sender === currentUser.uid) {
+            // This is a message sent by the current user
+            const seenIndicator = messageBubble.querySelector('.seen-indicator');
+            if (seenIndicator) {
+                if (msg.seenBy?.[currentChatUID]) {
+                    seenIndicator.innerText = "Seen";
+                } else {
+                    seenIndicator.innerText = "Sent";
+                }
+            }
+        } else if (messageBubble && msg.sender !== currentUser.uid && currentChatUID === friendUID) {
+            // This is a received message, ensure it's marked as seen if it wasn't already
+            if (!msg.seenBy?.[currentUser.uid]) {
+                update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
+            }
+        }
+    };
+    onChildChanged(currentMessagesRef, currentOnChildChangedListener);
   }
 
   function appendMessageToChat(msg, msgId) {
@@ -1364,6 +1425,7 @@
     if (msg.sender === currentUser.uid) {
       const seenIndicator = document.createElement("span");
       seenIndicator.className = "seen-indicator";
+      // Determine initial seen status based on currentChatUID
       seenIndicator.innerText = msg.seenBy?.[currentChatUID] ? "Seen" : "Sent";
       div.innerHTML = `${messageContent}<br>${seenIndicator.outerHTML}`;
     } else {
@@ -1490,9 +1552,9 @@
           showNotification(`New message from ${friendNickname}!`);
         }
       } else if (msg.sender === currentUser.uid && currentChatUID === friendUID) {
-        // If it's a message sent by the current user, and we are in the chat,
-        // update its seen status if the friend has seen it.
-        // This listener will also catch updates to the 'seenBy' field.
+        // This block is now less critical for updating 'seen' status
+        // because currentOnChildChangedListener handles real-time updates for the active chat.
+        // However, it still ensures that if a message was somehow missed, it gets updated.
         const messageBubble = document.getElementById(`msg-${msgId}`);
         if (messageBubble) {
           const seenIndicator = messageBubble.querySelector('.seen-indicator');
@@ -1534,7 +1596,7 @@
         setupNewMessageListeners(); 
       });
     } else {
-      document.getElementById("auth").style.display = "flex";F
+      document.getElementById("auth").style.display = "flex";
       document.getElementById("chatUI").style.display = "none"; // Ensure chat UI is hidden if not logged in
     }
   });
