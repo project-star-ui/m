@@ -409,6 +409,12 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      /* Added for fixed header */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
     }
     #chatWindow .chat-header .back-btn {
       background: none;
@@ -437,6 +443,9 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      /* Added padding to account for fixed header */
+      padding-top: 70px; /* Adjust based on header height */
+      padding-bottom: 80px; /* Adjust based on input height */
     }
     #chatWindow .messages::-webkit-scrollbar {
       width: 8px;
@@ -493,6 +502,12 @@
       background-color: var(--background-light);
       gap: 10px;
       box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+      /* Added for fixed input */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
     }
     #chatWindow .message-input input {
       flex: 1;
@@ -780,6 +795,7 @@
       }
       #chatWindow .messages {
         padding: 10px;
+        padding-top: 60px; /* Adjusted for mobile header height */
         padding-bottom: 70px;
       }
       #chatWindow .message-input {
@@ -1022,6 +1038,12 @@
           const nickname = snap.val().nickname || "User";
           document.getElementById("userNickname").innerText = "Welcome, " + nickname;
           showPage('friendListPage'); // Show friend list page after login
+          // Clear any existing listeners first
+          for (const friendUID in allFriendsListeners) {
+            const { chatRef, listener } = allFriendsListeners[friendUID];
+            off(chatRef, 'child_added', listener);
+          }
+          allFriendsListeners = {};
           loadFriendList();
           setupNewMessageListeners();
         }
@@ -1109,7 +1131,14 @@
 
   function loadFriendList() {
     const list = document.getElementById("friendList");
+    // Clear existing content and remove any duplicate listeners
     list.innerHTML = "";
+    for (const friendUID in allFriendsListeners) {
+      const { chatRef, listener } = allFriendsListeners[friendUID];
+      off(chatRef, 'child_added', listener);
+    }
+    allFriendsListeners = {};
+    
     get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
       if (snapshot.exists()) {
         snapshot.forEach(child => {
