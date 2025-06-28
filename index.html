@@ -103,7 +103,7 @@
       color: var(--text-color);
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
+      overflow: hidden; /* Default to hidden for desktop, handled by media query for mobile */
     }
     .main-container {
       display: flex;
@@ -117,7 +117,7 @@
     /* Page Layouts */
     .page {
       width: 100%;
-      height: 100%;
+      height: 100%; /* Default for desktop */
       display: none; /* Hidden by default */
       flex-direction: column;
       background-color: var(--background-dark);
@@ -409,8 +409,7 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      /* Added for fixed header */
-      position: fixed;
+      position: fixed; /* Fixed header */
       top: 0;
       left: 0;
       right: 0;
@@ -438,14 +437,13 @@
 
     #chatWindow .messages {
       flex: 1;
-      overflow-y: auto;
+      overflow-y: auto; /* Make messages scrollable */
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      /* Added padding to account for fixed header */
-      padding-top: 70px; /* Adjust based on header height */
-      padding-bottom: 80px; /* Adjust based on input height */
+      padding-top: 70px; /* Space for fixed header */
+      padding-bottom: 80px; /* Space for fixed input */
     }
     #chatWindow .messages::-webkit-scrollbar {
       width: 8px;
@@ -502,8 +500,7 @@
       background-color: var(--background-light);
       gap: 10px;
       box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-      /* Added for fixed input */
-      position: fixed;
+      position: fixed; /* Fixed input */
       bottom: 0;
       left: 0;
       right: 0;
@@ -728,16 +725,16 @@
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
       body {
-        overflow: auto;
-        min-height: -webkit-fill-available;
+        overflow: auto; /* Allow body to scroll on mobile */
+        min-height: -webkit-fill-available; /* Ensure body takes full viewport height */
       }
       .main-container {
         flex-direction: column;
-        height: 100%;
+        height: 100%; /* Ensure main container takes full height */
       }
       .page {
         width: 100%;
-        height: 100vh;
+        height: 100vh; /* Each page takes full viewport height on mobile */
       }
       #friendListPage {
         padding: 15px;
@@ -796,7 +793,7 @@
       #chatWindow .messages {
         padding: 10px;
         padding-top: 60px; /* Adjusted for mobile header height */
-        padding-bottom: 70px;
+        padding-bottom: 70px; /* Adjusted for mobile input height */
       }
       #chatWindow .message-input {
         position: fixed;
