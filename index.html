@@ -141,7 +141,7 @@ body.theme-unicorn-magic {
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* More kid-friendly font */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More readable font */
     background-color: var(--background-dark);
     color: var(--text-color);
     width: 100vw;
@@ -347,7 +347,7 @@ body {
     max-width: 500px;
     position: relative;
     margin-bottom: 20px;
-    z-index: 1; /* Above dynamic background */
+    z-index: 2; /* Increased z-index to be above friends-list-section */
 }
 #friendListPage .search-container input {
     width: 100%;
@@ -370,7 +370,7 @@ body {
     border-radius: 0 0 15px 15px; /* More rounded */
     max-height: 250px; /* Taller results */
     overflow-y: auto;
-    z-index: 10;
+    z-index: 10; /* Ensure search results are on top */
     box-shadow: 0 8px 15px rgba(0,0,0,0.4);
     display: none;
 }
@@ -430,7 +430,7 @@ body {
     background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-transparent background */
     box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Lowered z-index to be below search-container */
 }
 #friendListPage .friends-list-section::-webkit-scrollbar {
     width: 10px; /* Wider scrollbar */
@@ -583,7 +583,7 @@ body {
 
 .bubble {
     max-width: 75%; /* Slightly wider bubbles */
-    padding: 15px 22px; /* More padding */
+    padding: 15px 22px;
     border-radius: 30px; /* Very rounded */
     line-height: 1.6;
     word-wrap: break-word;
@@ -797,40 +797,66 @@ body {
     font-size: 1.8rem; /* Larger icon */
 }
 
-/* Floating Theme Selector */
+/* Theme Selector Icon */
+.theme-selector-icon {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease, color 0.3s ease;
+    margin-right: 15px; /* Space between icon and logout button */
+}
+.theme-selector-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Floating Theme Selector Panel */
 .floating-theme-selector {
     position: fixed;
     top: 50%; /* Center vertically */
-    right: 20px;
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    display: flex;
-    flex-direction: column; /* Vertical arrangement */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    background-color: var(--background-light);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    z-index: 1000; /* Above other content */
+    display: none; /* Hidden by default */
+    flex-direction: column;
     gap: 10px;
-    z-index: 999; /* Ensure it's above other content but below modals */
+    max-width: 300px;
+}
+
+.floating-theme-selector.visible {
+    display: flex;
 }
 
 .floating-theme-selector button {
-    background-color: var(--background-light);
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 10px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .floating-theme-selector button:hover {
-    transform: scale(1.1);
-    background-color: var(--input-bg);
+    background-color: var(--primary-color);
+    transform: translateX(5px);
 }
 
 .floating-theme-selector button i {
-    font-size: 1.5rem;
-    color: var(--accent-color); /* Use accent color for icons */
+    font-size: 1.2rem;
+    color: var(--accent-color);
 }
 
 /* Mobile Responsiveness */
@@ -870,10 +896,12 @@ body {
     }
     #friendListPage .search-container {
         width: 100%;
+        z-index: 2; /* Ensure it's still above friends list on mobile */
     }
     #friendListPage .friends-list-section {
         width: 100%;
         padding: 10px;
+        z-index: 1; /* Ensure it's still below search results on mobile */
     }
     .friend-item-large {
         padding: 10px 15px;
@@ -929,23 +957,14 @@ body {
         font-size: 1rem;
     }
 
+    .theme-selector-icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
     .floating-theme-selector {
-        top: 10px;
-        right: 10px;
-        flex-direction: row; /* Arrange horizontally on mobile */
-        flex-wrap: wrap; /* Allow wrapping */
-        justify-content: flex-end;
-        gap: 5px;
-        transform: translateY(0); /* Remove vertical centering on mobile */
-    }
-
-    .floating-theme-selector button {
-        width: 40px;
-        height: 40px;
-    }
-
-    .floating-theme-selector button i {
-        font-size: 1.2rem;
+        width: 90%;
+        padding: 15px;
     }
 }
 </style>
@@ -983,6 +1002,7 @@ body {
         </div>
         <div class="header">
             <span class="user-info" id="userNickname">Welcome, User</span>
+            <button class="theme-selector-icon" onclick="toggleThemePanel()"><i class="fas fa-palette"></i></button>
             <button class="logout-btn" onclick="logout()"><i class="fas fa-door-open"></i> Bye Bye!</button>
         </div>
 
@@ -1025,14 +1045,14 @@ body {
     </div>
 </div>
 
-<!-- Floating Theme Selector -->
-<div class="floating-theme-selector">
-    <button title="Cloud Play Theme" onclick="applyTheme('cloud-play')"><i class="fas fa-cloud" style="color: #87CEEB;"></i></button>
-    <button title="Candy Theme" onclick="applyTheme('candy')"><i class="fas fa-candy-cane" style="color: #FF69B4;"></i></button>
-    <button title="Rainbow Dream Theme" onclick="applyTheme('rainbow-dream')"><i class="fas fa-rainbow" style="color: #FF4500;"></i></button>
-    <button title="Space Adventure Theme" onclick="applyTheme('space-adventure')"><i class="fas fa-rocket" style="color: #00FFFF;"></i></button>
-    <button title="Dinosaur Roar Theme" onclick="applyTheme('dinosaur-roar')"><i class="fas fa-dragon" style="color: #FF4500;"></i></button>
-    <button title="Unicorn Magic Theme" onclick="applyTheme('unicorn-magic')"><i class="fas fa-unicorn" style="color: #DA70D6;"></i></button>
+<!-- Floating Theme Selector Panel -->
+<div class="floating-theme-selector" id="themeSelectorPanel">
+    <button title="Cloud Play Theme" onclick="applyTheme('cloud-play')"><i class="fas fa-cloud" style="color: #87CEEB;"></i> Cloud Play</button>
+    <button title="Candy Theme" onclick="applyTheme('candy')"><i class="fas fa-candy-cane" style="color: #FF69B4;"></i> Candy</button>
+    <button title="Rainbow Dream Theme" onclick="applyTheme('rainbow-dream')"><i class="fas fa-rainbow" style="color: #FF4500;"></i> Rainbow Dream</button>
+    <button title="Space Adventure Theme" onclick="applyTheme('space-adventure')"><i class="fas fa-rocket" style="color: #00FFFF;"></i> Space Adventure</button>
+    <button title="Dinosaur Roar Theme" onclick="applyTheme('dinosaur-roar')"><i class="fas fa-dragon" style="color: #FF4500;"></i> Dinosaur Roar</button>
+    <button title="Unicorn Magic Theme" onclick="applyTheme('unicorn-magic')"><i class="fas fa-unicorn" style="color: #DA70D6;"></i> Unicorn Magic</button>
 </div>
 
 <!-- Add Friend Confirmation Modal -->
@@ -1089,6 +1109,16 @@ body {
             page.classList.remove('active');
         });
         document.getElementById(pageId).classList.add('active');
+
+        // Show/hide theme selector icon based on the active page
+        const themeIcon = document.querySelector('.theme-selector-icon');
+        if (themeIcon) {
+            if (pageId === 'authPage' || pageId === 'friendListPage') {
+                themeIcon.style.display = 'block';
+            } else {
+                themeIcon.style.display = 'none';
+            }
+        }
     }
 
     window.goBackToFriendList = function() {
@@ -1141,12 +1171,18 @@ body {
         };
 
         root.style.setProperty('--background-light-rgb', getRgbValues(backgroundLight));
+        toggleThemePanel(); // Hide panel after selection
     };
 
     document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('selectedTheme') || 'cloud-play'; // Default to 'cloud-play'
         window.applyTheme(savedTheme);
     });
+
+    window.toggleThemePanel = function() {
+        const panel = document.getElementById("themeSelectorPanel");
+        panel.classList.toggle("visible");
+    };
     // --- End Theme Management ---
 
 
@@ -1658,6 +1694,12 @@ body {
         if (addFriendModal && addFriendModalContent && addFriendModal.classList.contains("visible") && !addFriendModalContent.contains(event.target)) {
             confirmAddFriend(false);
         }
+
+        const themeSelectorPanel = document.getElementById("themeSelectorPanel");
+        const themeSelectorIcon = document.querySelector(".theme-selector-icon");
+        if (themeSelectorPanel && themeSelectorIcon && themeSelectorPanel.classList.contains("visible") && !themeSelectorPanel.contains(event.target) && event.target !== themeSelectorIcon && !themeSelectorIcon.contains(event.target)) {
+            themeSelectorPanel.classList.remove("visible");
+        }
     });
 
     document.getElementById("messageInput").addEventListener("keypress", function(event) {
@@ -1744,8 +1786,8 @@ body {
             get(ref(db, 'users/' + uid)).then(snap => {
                 const nickname = snap.val().nickname || "User";
                 document.getElementById("userNickname").innerText = "Welcome, " + nickname;
-                setupPresence(); // Setup online presence when user is authenticated
                 showPage('friendListPage'); // Show friend list page
+                setupPresence(); // Setup online presence when user is authenticated
                 loadFriendList();
                 setupNewMessageListeners();
             });
