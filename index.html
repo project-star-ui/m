@@ -8,408 +8,472 @@
 <style>
 /* Cloud Play Theme (Default - Kid-Friendly) */
 :root {
-    --primary-color: #87CEEB; /* Sky Blue */
-    --secondary-color: #ADD8E6; /* Light Blue */
-    --accent-color: #FFD700; /* Gold */
-    --background-dark: #F0F8FF; /* Alice Blue */
-    --background-light: #E0FFFF; /* Light Cyan */
-    --text-color: #36454F; /* Charcoal */
-    --input-bg: #B0E0E6; /* Powder Blue */
-    --border-color: #87CEEB; /* Sky Blue */
-    --bubble-sent: #87CEEB; /* Sky Blue for sent */
-    --bubble-received: #ADD8E6; /* Light Blue for received */
-    --notification-bg: #2ECC71; /* Emerald Green */
-    --notification-text: #fff;
-    --logout-btn-bg: #FF6347; /* Tomato */
-    --logout-btn-hover: #E55337;
+--primary-color: #87CEEB; /* Sky Blue */
+--secondary-color: #ADD8E6; /* Light Blue */
+--accent-color: #FFD700; /* Gold */
+--background-dark: #F0F8FF; /* Alice Blue */
+--background-light: #E0FFFF; /* Light Cyan */
+--text-color: #36454F; /* Charcoal */
+--input-bg: #B0E0E6; /* Powder Blue */
+--border-color: #87CEEB; /* Sky Blue */
+--bubble-sent: #87CEEB; /* Sky Blue for sent */
+--bubble-received: #ADD8E6; /* Light Blue for received */
+--notification-bg: #2ECC71; /* Emerald Green */
+--notification-text: #fff;
+--logout-btn-bg: #FF6347; /* Tomato */
+--logout-btn-hover: #E55337;
 
-    /* Online Status Colors */
-    --online-color: #2ECC71; /* Emerald Green */
-    --offline-color: #95A5A6; /* Gray */
+/* Online Status Colors */
+--online-color: #2ECC71; /* Emerald Green */
+--offline-color: #95A5A6; /* Gray */
+
+/* Bubble Text Colors (Default - Light Bubbles, Dark Text) */
+--bubble-text-light: #36454F; /* Charcoal */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Candy Theme (Kid-Friendly) */
 body.theme-candy {
-    --primary-color: #FF69B4; /* Hot Pink */
-    --secondary-color: #FFB6C1; /* Light Pink */
-    --accent-color: #FFD700; /* Gold */
-    --background-dark: #F8F8FF; /* Ghost White */
-    --background-light: #FFF0F5; /* Lavender Blush */
-    --text-color: #4B0082; /* Indigo */
-    --input-bg: #FFC0CB; /* Pink */
-    --border-color: #FF69B4; /* Hot Pink */
-    --bubble-sent: #FF69B4; /* Hot Pink for sent */
-    --bubble-received: #FFB6C1; /* Light Pink for received */
-    --notification-bg: #32CD32; /* Lime Green */
-    --notification-text: #fff;
-    --logout-btn-bg: #FF4500; /* Orange Red */
-    --logout-btn-hover: #E53F00;
+--primary-color: #FF69B4; /* Hot Pink */
+--secondary-color: #FFB6C1; /* Light Pink */
+--accent-color: #FFD700; /* Gold */
+--background-dark: #F8F8FF; /* Ghost White */
+--background-light: #FFF0F5; /* Lavender Blush */
+--text-color: #4B0082; /* Indigo */
+--input-bg: #FFC0CB; /* Pink */
+--border-color: #FF69B4; /* Hot Pink */
+--bubble-sent: #FF69B4; /* Hot Pink for sent */
+--bubble-received: #FFB6C1; /* Light Pink for received */
+--notification-bg: #32CD32; /* Lime Green */
+--notification-text: #fff;
+--logout-btn-bg: #FF4500; /* Orange Red */
+--logout-btn-hover: #E53F00;
 
-    /* Online Status Colors */
-    --online-color: #32CD32; /* Lime Green */
-    --offline-color: #D3D3D3; /* Light Gray */
+/* Online Status Colors */
+--online-color: #32CD32; /* Lime Green */
+--offline-color: #D3D3D3; /* Light Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #4B0082; /* Indigo */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Rainbow Dream Theme (Kid-Friendly) */
 body.theme-rainbow-dream {
-    --primary-color: #FF4500; /* Orange Red */
-    --secondary-color: #FFD700; /* Gold */
-    --accent-color: #8A2BE2; /* Blue Violet */
-    --background-dark: #F0F8FF; /* Alice Blue */
-    --background-light: #E6E6FA; /* Lavender */
-    --text-color: #36454F; /* Charcoal */
-    --input-bg: #ADD8E6; /* Light Blue */
-    --border-color: #FF4500; /* Orange Red */
-    --bubble-sent: #FF4500; /* Orange Red for sent */
-    --bubble-received: #FFD700; /* Gold for received */
-    --notification-bg: #20B2AA; /* Light Sea Green */
-    --notification-text: #fff;
-    --logout-btn-bg: #DC143C; /* Crimson */
-    --logout-btn-hover: #C0002C;
+--primary-color: #FF4500; /* Orange Red */
+--secondary-color: #FFD700; /* Gold */
+--accent-color: #8A2BE2; /* Blue Violet */
+--background-dark: #F0F8FF; /* Alice Blue */
+--background-light: #E6E6FA; /* Lavender */
+--text-color: #36454F; /* Charcoal */
+--input-bg: #ADD8E6; /* Light Blue */
+--border-color: #FF4500; /* Orange Red */
+--bubble-sent: #FF4500; /* Orange Red for sent */
+--bubble-received: #FFD700; /* Gold for received */
+--notification-bg: #20B2AA; /* Light Sea Green */
+--notification-text: #fff;
+--logout-btn-bg: #DC143C; /* Crimson */
+--logout-btn-hover: #C0002C;
 
-    /* Online Status Colors */
-    --online-color: #20B2AA; /* Light Sea Green */
-    --offline-color: #A9A9A9; /* Dark Gray */
+/* Online Status Colors */
+--online-color: #20B2AA; /* Light Sea Green */
+--offline-color: #A9A9A9; /* Dark Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #36454F; /* Charcoal */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Space Adventure Theme (Kid-Friendly) */
 body.theme-space-adventure {
-    --primary-color: #4B0082; /* Indigo */
-    --secondary-color: #8A2BE2; /* Blue Violet */
-    --accent-color: #00FFFF; /* Aqua */
-    --background-dark: #0A192F; /* Dark Navy */
-    --background-light: #172A45; /* Medium Navy */
-    --text-color: #E0FFFF; /* Light Cyan */
-    --input-bg: #2A4165; /* Dark Blue */
-    --border-color: #4B0082; /* Indigo */
-    --bubble-sent: #8A2BE2; /* Blue Violet for sent */
-    --bubble-received: #4B0082; /* Indigo for received */
-    --notification-bg: #32CD32; /* Lime Green */
-    --notification-text: #fff;
-    --logout-btn-bg: #FF6347; /* Tomato */
-    --logout-btn-hover: #E55337;
+--primary-color: #4B0082; /* Indigo */
+--secondary-color: #8A2BE2; /* Blue Violet */
+--accent-color: #00FFFF; /* Aqua */
+--background-dark: #0A192F; /* Dark Navy */
+--background-light: #172A45; /* Medium Navy */
+--text-color: #E0FFFF; /* Light Cyan */
+--input-bg: #2A4165; /* Dark Blue */
+--border-color: #4B0082; /* Indigo */
+--bubble-sent: #8A2BE2; /* Blue Violet for sent */
+--bubble-received: #4B0082; /* Indigo for received */
+--notification-bg: #32CD32; /* Lime Green */
+--notification-text: #fff;
+--logout-btn-bg: #FF6347; /* Tomato */
+--logout-btn-hover: #E55337;
 
-    /* Online Status Colors */
-    --online-color: #32CD32; /* Lime Green */
-    --offline-color: #5F9EA0; /* Cadet Blue */
+/* Online Status Colors */
+--online-color: #32CD32; /* Lime Green */
+--offline-color: #5F9EA0; /* Cadet Blue */
+
+/* Bubble Text Colors */
+--bubble-text-light: #E0FFFF; /* Light Cyan */
+--bubble-text-dark: #E0FFFF; /* Light Cyan */
 }
 
 /* Dinosaur Roar Theme (Kid-Friendly) */
 body.theme-dinosaur-roar {
-    --primary-color: #228B22; /* Forest Green */
-    --secondary-color: #B8860B; /* Dark Goldenrod */
-    --accent-color: #FF4500; /* Orange Red */
-    --background-dark: #556B2F; /* Dark Olive Green */
-    --background-light: #6B8E23; /* Olive Drab */
-    --text-color: #F0FFF0; /* Honeydew */
-    --input-bg: #8B4513; /* Saddle Brown */
-    --border-color: #228B22; /* Forest Green */
-    --bubble-sent: #228B22; /* Forest Green for sent */
-    --bubble-received: #B8860B; /* Dark Goldenrod for received */
-    --notification-bg: #4682B4; /* Steel Blue */
-    --notification-text: #fff;
-    --logout-btn-bg: #B22222; /* Firebrick */
-    --logout-btn-hover: #A01C1C;
+--primary-color: #228B22; /* Forest Green */
+--secondary-color: #B8860B; /* Dark Goldenrod */
+--accent-color: #FF4500; /* Orange Red */
+--background-dark: #556B2F; /* Dark Olive Green */
+--background-light: #6B8E23; /* Olive Drab */
+--text-color: #F0FFF0; /* Honeydew */
+--input-bg: #8B4513; /* Saddle Brown */
+--border-color: #228B22; /* Forest Green */
+--bubble-sent: #228B22; /* Forest Green for sent */
+--bubble-received: #B8860B; /* Dark Goldenrod for received */
+--notification-bg: #4682B4; /* Steel Blue */
+--notification-text: #fff;
+--logout-btn-bg: #B22222; /* Firebrick */
+--logout-btn-hover: #A01C1C;
 
-    /* Online Status Colors */
-    --online-color: #9ACD32; /* Yellow Green */
-    --offline-color: #6B8E23; /* Olive Drab */
+/* Online Status Colors */
+--online-color: #9ACD32; /* Yellow Green */
+--offline-color: #6B8E23; /* Olive Drab */
+
+/* Bubble Text Colors */
+--bubble-text-light: #F0FFF0; /* Honeydew */
+--bubble-text-dark: #F0FFF0; /* Honeydew */
 }
 
 /* Unicorn Magic Theme (Kid-Friendly) */
 body.theme-unicorn-magic {
-    --primary-color: #DA70D6; /* Orchid */
-    --secondary-color: #EE82EE; /* Violet */
-    --accent-color: #FFC0CB; /* Pink */
-    --background-dark: #F8F8FF; /* Ghost White */
-    --background-light: #F0F8FF; /* Alice Blue */
-    --text-color: #4B0082; /* Indigo */
-    --input-bg: #E6E6FA; /* Lavender */
-    --border-color: #DA70D6; /* Orchid */
-    --bubble-sent: #DA70D6; /* Orchid for sent */
-    --bubble-received: #EE82EE; /* Violet for received */
-    --notification-bg: #6A5ACD; /* Slate Blue */
-    --notification-text: #fff;
-    --logout-btn-bg: #FF6347; /* Tomato */
-    --logout-btn-hover: #E55337;
+--primary-color: #DA70D6; /* Orchid */
+--secondary-color: #EE82EE; /* Violet */
+--accent-color: #FFC0CB; /* Pink */
+--background-dark: #F8F8FF; /* Ghost White */
+--background-light: #F0F8FF; /* Alice Blue */
+--text-color: #4B0082; /* Indigo */
+--input-bg: #E6E6FA; /* Lavender */
+--border-color: #DA70D6; /* Orchid */
+--bubble-sent: #DA70D6; /* Orchid for sent */
+--bubble-received: #EE82EE; /* Violet for received */
+--notification-bg: #6A5ACD; /* Slate Blue */
+--notification-text: #fff;
+--logout-btn-bg: #FF6347; /* Tomato */
+--logout-btn-hover: #E55337;
 
-    /* Online Status Colors */
-    --online-color: #32CD32; /* Lime Green */
-    --offline-color: #D3D3D3; /* Light Gray */
+/* Online Status Colors */
+--online-color: #32CD32; /* Lime Green */
+--offline-color: #D3D3D3; /* Light Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #4B0082; /* Indigo */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Ocean Explorer Theme (Kid-Friendly) */
 body.theme-ocean-explorer {
-    --primary-color: #0077BE; /* Deep Ocean Blue */
-    --secondary-color: #6DD5ED; /* Aqua Blue */
-    --accent-color: #FFC300; /* Golden Sand */
-    --background-dark: #E0F2F7; /* Lightest Blue */
-    --background-light: #B3E5FC; /* Sky Blue */
-    --text-color: #004D7A; /* Dark Blue Text */
-    --input-bg: #81D4FA; /* Light Blue Input */
-    --border-color: #0077BE; /* Deep Ocean Blue */
-    --bubble-sent: #0077BE; /* Deep Ocean Blue for sent */
-    --bubble-received: #6DD5ED; /* Aqua Blue for received */
-    --notification-bg: #28A745; /* Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #DC3545; /* Red for logout */
-    --logout-btn-hover: #C82333;
+--primary-color: #0077BE; /* Deep Ocean Blue */
+--secondary-color: #6DD5ED; /* Aqua Blue */
+--accent-color: #FFC300; /* Golden Sand */
+--background-dark: #E0F2F7; /* Lightest Blue */
+--background-light: #B3E5FC; /* Sky Blue */
+--text-color: #004D7A; /* Dark Blue Text */
+--input-bg: #81D4FA; /* Light Blue Input */
+--border-color: #0077BE; /* Deep Ocean Blue */
+--bubble-sent: #0077BE; /* Deep Ocean Blue for sent */
+--bubble-received: #6DD5ED; /* Aqua Blue for received */
+--notification-bg: #28A745; /* Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #DC3545; /* Red for logout */
+--logout-btn-hover: #C82333;
 
-    /* Online Status Colors */
-    --online-color: #28A745; /* Green */
-    --offline-color: #6C757D; /* Gray */
+/* Online Status Colors */
+--online-color: #28A745; /* Green */
+--offline-color: #6C757D; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #004D7A; /* Dark Blue Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Forest Friends Theme (Kid-Friendly) */
 body.theme-forest-friends {
-    --primary-color: #228B22; /* Forest Green */
-    --secondary-color: #8BC34A; /* Light Green */
-    --accent-color: #FFB300; /* Amber */
-    --background-dark: #F1F8E9; /* Lightest Green */
-    --background-light: #DCEDC8; /* Pale Green */
-    --text-color: #33691E; /* Dark Green Text */
-    --input-bg: #C5E1A5; /* Lighter Green Input */
-    --border-color: #228B22; /* Forest Green */
-    --bubble-sent: #228B22; /* Forest Green for sent */
-    --bubble-received: #8BC34A; /* Light Green for received */
-    --notification-bg: #00BCD4; /* Cyan for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #D32F2F; /* Red for logout */
-    --logout-btn-hover: #B71C1C;
+--primary-color: #228B22; /* Forest Green */
+--secondary-color: #8BC34A; /* Light Green */
+--accent-color: #FFB300; /* Amber */
+--background-dark: #F1F8E9; /* Lightest Green */
+--background-light: #DCEDC8; /* Pale Green */
+--text-color: #33691E; /* Dark Green Text */
+--input-bg: #C5E1A5; /* Lighter Green Input */
+--border-color: #228B22; /* Forest Green */
+--bubble-sent: #228B22; /* Forest Green for sent */
+--bubble-received: #8BC34A; /* Light Green for received */
+--notification-bg: #00BCD4; /* Cyan for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #D32F2F; /* Red for logout */
+--logout-btn-hover: #B71C1C;
 
-    /* Online Status Colors */
-    --online-color: #00BCD4; /* Cyan */
-    --offline-color: #795548; /* Brown */
+/* Online Status Colors */
+--online-color: #00BCD4; /* Cyan */
+--offline-color: #795548; /* Brown */
+
+/* Bubble Text Colors */
+--bubble-text-light: #33691E; /* Dark Green Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Superhero City Theme (Kid-Friendly) */
 body.theme-superhero-city {
-    --primary-color: #DC2626; /* Red */
-    --secondary-color: #3B82F6; /* Blue */
-    --accent-color: #FBBF24; /* Yellow */
-    --background-dark: #FEE2E2; /* Light Red */
-    --background-light: #DBEAFE; /* Light Blue */
-    --text-color: #1F2937; /* Dark Gray Text */
-    --input-bg: #BFDBFE; /* Lighter Blue Input */
-    --border-color: #DC2626; /* Red */
-    --bubble-sent: #DC2626; /* Red for sent */
-    --bubble-received: #3B82F6; /* Blue for received */
-    --notification-bg: #10B981; /* Emerald Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #EF4444; /* Red for logout */
-    --logout-btn-hover: #DC2626;
+--primary-color: #DC2626; /* Red */
+--secondary-color: #3B82F6; /* Blue */
+--accent-color: #FBBF24; /* Yellow */
+--background-dark: #FEE2E2; /* Light Red */
+--background-light: #DBEAFE; /* Light Blue */
+--text-color: #1F2937; /* Dark Gray Text */
+--input-bg: #BFDBFE; /* Lighter Blue Input */
+--border-color: #DC2626; /* Red */
+--bubble-sent: #DC2626; /* Red for sent */
+--bubble-received: #3B82F6; /* Blue for received */
+--notification-bg: #10B981; /* Emerald Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #EF4444; /* Red for logout */
+--logout-btn-hover: #DC2626;
 
-    /* Online Status Colors */
-    --online-color: #10B981; /* Emerald Green */
-    --offline-color: #6B7280; /* Gray */
+/* Online Status Colors */
+--online-color: #10B981; /* Emerald Green */
+--offline-color: #6B7280; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #1F2937; /* Dark Gray Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Pirate Adventure Theme (Kid-Friendly) */
 body.theme-pirate-adventure {
-    --primary-color: #8B4513; /* Saddle Brown */
-    --secondary-color: #FFD700; /* Gold */
-    --accent-color: #1E3A8A; /* Dark Blue */
-    --background-dark: #FFFBEB; /* Light Yellow */
-    --background-light: #FEF3C7; /* Lighter Yellow */
-    --text-color: #4A2C2A; /* Dark Brown Text */
-    --input-bg: #FDE68A; /* Pale Yellow Input */
-    --border-color: #8B4513; /* Saddle Brown */
-    --bubble-sent: #8B4513; /* Saddle Brown for sent */
-    --bubble-received: #FFD700; /* Gold for received */
-    --notification-bg: #065F46; /* Dark Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #B91C1C; /* Dark Red for logout */
-    --logout-btn-hover: #991B1B;
+--primary-color: #8B4513; /* Saddle Brown */
+--secondary-color: #FFD700; /* Gold */
+--accent-color: #1E3A8A; /* Dark Blue */
+--background-dark: #FFFBEB; /* Light Yellow */
+--background-light: #FEF3C7; /* Lighter Yellow */
+--text-color: #4A2C2A; /* Dark Brown Text */
+--input-bg: #FDE68A; /* Pale Yellow Input */
+--border-color: #8B4513; /* Saddle Brown */
+--bubble-sent: #8B4513; /* Saddle Brown for sent */
+--bubble-received: #FFD700; /* Gold for received */
+--notification-bg: #065F46; /* Dark Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #B91C1C; /* Dark Red for logout */
+--logout-btn-hover: #991B1B;
 
-    /* Online Status Colors */
-    --online-color: #065F46; /* Dark Green */
-    --offline-color: #9CA3AF; /* Gray */
+/* Online Status Colors */
+--online-color: #065F46; /* Dark Green */
+--offline-color: #9CA3AF; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #4A2C2A; /* Dark Brown Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Farm Fun Theme (Kid-Friendly) */
 body.theme-farm-fun {
-    --primary-color: #4CAF50; /* Green */
-    --secondary-color: #FFEB3B; /* Yellow */
-    --accent-color: #FF9800; /* Orange */
-    --background-dark: #F9FBE7; /* Lightest Green */
-    --background-light: #F0F4C3; /* Pale Yellow Green */
-    --text-color: #33691E; /* Dark Green Text */
-    --input-bg: #E6EE9C; /* Light Yellow Green Input */
-    --border-color: #4CAF50; /* Green */
-    --bubble-sent: #4CAF50; /* Green for sent */
-    --bubble-received: #FFEB3B; /* Yellow for received */
-    --notification-bg: #2196F3; /* Blue for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #F44336; /* Red for logout */
-    --logout-btn-hover: #D32F2F;
+--primary-color: #4CAF50; /* Green */
+--secondary-color: #FFEB3B; /* Yellow */
+--accent-color: #FF9800; /* Orange */
+--background-dark: #F9FBE7; /* Lightest Green */
+--background-light: #F0F4C3; /* Pale Yellow Green */
+--text-color: #33691E; /* Dark Green Text */
+--input-bg: #E6EE9C; /* Light Yellow Green Input */
+--border-color: #4CAF50; /* Green */
+--bubble-sent: #4CAF50; /* Green for sent */
+--bubble-received: #FFEB3B; /* Yellow for received */
+--notification-bg: #2196F3; /* Blue for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #F44336; /* Red for logout */
+--logout-btn-hover: #D32F2F;
 
-    /* Online Status Colors */
-    --online-color: #2196F3; /* Blue */
-    --offline-color: #795548; /* Brown */
+/* Online Status Colors */
+--online-color: #2196F3; /* Blue */
+--offline-color: #795548; /* Brown */
+
+/* Bubble Text Colors */
+--bubble-text-light: #33691E; /* Dark Green Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Arctic Chill Theme (Kid-Friendly) */
 body.theme-arctic-chill {
-    --primary-color: #00BCD4; /* Cyan */
-    --secondary-color: #80DEEA; /* Light Cyan */
-    --accent-color: #FFEB3B; /* Yellow */
-    --background-dark: #E0F7FA; /* Lightest Cyan */
-    --background-light: #B2EBF2; /* Pale Cyan */
-    --text-color: #006064; /* Dark Cyan Text */
-    --input-bg: #80DEEA; /* Light Cyan Input */
-    --border-color: #00BCD4; /* Cyan */
-    --bubble-sent: #00BCD4; /* Cyan for sent */
-    --bubble-received: #80DEEA; /* Light Cyan for received */
-    --notification-bg: #4CAF50; /* Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #F44336; /* Red for logout */
-    --logout-btn-hover: #D32F2F;
+--primary-color: #00BCD4; /* Cyan */
+--secondary-color: #80DEEA; /* Light Cyan */
+--accent-color: #FFEB3B; /* Yellow */
+--background-dark: #E0F7FA; /* Lightest Cyan */
+--background-light: #B2EBF2; /* Pale Cyan */
+--text-color: #006064; /* Dark Cyan Text */
+--input-bg: #80DEEA; /* Light Cyan Input */
+--border-color: #00BCD4; /* Cyan */
+--bubble-sent: #00BCD4; /* Cyan for sent */
+--bubble-received: #80DEEA; /* Light Cyan for received */
+--notification-bg: #4CAF50; /* Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #F44336; /* Red for logout */
+--logout-btn-hover: #D32F2F;
 
-    /* Online Status Colors */
-    --online-color: #4CAF50; /* Green */
-    --offline-color: #90A4AE; /* Blue Gray */
+/* Online Status Colors */
+--online-color: #4CAF50; /* Green */
+--offline-color: #90A4AE; /* Blue Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #006064; /* Dark Cyan Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Carnival Fun Theme (Kid-Friendly) */
 body.theme-carnival-fun {
-    --primary-color: #FF5722; /* Deep Orange */
-    --secondary-color: #FFC107; /* Amber */
-    --accent-color: #E91E63; /* Pink */
-    --background-dark: #FFF3E0; /* Light Orange */
-    --background-light: #FFECB3; /* Lighter Amber */
-    --text-color: #BF360C; /* Dark Orange Text */
-    --input-bg: #FFCC80; /* Pale Orange Input */
-    --border-color: #FF5722; /* Deep Orange */
-    --bubble-sent: #FF5722; /* Deep Orange for sent */
-    --bubble-received: #FFC107; /* Amber for received */
-    --notification-bg: #4CAF50; /* Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #D32F2F; /* Red for logout */
-    --logout-btn-hover: #B71C1C;
+--primary-color: #FF5722; /* Deep Orange */
+--secondary-color: #FFC107; /* Amber */
+--accent-color: #E91E63; /* Pink */
+--background-dark: #FFF3E0; /* Light Orange */
+--background-light: #FFECB3; /* Lighter Amber */
+--text-color: #BF360C; /* Dark Orange Text */
+--input-bg: #FFCC80; /* Pale Orange Input */
+--border-color: #FF5722; /* Deep Orange */
+--bubble-sent: #FF5722; /* Deep Orange for sent */
+--bubble-received: #FFC107; /* Amber for received */
+--notification-bg: #4CAF50; /* Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #D32F2F; /* Red for logout */
+--logout-btn-hover: #B71C1C;
 
-    /* Online Status Colors */
-    --online-color: #4CAF50; /* Green */
-    --offline-color: #607D8B; /* Blue Gray */
+/* Online Status Colors */
+--online-color: #4CAF50; /* Green */
+--offline-color: #607D8B; /* Blue Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #BF360C; /* Dark Orange Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Magical Forest Theme (Kid-Friendly) */
 body.theme-magical-forest {
-    --primary-color: #673AB7; /* Deep Purple */
-    --secondary-color: #9C27B0; /* Purple */
-    --accent-color: #FFEB3B; /* Yellow */
-    --background-dark: #EDE7F6; /* Lightest Purple */
-    --background-light: #D1C4E9; /* Pale Purple */
-    --text-color: #311B92; /* Dark Purple Text */
-    --input-bg: #B39DDB; /* Lighter Purple Input */
-    --border-color: #673AB7; /* Deep Purple */
-    --bubble-sent: #673AB7; /* Deep Purple for sent */
-    --bubble-received: #9C27B0; /* Purple for received */
-    --notification-bg: #8BC34A; /* Light Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #F44336; /* Red for logout */
-    --logout-btn-hover: #D32F2F;
+--primary-color: #673AB7; /* Deep Purple */
+--secondary-color: #9C27B0; /* Purple */
+--accent-color: #FFEB3B; /* Yellow */
+--background-dark: #EDE7F6; /* Lightest Purple */
+--background-light: #D1C4E9; /* Pale Purple */
+--text-color: #311B92; /* Dark Purple Text */
+--input-bg: #B39DDB; /* Lighter Purple Input */
+--border-color: #673AB7; /* Deep Purple */
+--bubble-sent: #673AB7; /* Deep Purple for sent */
+--bubble-received: #9C27B0; /* Purple for received */
+--notification-bg: #8BC34A; /* Light Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #F44336; /* Red for logout */
+--logout-btn-hover: #D32F2F;
 
-    /* Online Status Colors */
-    --online-color: #8BC34A; /* Light Green */
-    --offline-color: #757575; /* Gray */
+/* Online Status Colors */
+--online-color: #8BC34A; /* Light Green */
+--offline-color: #757575; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #311B92; /* Dark Purple Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Sports Mania Theme (Kid-Friendly) */
 body.theme-sports-mania {
-    --primary-color: #FF5722; /* Deep Orange */
-    --secondary-color: #4CAF50; /* Green */
-    --accent-color: #2196F3; /* Blue */
-    --background-dark: #FBE9E7; /* Lightest Orange */
-    --background-light: #E8F5E9; /* Lightest Green */
-    --text-color: #BF360C; /* Dark Orange Text */
-    --input-bg: #C8E6C9; /* Pale Green Input */
-    --border-color: #FF5722; /* Deep Orange */
-    --bubble-sent: #FF5722; /* Deep Orange for sent */
-    --bubble-received: #4CAF50; /* Green for received */
-    --notification-bg: #FFC107; /* Amber for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #D32F2F; /* Red for logout */
-    --logout-btn-hover: #B71C1C;
+--primary-color: #FF5722; /* Deep Orange */
+--secondary-color: #4CAF50; /* Green */
+--accent-color: #2196F3; /* Blue */
+--background-dark: #FBE9E7; /* Lightest Orange */
+--background-light: #E8F5E9; /* Lightest Green */
+--text-color: #BF360C; /* Dark Orange Text */
+--input-bg: #C8E6C9; /* Pale Green Input */
+--border-color: #FF5722; /* Deep Orange */
+--bubble-sent: #FF5722; /* Deep Orange for sent */
+--bubble-received: #4CAF50; /* Green for received */
+--notification-bg: #FFC107; /* Amber for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #D32F2F; /* Red for logout */
+--logout-btn-hover: #B71C1C;
 
-    /* Online Status Colors */
-    --online-color: #FFC107; /* Amber */
-    --offline-color: #9E9E9E; /* Gray */
+/* Online Status Colors */
+--online-color: #FFC107; /* Amber */
+--offline-color: #9E9E9E; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #BF360C; /* Dark Orange Text */
+--bubble-text-dark: #FFFFFF; /* White */
 }
 
 /* Black Elegant Theme (Modern Design) */
 body.theme-black-elegant {
-    --primary-color: #4B0082; /* Dark Lavender */
-    --secondary-color: #6A0DAD; /* Medium Lavender */
-    --accent-color: #E0BBE4; /* Light Lavender */
-    --background-dark: #1A1A1A; /* Deep Black */
-    --background-light: #2C2C2C; /* Dark Gray */
-    --text-color: #F0F0F0; /* Light Gray */
-    --input-bg: #3A3A3A; /* Darker Gray */
-    --border-color: #4B0082; /* Dark Lavender */
-    --bubble-sent: #4B0082; /* Dark Lavender for sent */
-    --bubble-received: #6A0DAD; /* Medium Lavender for received */
-    --notification-bg: #28A745; /* Green for notifications */
-    --notification-text: #fff;
-    --logout-btn-bg: #DC3545; /* Red for logout */
-    --logout-btn-hover: #C82333;
+--primary-color: #4B0082; /* Dark Lavender */
+--secondary-color: #6A0DAD; /* Medium Lavender */
+--accent-color: #E0BBE4; /* Light Lavender */
+--background-dark: #1A1A1A; /* Deep Black */
+--background-light: #2C2C2C; /* Dark Gray */
+--text-color: #F0F0F0; /* Light Gray */
+--input-bg: #3A3A3A; /* Darker Gray */
+--border-color: #4B0082; /* Indigo */
+--bubble-sent: #4B0082; /* Dark Lavender for sent */
+--bubble-received: #6A0DAD; /* Medium Lavender for received */
+--notification-bg: #28A745; /* Green for notifications */
+--notification-text: #fff;
+--logout-btn-bg: #DC3545; /* Red for logout */
+--logout-btn-hover: #C82333;
 
-    /* Online Status Colors */
-    --online-color: #28A745; /* Green */
-    --offline-color: #6C757D; /* Gray */
+/* Online Status Colors */
+--online-color: #28A745; /* Green */
+--offline-color: #6C757D; /* Gray */
+
+/* Bubble Text Colors */
+--bubble-text-light: #F0F0F0; /* Light Gray */
+--bubble-text-dark: #F0F0F0; /* Light Gray */
 }
 
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More readable font */
-    background-color: var(--background-dark);
-    color: var(--text-color);
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden; /* Default to hidden for desktop, handled by media query for mobile */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More readable font */
+background-color: var(--background-dark);
+color: var(--text-color);
+width: 100vw;
+height: 100vh;
+overflow: hidden; /* Default to hidden for desktop, handled by media query for mobile */
 }
 .main-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-dark);
-    position: relative;
-    transition: background-color 0.3s ease;
+display: flex;
+width: 100%;
+height: 100%;
+background-color: var(--background-dark);
+position: relative;
+transition: background-color 0.3s ease;
 }
 
 /* Page Layouts */
 .page {
-    width: 100%;
-    height: 100%; /* Default for desktop */
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    background-color: var(--background-dark);
-    color: var(--text-color);
-    position: relative; /* For dynamic background */
-    overflow: hidden; /* Hide overflow from floating elements */
+width: 100%;
+height: 100%; /* Default for desktop */
+display: none; /* Hidden by default */
+flex-direction: column;
+background-color: var(--background-dark);
+color: var(--text-color);
+position: relative; /* For dynamic background */
+overflow: hidden; /* Hide overflow from floating elements */
 }
 .page.active {
-    display: flex; /* Show active page */
+display: flex; /* Show active page */
 }
 
 /* Dynamic Background */
 .dynamic-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0; /* Behind content */
-    pointer-events: none; /* Allow clicks to pass through */
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+z-index: 0; /* Behind content */
+pointer-events: none; /* Allow clicks to pass through */
 }
 
 .dynamic-background div {
-    position: absolute;
-    background: var(--accent-color); /* Use accent color for elements */
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: float 10s infinite ease-in-out alternate;
+position: absolute;
+background: var(--accent-color); /* Use accent color for elements */
+border-radius: 50%;
+opacity: 0.6;
+animation: float 10s infinite ease-in-out alternate;
 }
 
 .dynamic-background div:nth-child(1) { width: 30px; height: 30px; top: 10%; left: 5%; animation-duration: 12s; animation-delay: 0s; }
@@ -424,1751 +488,1813 @@ body {
 .dynamic-background div:nth-child(10) { width: 30px; height: 30px; top: 50%; left: 5%; animation-duration: 12.5s; animation-delay: 9s; }
 
 @keyframes float {
-    0% { transform: translateY(0) translateX(0) rotate(0deg); }
-    50% { transform: translateY(-20px) translateX(10px) rotate(10deg); }
-    100% { transform: translateY(0) translateX(0) rotate(0deg); }
+0% { transform: translateY(0) translateX(0) rotate(0deg); }
+50% { transform: translateY(-20px) translateX(10px) rotate(10deg); }
+100% { transform: translateY(0) translateX(0) rotate(0deg); }
 }
 
 /* Auth Container */
 .auth-container {
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    max-width: 450px;
-    margin: auto;
-    background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-transparent background */
-    border-radius: 25px; /* More rounded */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6); /* Stronger shadow */
-    animation: fadeIn 0.5s ease-out;
-    transition: background-color 0.3s ease;
-    position: relative; /* To be above dynamic background */
-    z-index: 1;
+display: flex;
+flex-direction: column;
+padding: 40px;
+max-width: 450px;
+margin: auto;
+background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-transparent background */
+border-radius: 25px; /* More rounded */
+box-shadow: 0 8px 20px rgba(0,0,0,0.6); /* Stronger shadow */
+animation: fadeIn 0.5s ease-out;
+transition: background-color 0.3s ease;
+position: relative; /* To be above dynamic background */
+z-index: 1;
 }
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
 }
 .auth-container input, .auth-container button {
-    margin-bottom: 15px;
-    padding: 14px;
-    border-radius: 15px; /* More rounded inputs */
-    border: none;
-    font-size: 1.1rem;
-    background: var(--input-bg);
-    color: var(--text-color);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
-    transition: background-color 0.3s ease, color 0.3s ease;
+margin-bottom: 15px;
+padding: 14px;
+border-radius: 15px; /* More rounded inputs */
+border: none;
+font-size: 1.1rem;
+background: var(--input-bg);
+color: var(--text-color);
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+transition: background-color 0.3s ease, color 0.3s ease;
 }
 .auth-container input::placeholder {
-    color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
+color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
 }
 .auth-container button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+background-color: var(--primary-color);
+color: var(--text-color);
+font-weight: bold;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease;
+box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 .auth-container button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
+background-color: var(--secondary-color);
+transform: translateY(-2px);
 }
 .auth-container button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+transform: translateY(0);
+box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 .auth-container h2 {
-    text-align: center;
-    color: var(--accent-color);
-    margin-bottom: 30px;
-    font-size: 2.5rem; /* Larger heading */
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    transition: color 0.3s ease;
+text-align: center;
+color: var(--accent-color);
+margin-bottom: 30px;
+font-size: 2.5rem; /* Larger heading */
+text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+transition: color 0.3s ease;
 }
 .switch-link {
-    text-align: center;
-    margin-top: 15px;
-    color: var(--accent-color);
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: color 0.2s ease;
+text-align: center;
+margin-top: 15px;
+color: var(--accent-color);
+cursor: pointer;
+font-size: 1.1rem;
+transition: color 0.2s ease;
 }
 .switch-link:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
+color: var(--secondary-color);
+text-decoration: underline;
 }
 
 /* Friend List Page Specific Styles */
 #friendListPage {
-    padding: 20px;
-    align-items: center;
-    gap: 20px;
+padding: 20px;
+align-items: center;
+gap: 20px;
 }
 #friendListPage .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 20px;
-    position: relative; /* For z-index */
-    z-index: 1;
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-bottom: 15px;
+border-bottom: 1px solid var(--border-color);
+margin-bottom: 20px;
+position: relative; /* For z-index */
+z-index: 1;
 }
 #friendListPage .header .user-info {
-    font-size: 1.8rem; /* Larger user info */
-    font-weight: bold;
-    color: var(--accent-color);
+font-size: 1.8rem; /* Larger user info */
+font-weight: bold;
+color: var(--accent-color);
 }
 #friendListPage .header .logout-btn {
-    background-color: var(--logout-btn-bg);
-    color: white;
-    border: none;
-    border-radius: 25px; /* More rounded */
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+background-color: var(--logout-btn-bg);
+color: white;
+border: none;
+border-radius: 25px; /* More rounded */
+padding: 10px 20px;
+cursor: pointer;
+font-size: 1rem;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 #friendListPage .header .logout-btn:hover {
-    background-color: var(--logout-btn-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+background-color: var(--logout-btn-hover);
+transform: translateY(-3px);
+box-shadow: 0 8px 15px rgba(0,0,0,0.4);
 }
 
 #friendListPage .user-avatar-large {
-    width: 100px; /* Larger avatar */
-    height: 100px;
-    border-radius: 50%;
-    background-color: var(--input-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem; /* Larger icon */
-    color: var(--accent-color);
-    border: 4px solid var(--primary-color);
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
+width: 100px; /* Larger avatar */
+height: 100px;
+border-radius: 50%;
+background-color: var(--input-bg);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 4rem; /* Larger icon */
+color: var(--accent-color);
+border: 4px solid var(--primary-color);
+margin-bottom: 20px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+position: relative;
+z-index: 1;
 }
 
 #friendListPage .search-container {
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-    margin-bottom: 20px;
-    z-index: 2; /* Increased z-index to be above friends-list-section */
+width: 80%;
+max-width: 500px;
+position: relative;
+margin-bottom: 20px;
+z-index: 2; /* Increased z-index to be above friends-list-section */
 }
 #friendListPage .search-container input {
-    width: 100%;
-    padding: 12px 20px;
-    border-radius: 25px; /* More rounded */
-    border: none;
-    background: var(--input-bg);
-    color: var(--text-color);
-    font-size: 1.1rem;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+width: 100%;
+padding: 12px 20px;
+border-radius: 25px; /* More rounded */
+border: none;
+background: var(--input-bg);
+color: var(--text-color);
+font-size: 1.1rem;
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 }
 #friendListPage .search-container input::placeholder {
-    color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
+color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
 }
 #friendListPage .search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--background-light);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 15px 15px; /* More rounded */
-    max-height: 250px; /* Taller results */
-    overflow-y: auto;
-    z-index: 10; /* Ensure search results are on top */
-    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
-    display: none;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background-color: var(--background-light);
+border: 1px solid var(--border-color);
+border-top: none;
+border-radius: 0 0 15px 15px; /* More rounded */
+max-height: 250px; /* Taller results */
+overflow-y: auto;
+z-index: 10; /* Ensure search results are on top */
+box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+display: none;
 }
 #friendListPage .search-results.visible {
-    display: block;
+display: block;
 }
 .search-result-item {
-    padding: 12px 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.2s ease;
+padding: 12px 18px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 10px;
+border-bottom: 1px solid var(--border-color);
+transition: background-color 0.2s ease;
 }
 .search-result-item:last-child {
-    border-bottom: none;
+border-bottom: none;
 }
 .search-result-item:hover {
-    background-color: var(--input-bg);
+background-color: var(--input-bg);
 }
 .search-result-item i {
-    color: var(--accent-color);
+color: var(--accent-color);
 }
 .search-result-item .user-info-display {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-grow: 1;
-    color: var(--text-color); /* Ensure text color is readable */
+display: flex;
+align-items: center;
+gap: 10px;
+flex-grow: 1;
+color: var(--text-color); /* Ensure text color is readable */
 }
 .add-friend-search-btn {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-size: 1.5rem; /* Larger icon */
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
+background: none;
+border: none;
+color: var(--primary-color);
+font-size: 1.5rem; /* Larger icon */
+cursor: pointer;
+padding: 8px;
+border-radius: 50%;
+transition: background-color 0.2s ease, transform 0.2s ease;
+flex-shrink: 0;
 }
 .add-friend-search-btn:hover {
-    background-color: rgba(var(--primary-color-rgb, 142, 68, 173), 0.2);
-    transform: scale(1.2);
+background-color: rgba(var(--primary-color-rgb, 142, 68, 173), 0.2);
+transform: scale(1.2);
 }
 
 #friendListPage .friends-list-section {
-    width: 80%;
-    max-width: 500px;
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 15px; /* More rounded */
-    background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-transparent background */
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1; /* Lowered z-index to be below search-container */
+width: 80%;
+max-width: 500px;
+flex-grow: 1;
+overflow-y: auto;
+padding: 15px;
+border: 1px solid var(--border-color);
+border-radius: 15px; /* More rounded */
+background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-transparent background */
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+position: relative;
+z-index: 1; /* Lowered z-index to be below search-container */
 }
 #friendListPage .friends-list-section::-webkit-scrollbar {
-    width: 10px; /* Wider scrollbar */
+width: 10px; /* Wider scrollbar */
 }
 #friendListPage .friends-list-section::-webkit-scrollbar-track {
-    background: var(--background-dark);
-    border-radius: 10px;
+background: var(--background-dark);
+border-radius: 10px;
 }
 #friendListPage .friends-list-section::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
+background: var(--primary-color);
+border-radius: 10px;
 }
 #friendListPage .friends-list-section::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
+background: var(--secondary-color);
 }
 
 .friend-item-large {
-    display: flex;
-    align-items: center;
-    padding: 12px 18px;
-    margin-bottom: 10px;
-    background-color: var(--input-bg);
-    border-radius: 15px; /* More rounded */
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+display: flex;
+align-items: center;
+padding: 12px 18px;
+margin-bottom: 10px;
+background-color: var(--input-bg);
+border-radius: 15px; /* More rounded */
+cursor: pointer;
+transition: background-color 0.2s ease, transform 0.1s ease;
+position: relative;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .friend-item-large:hover {
-    background-color: var(--border-color);
-    transform: translateY(-2px);
+background-color: var(--border-color);
+transform: translateY(-2px);
 }
 .friend-item-large .friend-info-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
 }
 .friend-item-large .friend-avatar {
-    width: 70px; /* Larger avatar */
-    height: 70px;
-    border-radius: 50%;
-    background-color: var(--background-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem; /* Larger icon */
-    color: var(--accent-color);
-    border: 3px solid var(--primary-color);
-    margin-right: 15px;
+width: 70px; /* Larger avatar */
+height: 70px;
+border-radius: 50%;
+background-color: var(--background-dark);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 3rem; /* Larger icon */
+color: var(--accent-color);
+border: 3px solid var(--primary-color);
+margin-right: 15px;
 }
 .friend-item-large .friend-nickname {
-    font-size: 1.2rem; /* Larger nickname */
-    font-weight: bold;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+font-size: 1.2rem; /* Larger nickname */
+font-weight: bold;
+color: var(--text-color);
+display: flex;
+align-items: center;
+gap: 10px;
 }
 .friend-item-large .latest-message-preview {
-    font-size: 0.9rem;
-    color: var(--text-color);
-    opacity: 0.7;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%; /* Ensure it doesn't overflow its container */
+font-size: 0.9rem;
+color: var(--text-color);
+opacity: 0.7;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%; /* Ensure it doesn't overflow its container */
 }
 .friend-item-large .friend-remove-btn {
-    background: none;
-    border: none;
-    color: #FF4500; /* Orange Red for remove */
-    cursor: pointer;
-    font-size: 1.4rem; /* Larger icon */
-    padding: 8px;
-    transition: transform 0.2s ease;
+background: none;
+border: none;
+color: #FF4500; /* Orange Red for remove */
+cursor: pointer;
+font-size: 1.4rem; /* Larger icon */
+padding: 8px;
+transition: transform 0.2s ease;
 }
 .friend-item-large .friend-remove-btn:hover {
-    transform: scale(1.3);
+transform: scale(1.3);
 }
 
 /* Online Status Indicator */
 .online-status-indicator {
-    width: 12px; /* Larger indicator */
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--offline-color);
-    display: inline-block;
-    margin-left: 8px;
-    flex-shrink: 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+width: 12px; /* Larger indicator */
+height: 12px;
+border-radius: 50%;
+background-color: var(--offline-color);
+display: inline-block;
+margin-left: 8px;
+flex-shrink: 0;
+box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 .online-status-indicator.online {
-    background-color: var(--online-color);
-    box-shadow: 0 0 8px var(--online-color); /* Glow effect */
+background-color: var(--online-color);
+box-shadow: 0 0 8px var(--online-color); /* Glow effect */
 }
 
 /* Chat Window Specific Styles */
 #chatWindow {
-    background-color: var(--background-dark); /* Ensure chat window has its own background */
+background-color: var(--background-dark); /* Ensure chat window has its own background */
 }
 #chatWindow .chat-header {
-    background-color: var(--background-light);
-    padding: 18px 25px; /* More padding */
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+background-color: var(--background-light);
+padding: 18px 25px; /* More padding */
+border-bottom: 1px solid var(--border-color);
+display: flex;
+align-items: center;
+justify-content: space-between;
+box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 100;
 }
 #chatWindow .chat-header .back-btn {
-    background: none;
-    border: none;
-    color: var(--accent-color);
-    font-size: 1.8rem; /* Larger icon */
-    cursor: pointer;
-    padding: 8px;
-    transition: transform 0.2s ease, color 0.3s ease;
+background: none;
+border: none;
+color: var(--accent-color);
+font-size: 1.8rem; /* Larger icon */
+cursor: pointer;
+padding: 8px;
+transition: transform 0.2s ease, color 0.3s ease;
 }
 #chatWindow .chat-header .back-btn:hover {
-    transform: translateX(-8px);
+transform: translateX(-8px);
 }
 #chatWindow .chat-header .chat-with-info {
-    font-weight: bold;
-    color: var(--accent-color);
-    font-size: 1.8rem; /* Larger text */
-    flex-grow: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+font-weight: bold;
+color: var(--accent-color);
+font-size: 1.8rem; /* Larger text */
+flex-grow: 1;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
 }
 
 #chatWindow .messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 25px; /* More padding */
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* More space between bubbles */
-    padding-top: 80px; /* Space for fixed header */
-    padding-bottom: 90px; /* Space for fixed input */
+flex: 1;
+overflow-y: auto;
+padding: 25px; /* More padding */
+display: flex;
+flex-direction: column;
+gap: 12px; /* More space between bubbles */
+padding-top: 80px; /* Space for fixed header */
+padding-bottom: 90px; /* Space for fixed input */
 }
 #chatWindow .messages::-webkit-scrollbar {
-    width: 10px;
+width: 10px;
 }
 #chatWindow .messages::-webkit-scrollbar-track {
-    background: var(--background-dark);
-    border-radius: 10px;
+background: var(--background-dark);
+border-radius: 10px;
 }
 #chatWindow .messages::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
+background: var(--primary-color);
+border-radius: 10px;
 }
 #chatWindow .messages::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
+background: var(--secondary-color);
 }
 
 .bubble {
-    max-width: 75%; /* Slightly wider bubbles */
-    padding: 15px 22px;
-    border-radius: 30px; /* Very rounded */
-    line-height: 1.6;
-    word-wrap: break-word;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    color: #FFFFFF; /* Changed to white */
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Changed font style */
-    display: flex;
-    flex-direction: column;
+max-width: 75%; /* Slightly wider bubbles */
+padding: 15px 22px;
+border-radius: 30px; /* Very rounded */
+line-height: 1.6;
+word-wrap: break-word;
+box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+position: relative;
+transition: background-color 0.3s ease, color 0.3s ease;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
+display: flex;
+flex-direction: column;
 }
 .sent {
-    align-self: flex-end;
-    background-color: var(--bubble-sent);
-    border-bottom-right-radius: 10px; /* Pointy corner for sent */
+align-self: flex-end;
+background-color: var(--bubble-sent);
+border-bottom-right-radius: 10px; /* Pointy corner for sent */
 }
 .received {
-    align-self: flex-start;
-    background-color: var(--bubble-received);
-    border-bottom-left-radius: 10px; /* Pointy corner for received */
+align-self: flex-start;
+background-color: var(--bubble-received);
+border-bottom-left-radius: 10px; /* Pointy corner for received */
 }
 .message-content {
-    margin-bottom: 5px; /* Space between text and timestamp/seen */
+margin-bottom: 5px; /* Space between text and timestamp/seen */
 }
 .message-meta {
-    font-size: 0.75rem; /* Smaller font for meta info */
-    color: #FFFFFF; /* Changed to white */
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Changed font style */
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 5px;
+font-size: 0.75rem; /* Smaller font for meta info */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
+text-align: right;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+gap: 5px;
 }
 .bubble.received .message-meta {
-    justify-content: flex-start;
+justify-content: flex-start;
 }
 .seen-indicator {
-    font-size: 0.75rem; /* Consistent with timestamp */
-    color: #FFFFFF; /* Changed to white */
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Changed font style */
+font-size: 0.75rem; /* Consistent with timestamp */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
 }
 
+/* Dynamic text color for bubbles */
+.bubble.sent {
+color: var(--bubble-text-dark); /* Default to dark text for sent bubbles (assuming they are primary color) */
+}
+.bubble.received {
+color: var(--bubble-text-light); /* Default to light text for received bubbles (assuming they are secondary color) */
+}
+
+/* Override for specific themes where bubble colors might be dark */
+body.theme-space-adventure .bubble.sent,
+body.theme-space-adventure .bubble.received,
+body.theme-dinosaur-roar .bubble.sent,
+body.theme-dinosaur-roar .bubble.received,
+body.theme-black-elegant .bubble.sent,
+body.theme-black-elegant .bubble.received {
+color: var(--bubble-text-dark); /* Force light text for dark bubbles */
+}
+
+body.theme-ocean-explorer .bubble.sent,
+body.theme-forest-friends .bubble.sent,
+body.theme-superhero-city .bubble.sent,
+body.theme-pirate-adventure .bubble.sent,
+body.theme-farm-fun .bubble.sent,
+body.theme-arctic-chill .bubble.sent,
+body.theme-carnival-fun .bubble.sent,
+body.theme-magical-forest .bubble.sent,
+body.theme-sports-mania .bubble.sent {
+color: var(--bubble-text-dark); /* Ensure light text for primary color bubbles if they are dark */
+}
+
+body.theme-ocean-explorer .bubble.received,
+body.theme-forest-friends .bubble.received,
+body.theme-superhero-city .bubble.received,
+body.theme-pirate-adventure .bubble.received,
+body.theme-farm-fun .bubble.received,
+body.theme-arctic-chill .bubble.received,
+body.theme-carnival-fun .bubble.received,
+body.theme-magical-forest .bubble.received,
+body.theme-sports-mania .bubble.received {
+color: var(--bubble-text-light); /* Ensure dark text for secondary color bubbles if they are light */
+}
+
+
 #chatWindow .message-input {
-    display: flex;
-    padding: 18px 25px; /* More padding */
-    border-top: 1px solid var(--border-color);
-    background-color: var(--background-light);
-    gap: 12px;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+display: flex;
+padding: 18px 25px; /* More padding */
+border-top: 1px solid var(--border-color);
+background-color: var(--background-light);
+gap: 12px;
+box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 100;
 }
 #chatWindow .message-input input {
-    flex: 1;
-    padding: 14px 22px;
-    background: var(--input-bg);
-    color: var(--text-color);
-    border: none;
-    border-radius: 30px; /* Very rounded */
-    font-size: 1.1rem;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+flex: 1;
+padding: 14px 22px;
+background: var(--input-bg);
+color: var(--text-color);
+border: none;
+border-radius: 30px; /* Very rounded */
+font-size: 1.1rem;
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 }
 #chatWindow .message-input input::placeholder {
-    color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
+color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
 }
 #chatWindow .message-input button {
-    padding: 14px 25px;
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 30px; /* Very rounded */
-    color: var(--text-color);
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+padding: 14px 25px;
+background-color: var(--primary-color);
+border: none;
+border-radius: 30px; /* Very rounded */
+color: var(--text-color);
+font-weight: bold;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 10px;
+transition: background-color 0.2s ease, transform 0.1s ease;
+box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 #chatWindow .message-input button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
+background-color: var(--secondary-color);
+transform: translateY(-2px);
 }
 #chatWindow .message-input button:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+transform: translateY(0);
+box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .emoji-picker-btn {
-    color: var(--accent-color);
-    cursor: pointer;
-    font-size: 1.8rem; /* Larger emoji button */
-    transition: all 0.2s;
+color: var(--accent-color);
+cursor: pointer;
+font-size: 1.8rem; /* Larger emoji button */
+transition: all 0.2s;
 }
 .emoji-picker-btn:hover {
-    transform: scale(1.2);
+transform: scale(1.2);
 }
 .emoji-panel {
-    position: absolute;
-    bottom: 80px; /* Adjusted for larger input area */
-    right: 25px; /* Adjusted for larger padding */
-    background: var(--background-light);
-    border-radius: 15px; /* More rounded */
-    padding: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    z-index: 100;
-    display: none;
-    width: 320px; /* Slightly wider */
-    height: 220px; /* Slightly taller */
-    overflow-y: auto;
+position: absolute;
+bottom: 80px; /* Adjusted for larger input area */
+right: 25px; /* Adjusted for larger padding */
+background: var(--background-light);
+border-radius: 15px; /* More rounded */
+padding: 15px;
+box-shadow: 0 0 15px rgba(0,0,0,0.6);
+z-index: 100;
+display: none;
+width: 320px; /* Slightly wider */
+height: 220px; /* Slightly taller */
+overflow-y: auto;
 }
 .emoji-panel.visible {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px; /* More space between emojis */
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+gap: 8px; /* More space between emojis */
 }
 .emoji-item {
-    font-size: 1.8rem; /* Larger emojis */
-    cursor: pointer;
-    padding: 8px;
-    text-align: center;
-    transition: transform 0.1s;
+font-size: 1.8rem; /* Larger emojis */
+cursor: pointer;
+padding: 8px;
+text-align: center;
+transition: transform 0.1s;
 }
 .emoji-item:hover {
-    transform: scale(1.3);
+transform: scale(1.3);
 }
 
 /* Add Friend Confirmation Modal */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
+opacity: 1;
+visibility: visible;
 }
 .modal-content {
-    background-color: var(--background-light);
-    padding: 40px; /* More padding */
-    border-radius: 20px; /* More rounded */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    text-align: center;
-    max-width: 450px; /* Wider modal */
-    width: 90%;
-    transform: translateY(-30px); /* More pronounced animation */
-    transition: transform 0.3s ease, background-color 0.3s ease;
+background-color: var(--background-light);
+padding: 40px; /* More padding */
+border-radius: 20px; /* More rounded */
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+text-align: center;
+max-width: 450px; /* Wider modal */
+width: 90%;
+transform: translateY(-30px); /* More pronounced animation */
+transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .modal-overlay.visible .modal-content {
-    transform: translateY(0);
+transform: translateY(0);
 }
 .modal-content h3 {
-    color: var(--accent-color);
-    margin-bottom: 25px;
-    font-size: 1.8rem; /* Larger heading */
+color: var(--accent-color);
+margin-bottom: 25px;
+font-size: 1.8rem; /* Larger heading */
 }
 .modal-content .modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* More space between buttons */
+display: flex;
+justify-content: center;
+gap: 20px; /* More space between buttons */
 }
 .modal-content .modal-buttons button {
-    padding: 12px 25px;
-    border-radius: 10px; /* More rounded */
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+padding: 12px 25px;
+border-radius: 10px; /* More rounded */
+border: none;
+font-size: 1.1rem;
+cursor: pointer;
+transition: background-color 0.2s ease, transform 0.1s ease;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .modal-content .modal-buttons button.yes {
-    background-color: var(--primary-color);
-    color: var(--text-color);
+background-color: var(--primary-color);
+color: var(--text-color);
 }
 .modal-content .modal-buttons button.yes:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
+background-color: var(--accent-color);
+transform: translateY(-2px);
 }
 .modal-content .modal-buttons button.no {
-    background-color: var(--input-bg);
-    color: var(--text-color);
+background-color: var(--input-bg);
+color: var(--text-color);
 }
 .modal-content .modal-buttons button.no:hover {
-    background-color: var(--border-color);
-    transform: translateY(-2px);
+background-color: var(--border-color);
+transform: translateY(-2px);
 }
 
 /* New Message Notification */
 .new-message-notification {
-    position: fixed;
-    top: 25px; /* More space from top */
-    right: 25px; /* More space from right */
-    background-color: var(--notification-bg);
-    color: var(--notification-text);
-    padding: 18px 30px; /* More padding */
-    border-radius: 15px; /* More rounded */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    opacity: 0;
-    transform: translateY(-60px); /* More pronounced animation */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+position: fixed;
+top: 25px; /* More space from top */
+right: 25px; /* More space from right */
+background-color: var(--notification-bg);
+color: var(--notification-text);
+padding: 18px 30px; /* More padding */
+border-radius: 15px; /* More rounded */
+box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+z-index: 1001;
+display: flex;
+align-items: center;
+gap: 12px;
+opacity: 0;
+transform: translateY(-60px); /* More pronounced animation */
+transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 .new-message-notification.show {
-    opacity: 1;
-    transform: translateY(0);
+opacity: 1;
+transform: translateY(0);
 }
 .new-message-notification i {
-    font-size: 1.8rem; /* Larger icon */
+font-size: 1.8rem; /* Larger icon */
 }
 
 /* Theme Selector Icon */
 .theme-selector-icon {
-    background: none;
-    border: none;
-    color: var(--accent-color);
-    font-size: 1.8rem;
-    cursor: pointer;
-    padding: 8px;
-    transition: transform 0.2s ease, color 0.3s ease;
-    margin-right: 15px; /* Space between icon and logout button */
+background: none;
+border: none;
+color: var(--accent-color);
+font-size: 1.8rem;
+cursor: pointer;
+padding: 8px;
+transition: transform 0.2s ease, color 0.3s ease;
+margin-right: 15px; /* Space between icon and logout button */
 }
 .theme-selector-icon:hover {
-    transform: scale(1.1);
+transform: scale(1.1);
 }
 
 /* Floating Theme Selector Panel */
 .floating-theme-selector {
-    position: fixed;
-    top: 50%; /* Center vertically */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center horizontally and vertically */
-    background-color: var(--background-light);
-    border: 2px solid var(--border-color);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-    z-index: 1000; /* Above other content */
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px;
+position: fixed;
+top: 50%; /* Center vertically */
+left: 50%;
+transform: translate(-50%, -50%); /* Center horizontally and vertically */
+background-color: var(--background-light);
+border: 2px solid var(--border-color);
+border-radius: 15px;
+padding: 20px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+z-index: 1000; /* Above other content */
+display: none; /* Hidden by default */
+flex-direction: column;
+gap: 10px;
+max-width: 300px;
+/* Added for scrolling */
+max-height: 300px; /* Adjust this value to control how many themes are visible before scrolling */
+overflow-y: auto;
 }
 
+/* Scrollbar styling for theme selector */
+.floating-theme-selector::-webkit-scrollbar {
+width: 10px;
+}
+.floating-theme-selector::-webkit-scrollbar-track {
+background: var(--background-dark);
+border-radius: 10px;
+}
+.floating-theme-selector::-webkit-scrollbar-thumb {
+background: var(--primary-color);
+border-radius: 10px;
+}
+.floating-theme-selector::-webkit-scrollbar-thumb:hover {
+background: var(--secondary-color);
+}
+
+
 .floating-theme-selector.visible {
-    display: flex;
+display: flex;
 }
 
 .floating-theme-selector button {
-    background-color: var(--input-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: var(--text-color);
-    transition: background-color 0.2s ease, transform 0.1s ease;
+background-color: var(--input-bg);
+border: 1px solid var(--border-color);
+border-radius: 10px;
+padding: 10px 15px;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 10px;
+cursor: pointer;
+font-size: 1rem;
+color: var(--text-color);
+transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .floating-theme-selector button:hover {
-    background-color: var(--primary-color);
-    transform: translateX(5px);
+background-color: var(--primary-color);
+transform: translateX(5px);
 }
 
 .floating-theme-selector button i {
-    font-size: 1.2rem;
-    color: var(--accent-color);
+font-size: 1.2rem;
+color: var(--accent-color);
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    body {
-        overflow: auto;
-        min-height: -webkit-fill-available;
-    }
-    .main-container {
-        flex-direction: column;
-        height: 100%;
-    }
-    .page {
-        width: 100%;
-        height: 100vh;
-    }
-    #friendListPage {
-        padding: 15px;
-        gap: 15px;
-    }
-    #friendListPage .header {
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-    }
-    #friendListPage .header .user-info {
-        font-size: 1.5rem;
-    }
-    #friendListPage .header .logout-btn {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-    #friendListPage .user-avatar-large {
-        width: 80px;
-        height: 80px;
-        font-size: 3rem;
-        margin-bottom: 15px;
-    }
-    #friendListPage .search-container {
-        width: 100%;
-        z-index: 2; /* Ensure it's still above friends list on mobile */
-    }
-    #friendListPage .friends-list-section {
-        width: 100%;
-        padding: 10px;
-        z-index: 1; /* Ensure it's still below search results on mobile */
-    }
-    .friend-item-large {
-        padding: 10px 15px;
-        margin-bottom: 8px;
-    }
-    .friend-item-large .friend-avatar {
-        width: 60px;
-        height: 60px;
-        font-size: 2.5rem;
-        margin-right: 10px;
-    }
-    .friend-item-large .friend-nickname {
-        font-size: 1.1rem;
-    }
-    .friend-item-large .latest-message-preview {
-        font-size: 0.8rem;
-    }
-    .friend-item-large .friend-remove-btn {
-        font-size: 1.2rem;
-    }
+body {
+overflow: auto;
+min-height: -webkit-fill-available;
+}
+.main-container {
+flex-direction: column;
+height: 100%;
+}
+.page {
+width: 100%;
+height: 100vh;
+}
+#friendListPage {
+padding: 15px;
+gap: 15px;
+}
+#friendListPage .header {
+padding-bottom: 10px;
+margin-bottom: 15px;
+}
+#friendListPage .header .user-info {
+font-size: 1.5rem;
+}
+#friendListPage .header .logout-btn {
+padding: 8px 15px;
+font-size: 0.9rem;
+}
+#friendListPage .user-avatar-large {
+width: 80px;
+height: 80px;
+font-size: 3rem;
+margin-bottom: 15px;
+}
+#friendListPage .search-container {
+width: 100%;
+z-index: 2; /* Ensure it's still above friends list on mobile */
+}
+#friendListPage .friends-list-section {
+width: 100%;
+padding: 10px;
+z-index: 1; /* Ensure it's still below search results on mobile */
+}
+.friend-item-large {
+padding: 10px 15px;
+margin-bottom: 8px;
+}
+.friend-item-large .friend-avatar {
+width: 60px;
+height: 60px;
+font-size: 2.5rem;
+margin-right: 10px;
+}
+.friend-item-large .friend-nickname {
+font-size: 1.1rem;
+}
+.friend-item-large .latest-message-preview {
+font-size: 0.8rem;
+}
+.friend-item-large .friend-remove-btn {
+font-size: 1.2rem;
+}
 
-    #chatWindow .chat-header {
-        padding: 15px 20px;
-    }
-    #chatWindow .chat-header .back-btn {
-        font-size: 1.5rem;
-    }
-    #chatWindow .chat-header .chat-with-info {
-        font-size: 1.5rem;
-    }
-    #chatWindow .messages {
-        padding: 15px;
-        padding-top: 70px;
-        padding-bottom: 80px;
-    }
-    #chatWindow .message-input {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 15px;
-    }
-    .bubble {
-        max-width: 90%;
-    }
-    .emoji-panel {
-        bottom: 70px;
-        right: 15px;
-        width: 280px;
-        height: 200px;
-    }
-    .new-message-notification {
-        top: 15px;
-        right: 15px;
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
+#chatWindow .chat-header {
+padding: 15px 20px;
+}
+#chatWindow .chat-header .back-btn {
+font-size: 1.5rem;
+}
+#chatWindow .chat-header .chat-with-info {
+font-size: 1.5rem;
+}
+#chatWindow .messages {
+padding: 15px;
+padding-top: 70px;
+padding-bottom: 80px;
+}
+#chatWindow .message-input {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+padding: 15px;
+}
+.bubble {
+max-width: 90%;
+}
+.emoji-panel {
+bottom: 70px;
+right: 15px;
+width: 280px;
+height: 200px;
+}
+.new-message-notification {
+top: 15px;
+right: 15px;
+padding: 12px 20px;
+font-size: 1rem;
+}
 
-    .theme-selector-icon {
-        font-size: 1.5rem;
-        margin-right: 10px;
-    }
+.theme-selector-icon {
+font-size: 1.5rem;
+margin-right: 10px;
+}
 
-    .floating-theme-selector {
-        width: 90%;
-        padding: 15px;
-    }
+.floating-theme-selector {
+width: 90%;
+padding: 15px;
+/* Adjust max-height for mobile if needed */
+max-height: 60vh; /* Example: 60% of viewport height */
+}
 }
 </style>
 </head>
 <body>
 <div class="main-container">
-    <!-- Authentication Page -->
-    <div id="authPage" class="page active">
-        <div class="dynamic-background">
-            <div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div>
-        </div>
-        <div id="loginForm" class="auth-container">
-            <h2><i class="fas fa-star"></i> Welcome to Messmisan!</h2>
-            <input id="loginEmail" type="email" placeholder="Email" />
-            <input id="loginPassword" type="password" placeholder="Password" />
-            <button onclick="login()"><i class="fas fa-rocket"></i> Blast Off!</button>
-            <div class="switch-link" onclick="toggleAuthForm()">Don't have an account? Join the fun! <i class="fas fa-magic"></i></div>
-        </div>
-        <div id="signupForm" class="auth-container" style="display:none;">
-            <h2><i class="fas fa-sparkles"></i> Sign Up for Adventure!</h2>
-            <input id="nickname" placeholder="Your Fun Nickname" />
-            <input id="email" type="email" placeholder="Your Email" />
-            <input id="password" type="password" placeholder="Secret Password" />
-            <button onclick="signup()"><i class="fas fa-hat-wizard"></i> Create Account</button>
-            <div class="switch-link" onclick="toggleAuthForm()">Already part of the crew? Log in! <i class="fas fa-compass"></i></div>
-        </div>
-    </div>
+<!-- Authentication Page -->
+<div id="authPage" class="page active">
+<div class="dynamic-background">
+<div></div><div></div><div></div><div></div><div></div>
+<div></div><div></div><div></div><div></div><div></div>
+</div>
+<div id="loginForm" class="auth-container">
+<h2><i class="fas fa-star"></i> Welcome to Messmisan!</h2>
+<input id="loginEmail" type="email" placeholder="Email" />
+<input id="loginPassword" type="password" placeholder="Password" />
+<button onclick="login()"><i class="fas fa-rocket"></i> Blast Off!</button>
+<div class="switch-link" onclick="toggleAuthForm()">Don't have an account? Join the fun! <i class="fas fa-magic"></i></div>
+</div>
+<div id="signupForm" class="auth-container" style="display:none;">
+<h2><i class="fas fa-sparkles"></i> Sign Up for Adventure!</h2>
+<input id="nickname" placeholder="Your Fun Nickname" />
+<input id="email" type="email" placeholder="Your Email" />
+<input id="password" type="password" placeholder="Secret Password" />
+<button onclick="signup()"><i class="fas fa-hat-wizard"></i> Create Account</button>
+<div class="switch-link" onclick="toggleAuthForm()">Already part of the crew? Log in! <i class="fas fa-compass"></i></div>
+</div>
+</div>
 
-    <!-- Friend List Page -->
-    <div id="friendListPage" class="page">
-        <div class="dynamic-background">
-            <div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div>
-        </div>
-        <div class="header">
-            <span class="user-info" id="userNickname">Welcome, User</span>
-            <button class="theme-selector-icon" onclick="toggleThemePanel()"><i class="fas fa-palette"></i></button>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-door-open"></i> Bye Bye!</button>
-        </div>
+<!-- Friend List Page -->
+<div id="friendListPage" class="page">
+<div class="dynamic-background">
+<div></div><div></div><div></div><div></div><div></div>
+<div></div><div></div><div></div><div></div><div></div>
+</div>
+<div class="header">
+<span class="user-info" id="userNickname">Welcome, User</span>
+<button class="theme-selector-icon" onclick="toggleThemePanel()"><i class="fas fa-palette"></i></button>
+<button class="logout-btn" onclick="logout()"><i class="fas fa-door-open"></i> Bye Bye!</button>
+</div>
 
-        <div class="user-avatar-large">
-            <i class="fas fa-user-astronaut"></i> <!-- More fun avatar icon -->
-        </div>
+<div class="user-avatar-large">
+<i class="fas fa-user-astronaut"></i> <!-- More fun avatar icon -->
+</div>
 
-        <div class="search-container">
-            <input id="searchUser" type="text" placeholder="Find new friends by nickname or email..." onkeyup="searchUsers()" />
-            <div class="search-results" id="searchResults">
-                <!-- Search results will be displayed here -->
-            </div>
-        </div>
+<div class="search-container">
+<input id="searchUser" type="text" placeholder="Find new friends by nickname or email..." onkeyup="searchUsers()" />
+<div class="search-results" id="searchResults">
+<!-- Search results will be displayed here -->
+</div>
+</div>
 
-        <div class="friends-list-section">
-            <h3><i class="fas fa-users-line"></i> Your Awesome Friends</h3>
-            <div id="friendList">
-                <!-- Friends will be loaded here -->
-            </div>
-        </div>
-    </div>
+<div class="friends-list-section">
+<h3><i class="fas fa-users-line"></i> Your Awesome Friends</h3>
+<div id="friendList">
+<!-- Friends will be loaded here -->
+</div>
+</div>
+</div>
 
-    <!-- Chat Window -->
-    <div id="chatWindow" class="page">
-        <div class="chat-header">
-            <button class="back-btn" onclick="goBackToFriendList()"><i class="fas fa-arrow-left"></i></button>
-            <span class="chat-with-info" id="chatWith">
-                <span id="chatFriendNickname">None</span>
-                <div id="chatFriendStatus" class="online-status-indicator"></div>
-            </span>
-        </div>
-        <div class="messages" id="messages"></div>
-        <div class="message-input">
-            <div class="emoji-panel" id="emojiPanel"></div>
-            <input id="messageInput" placeholder="Type your super message..." />
-            <span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
-            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
-        </div>
-    </div>
+<!-- Chat Window -->
+<div id="chatWindow" class="page">
+<div class="chat-header">
+<button class="back-btn" onclick="goBackToFriendList()"><i class="fas fa-arrow-left"></i></button>
+<span class="chat-with-info" id="chatWith">
+<span id="chatFriendNickname">None</span>
+<div id="chatFriendStatus" class="online-status-indicator"></div>
+</span>
+</div>
+<div class="messages" id="messages"></div>
+<div class="message-input">
+<div class="emoji-panel" id="emojiPanel"></div>
+<input id="messageInput" placeholder="Type your super message..." />
+<span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
+<button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
+</div>
+</div>
 </div>
 
 <!-- Floating Theme Selector Panel -->
 <div class="floating-theme-selector" id="themeSelectorPanel">
-    <button title="Cloud Play Theme" onclick="applyTheme('cloud-play')"><i class="fas fa-cloud" style="color: #87CEEB;"></i> Cloud Play</button>
-    <button title="Candy Theme" onclick="applyTheme('candy')"><i class="fas fa-candy-cane" style="color: #FF69B4;"></i> Candy</button>
-    <button title="Rainbow Dream Theme" onclick="applyTheme('rainbow-dream')"><i class="fas fa-rainbow" style="color: #FF4500;"></i> Rainbow Dream</button>
-    <button title="Space Adventure Theme" onclick="applyTheme('space-adventure')"><i class="fas fa-rocket" style="color: #00FFFF;"></i> Space Adventure</button>
-    <button title="Dinosaur Roar Theme" onclick="applyTheme('dinosaur-roar')"><i class="fas fa-dragon" style="color: #FF4500;"></i> Dinosaur Roar</button>
-    <button title="Unicorn Magic Theme" onclick="applyTheme('unicorn-magic')"><i class="fas fa-unicorn" style="color: #DA70D6;"></i> Unicorn Magic</button>
-    <button title="Ocean Explorer Theme" onclick="applyTheme('ocean-explorer')"><i class="fas fa-water" style="color: #0077BE;"></i> Ocean Explorer</button>
-    <button title="Forest Friends Theme" onclick="applyTheme('forest-friends')"><i class="fas fa-tree" style="color: #228B22;"></i> Forest Friends</button>
-    <button title="Superhero City Theme" onclick="applyTheme('superhero-city')"><i class="fas fa-mask" style="color: #DC2626;"></i> Superhero City</button>
-    <button title="Pirate Adventure Theme" onclick="applyTheme('pirate-adventure')"><i class="fas fa-skull-crossbones" style="color: #8B4513;"></i> Pirate Adventure</button>
-    <button title="Farm Fun Theme" onclick="applyTheme('farm-fun')"><i class="fas fa-tractor" style="color: #4CAF50;"></i> Farm Fun</button>
-    <button title="Arctic Chill Theme" onclick="applyTheme('arctic-chill')"><i class="fas fa-snowflake" style="color: #00BCD4;"></i> Arctic Chill</button>
-    <button title="Carnival Fun Theme" onclick="applyTheme('carnival-fun')"><i class="fas fa-ticket-alt" style="color: #FF5722;"></i> Carnival Fun</button>
-    <button title="Magical Forest Theme" onclick="applyTheme('magical-forest')"><i class="fas fa-hat-wizard" style="color: #673AB7;"></i> Magical Forest</button>
-    <button title="Sports Mania Theme" onclick="applyTheme('sports-mania')"><i class="fas fa-basketball-ball" style="color: #FF5722;"></i> Sports Mania</button>
-    <button title="Black Elegant Theme" onclick="applyTheme('black-elegant')"><i class="fas fa-moon" style="color: #E0BBE4;"></i> Black Elegant</button>
+<button title="Cloud Play Theme" onclick="applyTheme('cloud-play')"><i class="fas fa-cloud" style="color: #87CEEB;"></i> Cloud Play</button>
+<button title="Candy Theme" onclick="applyTheme('candy')"><i class="fas fa-candy-cane" style="color: #FF69B4;"></i> Candy</button>
+<button title="Rainbow Dream Theme" onclick="applyTheme('rainbow-dream')"><i class="fas fa-rainbow" style="color: #FF4500;"></i> Rainbow Dream</button>
+<button title="Space Adventure Theme" onclick="applyTheme('space-adventure')"><i class="fas fa-rocket" style="color: #00FFFF;"></i> Space Adventure</button>
+<button title="Dinosaur Roar Theme" onclick="applyTheme('dinosaur-roar')"><i class="fas fa-dragon" style="color: #FF4500;"></i> Dinosaur Roar</button>
+<button title="Unicorn Magic Theme" onclick="applyTheme('unicorn-magic')"><i class="fas fa-unicorn" style="color: #DA70D6;"></i> Unicorn Magic</button>
+<button title="Ocean Explorer Theme" onclick="applyTheme('ocean-explorer')"><i class="fas fa-water" style="color: #0077BE;"></i> Ocean Explorer</button>
+<button title="Forest Friends Theme" onclick="applyTheme('forest-friends')"><i class="fas fa-tree" style="color: #228B22;"></i> Forest Friends</button>
+<button title="Superhero City Theme" onclick="applyTheme('superhero-city')"><i class="fas fa-mask" style="color: #DC2626;"></i> Superhero City</button>
+<button title="Pirate Adventure Theme" onclick="applyTheme('pirate-adventure')"><i class="fas fa-skull-crossbones" style="color: #8B4513;"></i> Pirate Adventure</button>
+<button title="Farm Fun Theme" onclick="applyTheme('farm-fun')"><i class="fas fa-tractor" style="color: #4CAF50;"></i> Farm Fun</button>
+<button title="Arctic Chill Theme" onclick="applyTheme('arctic-chill')"><i class="fas fa-snowflake" style="color: #00BCD4;"></i> Arctic Chill</button>
+<button title="Carnival Fun Theme" onclick="applyTheme('carnival-fun')"><i class="fas fa-ticket-alt" style="color: #FF5722;"></i> Carnival Fun</button>
+<button title="Magical Forest Theme" onclick="applyTheme('magical-forest')"><i class="fas fa-hat-wizard" style="color: #673AB7;"></i> Magical Forest</button>
+<button title="Sports Mania Theme" onclick="applyTheme('sports-mania')"><i class="fas fa-basketball-ball" style="color: #FF5722;"></i> Sports Mania</button>
+<button title="Black Elegant Theme" onclick="applyTheme('black-elegant')"><i class="fas fa-moon" style="color: #E0BBE4;"></i> Black Elegant</button>
 </div>
 
 <!-- Add Friend Confirmation Modal -->
 <div class="modal-overlay" id="addFriendModal">
-    <div class="modal-content">
-        <h3 id="addFriendModalText"></h3>
-        <div class="modal-buttons">
-            <button class="yes" onclick="confirmAddFriend(true)"><i class="fas fa-heart"></i> Yes!</button>
-            <button class="no" onclick="confirmAddFriend(false)"><i class="fas fa-times"></i> No</button>
-        </div>
-    </div>
+<div class="modal-content">
+<h3 id="addFriendModalText"></h3>
+<div class="modal-buttons">
+<button class="yes" onclick="confirmAddFriend(true)"><i class="fas fa-heart"></i> Yes!</button>
+<button class="no" onclick="confirmAddFriend(false)"><i class="fas fa-times"></i> No</button>
+</div>
+</div>
 </div>
 
 <!-- New Message Notification -->
 <div id="newMessageNotification" class="new-message-notification">
-    <i class="fas fa-bell"></i>
-    <span id="notificationText">New message from someone!</span>
+<i class="fas fa-bell"></i>
+<span id="notificationText">New message from someone!</span>
 </div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update, onChildChanged, onValue, onDisconnect, limitToLast } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyC1l66DhDXfAMOa2WPxocPWS_H3xGbTO_E",
-        authDomain: "tracker-37839.firebaseapp.com",
-        projectId: "tracker-37839",
-        storageBucket: "tracker-37839.appspot.com",
-        messagingSenderId: "569377443416",
-        appId: "1:569377443416:web:cb67316b895567be75042d",
-        databaseURL: "https://tracker-37839-default-rtdb.firebaseio.com"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const auth = getAuth();
-
-    let currentUser = null;
-    let currentChatUID = null;
-    let currentMessagesRef = null;
-    let currentOnChildAddedListener = null;
-    let currentOnChildChangedListener = null;
-    let pendingFriendToAdd = null;
-    let allFriendsListeners = {};
-    let friendStatusListeners = {}; // To store listeners for friend online status
-    let latestMessageListeners = {}; // To store listeners for latest messages
-
-    // Audio for notification
-    const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
-
-    // --- Page Management ---
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
-        });
-        document.getElementById(pageId).classList.add('active');
-
-        // Show/hide theme selector icon based on the active page
-        const themeIconFriendList = document.querySelector('#friendListPage .theme-selector-icon');
-        const themeIconChatWindow = document.querySelector('#chatWindow .theme-selector-icon');
-
-        if (themeIconFriendList) {
-            themeIconFriendList.style.display = (pageId === 'friendListPage') ? 'block' : 'none';
-        }
-        if (themeIconChatWindow) {
-            themeIconChatWindow.style.display = (pageId === 'chatWindow') ? 'block' : 'none';
-        }
-    }
-
-    window.goBackToFriendList = function() {
-        showPage('friendListPage');
-        // Clear any message listeners when going back
-        if (currentMessagesRef && currentOnChildAddedListener) {
-            off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
-        }
-        if (currentMessagesRef && currentOnChildChangedListener) {
-            off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
-        }
-        currentMessagesRef = null;
-        currentChatUID = null;
-        document.getElementById("chatFriendNickname").innerText = "None";
-        document.getElementById("chatFriendStatus").classList.remove('online'); // Reset status indicator
-    };
-    // --- End Page Management ---
-
-    // --- Theme Management ---
-    window.applyTheme = function(themeName) {
-        const body = document.body;
-        // Remove all existing theme classes
-        body.classList.remove(
-            'theme-cloud-play',
-            'theme-candy',
-            'theme-rainbow-dream',
-            'theme-space-adventure',
-            'theme-dinosaur-roar',
-            'theme-unicorn-magic',
-            'theme-ocean-explorer',
-            'theme-forest-friends',
-            'theme-superhero-city',
-            'theme-pirate-adventure',
-            'theme-farm-fun',
-            'theme-arctic-chill',
-            'theme-carnival-fun',
-            'theme-magical-forest',
-            'theme-sports-mania',
-            'theme-black-elegant' /* Add new theme class here */
-        );
-        // Add the new theme class
-        if (themeName !== 'cloud-play') { // 'cloud-play' is the default, no class needed
-            body.classList.add(`theme-${themeName}`);
-        }
-        localStorage.setItem('selectedTheme', themeName);
-
-        // Update CSS variables for dynamic background elements if needed (e.g., if colors change)
-        const root = document.documentElement;
-        const computedStyle = getComputedStyle(body);
-        const backgroundLight = computedStyle.getPropertyValue('--background-light');
-
-        // Extract RGB values for semi-transparent backgrounds
-        const getRgbValues = (color) => {
-            const tempDiv = document.createElement('div');
-            tempDiv.style.color = color;
-            document.body.appendChild(tempDiv);
-            const rgb = window.getComputedStyle(tempDiv).color.match(/\d+/g);
-            document.body.removeChild(tempDiv);
-            return rgb ? rgb.join(',') : '30, 30, 30'; // Default if not found
-        };
-
-        root.style.setProperty('--background-light-rgb', getRgbValues(backgroundLight));
-        toggleThemePanel(); // Hide panel after selection
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('selectedTheme') || 'cloud-play'; // Default to 'cloud-play'
-        window.applyTheme(savedTheme);
-    });
-
-    window.toggleThemePanel = function() {
-        const panel = document.getElementById("themeSelectorPanel");
-        panel.classList.toggle("visible");
-    };
-    // --- End Theme Management ---
-
-
-    window.toggleAuthForm = function () {
-        const login = document.getElementById("loginForm");
-        const signup = document.getElementById("signupForm");
-        login.style.display = login.style.display === "none" ? "flex" : "none";
-        signup.style.display = signup.style.display === "none" ? "flex" : "none";
-    };
-
-    window.signup = function () {
-        const nickname = document.getElementById("nickname").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-        if (!nickname || !email || !password) return alert("Please fill in all fields.");
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(userCred => {
-                const uid = userCred.user.uid;
-                set(ref(db, 'users/' + uid), { nickname, email, status: 'offline', last_online: Date.now() }); // Set initial status
-                alert("Signup successful! Please log in.");
-                toggleAuthForm();
-            })
-            .catch(err => alert("Signup error: " + err.message));
-    };
-
-    window.login = function () {
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value.trim();
-        if (!email || !password) return alert("Please enter email and password.");
-        signInWithEmailAndPassword(auth, email, password)
-            .then(async userCred => {
-                currentUser = userCred.user;
-                const uid = currentUser.uid;
-                const snap = await get(ref(db, 'users/' + uid));
-                if (snap.exists()) {
-                    const nickname = snap.val().nickname || "User";
-                    document.getElementById("userNickname").innerText = "Welcome, " + nickname;
-                    showPage('friendListPage'); // Show friend list page after login
-
-                    // Clear any existing listeners first
-                    for (const friendUID in allFriendsListeners) {
-                        const { chatRef, listener } = allFriendsListeners[friendUID];
-                        off(chatRef, 'child_added', listener);
-                    }
-                    allFriendsListeners = {};
-
-                    for (const friendUID in friendStatusListeners) {
-                        off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
-                    }
-                    friendStatusListeners = {};
-
-                    for (const friendUID in latestMessageListeners) {
-                        off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
-                    }
-                    latestMessageListeners = {};
-
-                    setupPresence(); // Setup online presence
-                    loadFriendList();
-                    setupNewMessageListeners();
-                }
-            })
-            .catch(err => alert("Login error: " + err.message));
-    };
-
-    window.logout = function () {
-        if (currentUser) {
-            // Set user status to offline on logout
-            set(ref(db, 'users/' + currentUser.uid + '/status'), 'offline');
-            set(ref(db, 'users/' + currentUser.uid + '/last_online'), Date.now());
-        }
-
-        for (const friendUID in allFriendsListeners) {
-            const { chatRef, listener } = allFriendsListeners[friendUID];
-            off(chatRef, 'child_added', listener);
-        }
-        allFriendsListeners = {};
-
-        for (const friendUID in friendStatusListeners) {
-            off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
-        }
-        friendStatusListeners = {};
-
-        for (const friendUID in latestMessageListeners) {
-            off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
-        }
-        latestMessageListeners = {};
-
-        if (currentMessagesRef && currentOnChildAddedListener) {
-            off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
-        }
-        if (currentMessagesRef && currentOnChildChangedListener) {
-            off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
-        }
-
-        signOut(auth).then(() => {
-            showPage('authPage'); // Show auth page after logout
-            currentChatUID = null;
-            document.getElementById("chatFriendNickname").innerText = "None";
-            document.getElementById("chatFriendStatus").classList.remove('online');
-            document.getElementById("messages").innerHTML = "";
-            currentUser = null;
-        });
-    };
-
-    // --- Presence System ---
-    function setupPresence() {
-        const userStatusRef = ref(db, 'users/' + currentUser.uid + '/status');
-        const userLastOnlineRef = ref(db, 'users/' + currentUser.uid + '/last_online');
-        const connectedRef = ref(db, '.info/connected');
-
-        onValue(connectedRef, (snap) => {
-            if (snap.val() === true) {
-                // We're connected! Set our status to online.
-                set(userStatusRef, 'online');
-                set(userLastOnlineRef, Date.now());
-
-                // When I disconnect, set my status to offline and update last_online
-                onDisconnect(userStatusRef).set('offline');
-                onDisconnect(userLastOnlineRef).set(Date.now());
-            } else {
-                // We are not connected, Firebase will automatically handle onDisconnect
-                // No need to explicitly set offline here, as onDisconnect will do it.
-            }
-        });
-    }
-    // --- End Presence System ---
-
-    async function addFriendConfirmed(friendData) {
-        const friendUID = friendData.uid;
-        const nickname = friendData.nickname || "Friend";
-
-        try {
-            const friendSnap = await get(ref(db, 'friends/' + currentUser.uid + '/' + friendUID));
-            if (friendSnap.exists()) {
-                alert(`${nickname} is already your friend!`);
-            } else {
-                await set(ref(db, 'friends/' + currentUser.uid + '/' + friendUID), {
-                    uid: friendUID,
-                    email: friendData.email,
-                    nickname: nickname
-                });
-                alert(`${nickname} added to your friends!`);
-                loadFriendList();
-                setupNewMessageListenerForFriend(friendUID, nickname); // Ensure this is called for new friends
-            }
-        } catch (error) {
-            console.error("Error adding friend:", error);
-            alert("Error adding friend: " + error.message);
-        }
-    }
-
-    window.removeFriend = function (friendUID, nickname) {
-        if (!confirm(`Are you sure you want to remove ${nickname} from your friends?`)) {
-            return;
-        }
-        remove(ref(db, 'friends/' + currentUser.uid + '/' + friendUID))
-            .then(() => {
-                alert(`${nickname} has been removed.`);
-                loadFriendList();
-                if (currentChatUID === friendUID) {
-                    currentChatUID = null;
-                    document.getElementById("chatFriendNickname").innerText = "None";
-                    document.getElementById("chatFriendStatus").classList.remove('online');
-                    document.getElementById("messages").innerHTML = "";
-                    if (currentMessagesRef && currentOnChildAddedListener) {
-                        off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
-                    }
-                    if (currentMessagesRef && currentOnChildChangedListener) {
-                        off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
-                    }
-                    showPage('friendListPage'); // Go back to friend list if current chat friend is removed
-                }
-                if (allFriendsListeners[friendUID]) {
-                    const { chatRef, listener } = allFriendsListeners[friendUID];
-                    off(chatRef, 'child_added', listener);
-                    delete allFriendsListeners[friendUID];
-                }
-                if (friendStatusListeners[friendUID]) {
-                    off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
-                    delete friendStatusListeners[friendUID];
-                }
-                if (latestMessageListeners[friendUID]) {
-                    off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
-                    delete latestMessageListeners[friendUID];
-                }
-            })
-            .catch(error => {
-                alert("Error removing friend: " + error.message);
-            });
-    };
-
-    function loadFriendList() {
-        const list = document.getElementById("friendList");
-        // Clear existing content and remove any duplicate listeners
-        list.innerHTML = "";
-        for (const friendUID in allFriendsListeners) {
-            const { chatRef, listener } = allFriendsListeners[friendUID];
-            off(chatRef, 'child_added', listener);
-        }
-        allFriendsListeners = {};
-
-        for (const friendUID in friendStatusListeners) {
-            off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
-        }
-        friendStatusListeners = {};
-
-        for (const friendUID in latestMessageListeners) {
-            off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
-        }
-        latestMessageListeners = {};
-
-
-        get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
-            if (snapshot.exists()) {
-                snapshot.forEach(child => {
-                    const f = child.val();
-                    const friendItem = document.createElement("div");
-                    friendItem.className = "friend-item-large";
-                    friendItem.onclick = () => startChat(f.uid, f.nickname || "Friend");
-                    friendItem.id = `friend-item-${f.uid}`; // Add ID for easy access
-
-                    const avatarDiv = document.createElement("div");
-                    avatarDiv.className = "friend-avatar";
-                    avatarDiv.innerHTML = `<i class="fas fa-user-circle"></i>`;
-
-                    const friendInfoContainer = document.createElement("div");
-                    friendInfoContainer.className = "friend-info-container";
-
-                    const nicknameSpan = document.createElement("span");
-                    nicknameSpan.className = "friend-nickname";
-                    nicknameSpan.innerText = f.nickname || "Friend";
-
-                    const statusIndicator = document.createElement("div");
-                    statusIndicator.className = "online-status-indicator";
-                    statusIndicator.id = `status-indicator-${f.uid}`; // Add ID for status updates
-                    nicknameSpan.appendChild(statusIndicator); // Append status indicator to nickname span
-
-                    const latestMessagePreview = document.createElement("div");
-                    latestMessagePreview.className = "latest-message-preview";
-                    latestMessagePreview.id = `latest-message-${f.uid}`;
-                    latestMessagePreview.innerText = "No messages yet."; // Default text
-
-                    friendInfoContainer.appendChild(nicknameSpan);
-                    friendInfoContainer.appendChild(latestMessagePreview);
-
-                    const removeBtn = document.createElement("button");
-                    removeBtn.className = "friend-remove-btn";
-                    removeBtn.innerHTML = `<i class="fas fa-times-circle"></i>`;
-                    removeBtn.title = `Remove ${f.nickname || "Friend"}`;
-                    removeBtn.onclick = (event) => {
-                        event.stopPropagation();
-                        removeFriend(f.uid, f.nickname || "Friend");
-                    };
-
-                    friendItem.appendChild(avatarDiv);
-                    friendItem.appendChild(friendInfoContainer);
-                    friendItem.appendChild(removeBtn);
-                    list.appendChild(friendItem);
-
-                    // Setup listener for friend's online status
-                    const friendStatusRef = ref(db, 'users/' + f.uid + '/status');
-                    friendStatusListeners[f.uid] = onValue(friendStatusRef, (statusSnap) => {
-                        const status = statusSnap.val();
-                        const indicator = document.getElementById(`status-indicator-${f.uid}`);
-                        if (indicator) {
-                            if (status === 'online') {
-                                indicator.classList.add('online');
-                            } else {
-                                indicator.classList.remove('online');
-                            }
-                        }
-                    });
-
-                    // Setup listener for latest message preview
-                    const chatId = getChatID(currentUser.uid, f.uid);
-                    const chatMessagesRef = query(ref(db, 'messages/' + chatId), limitToLast(1));
-                    latestMessageListeners[f.uid] = {
-                        ref: chatMessagesRef,
-                        listener: onChildAdded(chatMessagesRef, (messageSnapshot) => {
-                            const msg = messageSnapshot.val();
-                            const previewElement = document.getElementById(`latest-message-${f.uid}`);
-                            if (previewElement) {
-                                let previewText = msg.text;
-                                if (msg.sender === currentUser.uid) {
-                                    previewText = `You: ${previewText}`;
-                                }
-                                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
-                            }
-                        })
-                    };
-                });
-            } else {
-                list.innerHTML = "<p style='text-align: center; color: var(--secondary-color);'>No friends yet. Search and add some!</p>";
-            }
-        });
-    }
-
-    let searchTimeout;
-    window.searchUsers = function () {
-        clearTimeout(searchTimeout);
-        const searchTerm = document.getElementById("searchUser").value.trim().toLowerCase();
-        const searchResultsDiv = document.getElementById("searchResults");
-        searchResultsDiv.innerHTML = "";
-
-        if (searchTerm.length === 0) {
-            searchResultsDiv.classList.remove("visible");
-            return;
-        }
-
-        searchTimeout = setTimeout(async () => {
-            try {
-                const usersRef = ref(db, 'users');
-                const nicknameQuery = query(usersRef, orderByChild('nickname'), startAt(searchTerm), endAt(searchTerm + '\uf8ff'));
-                const nicknameSnapshot = await get(nicknameQuery);
-
-                const emailQuery = query(usersRef, orderByChild('email'), startAt(searchTerm), endAt(searchTerm + '\uf8ff'));
-                const emailSnapshot = await get(emailQuery);
-
-                const uniqueUsers = new Map();
-
-                nicknameSnapshot.forEach(child => {
-                    const user = child.val();
-                    if (child.key !== currentUser.uid) {
-                        uniqueUsers.set(child.key, { uid: child.key, ...user });
-                    }
-                });
-
-                emailSnapshot.forEach(child => {
-                    const user = child.val();
-                    if (child.key !== currentUser.uid) {
-                        uniqueUsers.set(child.key, { uid: child.key, ...user });
-                    }
-                });
-
-                if (uniqueUsers.size > 0) {
-                    uniqueUsers.forEach(user => {
-                        const resultItem = document.createElement("div");
-                        resultItem.className = "search-result-item";
-
-                        const userInfoDisplay = document.createElement("div");
-                        userInfoDisplay.className = "user-info-display";
-                        userInfoDisplay.innerHTML = `<i class="fas fa-user"></i> ${user.nickname} (${user.email})`;
-
-                        const addFriendBtn = document.createElement("button");
-                        addFriendBtn.className = "add-friend-search-btn";
-                        addFriendBtn.innerHTML = `<i class="fas fa-plus-circle"></i>`;
-                        addFriendBtn.title = `Add ${user.nickname}`;
-                        addFriendBtn.onclick = (event) => {
-                            event.stopPropagation();
-                            showAddFriendModal(user);
-                        };
-
-                        resultItem.appendChild(userInfoDisplay);
-                        resultItem.appendChild(addFriendBtn);
-
-                        searchResultsDiv.appendChild(resultItem);
-                    });
-                    searchResultsDiv.classList.add("visible");
-                } else {
-                    const noResult = document.createElement("div");
-                    noResult.className = "search-result-item";
-                    noResult.innerText = "No users found.";
-                    searchResultsDiv.appendChild(noResult);
-                    searchResultsDiv.classList.add("visible");
-                }
-            } catch (error) {
-                console.error("Error searching users:", error);
-                searchResultsDiv.innerHTML = `<div class="search-result-item">Error searching: ${error.message}</div>`;
-                searchResultsDiv.classList.add("visible");
-            }
-        }, 300);
-    };
-
-    function showAddFriendModal(user) {
-        pendingFriendToAdd = user;
-        document.getElementById("addFriendModalText").innerText = `Add ${user.nickname || user.email} as a friend?`;
-        document.getElementById("addFriendModal").classList.add("visible");
-    }
-
-    window.confirmAddFriend = function(addConfirmed) {
-        document.getElementById("addFriendModal").classList.remove("visible");
-        if (addConfirmed && pendingFriendToAdd) {
-            addFriendConfirmed(pendingFriendToAdd);
-        }
-        pendingFriendToAdd = null;
-    };
-
-    function startChat(friendUID, nickname) {
-        if (currentMessagesRef && currentOnChildAddedListener) {
-            off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
-        }
-        if (currentMessagesRef && currentOnChildChangedListener) {
-            off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
-        }
-
-        currentChatUID = friendUID;
-        document.getElementById("chatFriendNickname").innerText = nickname;
-
-        // Setup listener for chat friend's online status
-        const chatFriendStatusRef = ref(db, 'users/' + friendUID + '/status');
-        if (friendStatusListeners['chatFriend']) { // Clear previous chat friend listener if exists
-            off(chatFriendStatusRef, 'value', friendStatusListeners['chatFriend']);
-        }
-        friendStatusListeners['chatFriend'] = onValue(chatFriendStatusRef, (statusSnap) => {
-            const status = statusSnap.val();
-            const indicator = document.getElementById("chatFriendStatus");
-            if (indicator) {
-                if (status === 'online') {
-                    indicator.classList.add('online');
-                } else {
-                    indicator.classList.remove('online');
-                }
-            }
-        });
-
-        const chatId = getChatID(currentUser.uid, friendUID);
-        currentMessagesRef = ref(db, 'messages/' + chatId);
-        document.getElementById("messages").innerHTML = "";
-
-        get(currentMessagesRef).then(snapshot => {
-            snapshot.forEach(child => {
-                const msg = child.val();
-                const msgId = child.key;
-                appendMessageToChat(msg, msgId);
-
-                // Mark message as seen if it's from the other user and not already seen
-                if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
-                    update(child.ref, { [`seenBy/${currentUser.uid}`]: true });
-                }
-            });
-            document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-        });
-
-        currentOnChildAddedListener = snapshot => {
-            const msg = snapshot.val();
-            const msgId = snapshot.key;
-            // Only append if it's a new message not already loaded by get()
-            if (!document.getElementById(`msg-${msgId}`)) {
-                appendMessageToChat(msg, msgId);
-            }
-
-            // Update latest message preview in friend list if on friendListPage
-            const previewElement = document.getElementById(`latest-message-${currentChatUID}`);
-            if (previewElement) {
-                let previewText = msg.text;
-                if (msg.sender === currentUser.uid) {
-                    previewText = `You: ${previewText}`;
-                }
-                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
-            }
-
-            // Mark message as seen if it's from the other user and not already seen
-            if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
-                update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
-            }
-            document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-        };
-        onChildAdded(currentMessagesRef, currentOnChildAddedListener);
-
-        currentOnChildChangedListener = snapshot => {
-            const msg = snapshot.val();
-            const msgId = snapshot.key;
-            const messageBubble = document.getElementById(`msg-${msgId}`);
-
-            if (messageBubble && msg.sender === currentUser.uid) {
-                const seenIndicator = messageBubble.querySelector('.seen-indicator');
-                if (seenIndicator) {
-                    if (msg.seenBy?.[currentChatUID]) {
-                        seenIndicator.innerText = "Seen";
-                    } else {
-                        seenIndicator.innerText = "Sent";
-                    }
-                }
-            } else if (messageBubble && msg.sender !== currentUser.uid && currentChatUID === friendUID) {
-                // If a received message's seenBy status changes (e.g., by another device), update it
-                if (!msg.seenBy?.[currentUser.uid]) {
-                    update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
-                }
-            }
-        };
-        onChildChanged(currentMessagesRef, currentOnChildChangedListener);
-
-        showPage('chatWindow'); // Transition to chat window
-    }
-
-    function formatTimestamp(timestamp) {
-        const date = new Date(timestamp);
-        const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-        const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-        if (messageDate.getTime() === today.getTime()) {
-            return timeString; // Today, just show time
-        } else {
-            // Not today, show date and time
-            const options = { month: 'short', day: 'numeric', year: 'numeric' };
-            const dateString = date.toLocaleDateString([], options);
-            return `${timeString} ${dateString}`;
-        }
-    }
-
-    function appendMessageToChat(msg, msgId) {
-        const div = document.createElement("div");
-        div.className = "bubble " + (msg.sender === currentUser.uid ? "sent" : "received");
-        div.id = `msg-${msgId}`;
-
-        const messageContentDiv = document.createElement("div");
-        messageContentDiv.className = "message-content";
-        messageContentDiv.innerText = msg.text;
-        div.appendChild(messageContentDiv);
-
-        const messageMetaDiv = document.createElement("div");
-        messageMetaDiv.className = "message-meta";
-
-        const timestampSpan = document.createElement("span");
-        timestampSpan.className = "timestamp";
-        timestampSpan.innerText = formatTimestamp(msg.timestamp);
-        messageMetaDiv.appendChild(timestampSpan);
-
-        if (msg.sender === currentUser.uid) {
-            const seenIndicator = document.createElement("span");
-            seenIndicator.className = "seen-indicator";
-            seenIndicator.innerText = msg.seenBy?.[currentChatUID] ? "Seen" : "Sent";
-            messageMetaDiv.appendChild(seenIndicator);
-        }
-        div.appendChild(messageMetaDiv);
-        document.getElementById("messages").appendChild(div);
-    }
-
-    window.sendMessage = function () {
-        const msgInput = document.getElementById("messageInput");
-        const msgText = msgInput.value.trim();
-
-        if (msgText) {
-            if (currentChatUID === null) {
-                alert("Please select a friend to chat with first.");
-                return;
-            }
-            const chatId = getChatID(currentUser.uid, currentChatUID);
-            push(ref(db, 'messages/' + chatId), {
-                sender: currentUser.uid,
-                text: msgText,
-                timestamp: Date.now(),
-                seenBy: { [currentUser.uid]: true } // Mark as seen by sender immediately
-            });
-            msgInput.value = "";
-        } else {
-            alert("Please type a message to send.");
-        }
-    };
-
-    function getChatID(uid1, uid2) {
-        return uid1 < uid2 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
-    }
-
-    const emojis = ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕"];
-
-    window.toggleEmojiPicker = function() {
-        const panel = document.getElementById("emojiPanel");
-        panel.classList.toggle("visible");
-        if (panel.classList.contains("visible") && panel.innerHTML === "") {
-            panel.innerHTML = emojis.map(emoji =>
-                `<div class="emoji-item" onclick="insertEmoji('${emoji}')">${emoji}</div>`
-            ).join("");
-        }
-    };
-
-    window.insertEmoji = function(emoji) {
-        const input = document.getElementById("messageInput");
-        input.value += emoji;
-        input.focus();
-        document.getElementById("emojiPanel").classList.remove("visible");
-    };
-
-    document.addEventListener('click', function(event) {
-        const emojiPanel = document.getElementById("emojiPanel");
-        const emojiBtn = document.querySelector(".emoji-picker-btn");
-        if (emojiPanel && emojiBtn && emojiPanel.classList.contains("visible") && !emojiPanel.contains(event.target) && event.target !== emojiBtn) {
-            emojiPanel.classList.remove("visible");
-        }
-
-        const searchResultsDiv = document.getElementById("searchResults");
-        const searchInput = document.getElementById("searchUser");
-        if (searchResultsDiv && searchInput && searchResultsDiv.classList.contains("visible") && !searchResultsDiv.contains(event.target) && event.target !== searchInput) {
-            if (!event.target.closest('.add-friend-search-btn')) {
-                searchResultsDiv.classList.remove("visible");
-            }
-        }
-
-        const addFriendModal = document.getElementById("addFriendModal");
-        const addFriendModalContent = document.querySelector("#addFriendModal .modal-content");
-        if (addFriendModal && addFriendModalContent && addFriendModal.classList.contains("visible") && !addFriendModalContent.contains(event.target)) {
-            confirmAddFriend(false);
-        }
-
-        const themeSelectorPanel = document.getElementById("themeSelectorPanel");
-        const themeSelectorIcon = document.querySelector(".theme-selector-icon");
-        // Check if the click is outside the panel and not on the icon itself
-        if (themeSelectorPanel && themeSelectorIcon && themeSelectorPanel.classList.contains("visible") && !themeSelectorPanel.contains(event.target) && !themeSelectorIcon.contains(event.target)) {
-            themeSelectorPanel.classList.remove("visible");
-        }
-    });
-
-    document.getElementById("messageInput").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            sendMessage();
-        }
-    });
-
-    // --- New Message Notification and Seen Functionality ---
-
-    function setupNewMessageListeners() {
-        for (const friendUID in allFriendsListeners) {
-            const { chatRef, listener } = allFriendsListeners[friendUID];
-            off(chatRef, 'child_added', listener);
-        }
-        allFriendsListeners = {};
-
-        get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
-            if (snapshot.exists()) {
-                snapshot.forEach(child => {
-                    const friend = child.val();
-                    setupNewMessageListenerForFriend(friend.uid, friend.nickname);
-                });
-            }
-        });
-    }
-
-    function setupNewMessageListenerForFriend(friendUID, friendNickname) {
-        const chatId = getChatID(currentUser.uid, friendUID);
-        const chatRef = ref(db, 'messages/' + chatId);
-
-        if (allFriendsListeners[friendUID]) {
-            off(allFriendsListeners[friendUID].chatRef, 'child_added', allFriendsListeners[friendUID].listener);
-        }
-
-        const listener = onChildAdded(chatRef, snapshot => {
-            const msg = snapshot.val();
-            const msgId = snapshot.key;
-
-            // Update latest message preview in friend list
-            const previewElement = document.getElementById(`latest-message-${friendUID}`);
-            if (previewElement) {
-                let previewText = msg.text;
-                if (msg.sender === currentUser.uid) {
-                    previewText = `You: ${previewText}`;
-                }
-                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
-            }
-
-            if (msg.sender === friendUID) {
-                if (currentChatUID === friendUID) {
-                    // If in the current chat, mark as seen immediately if not already
-                    if (!msg.seenBy?.[currentUser.uid]) {
-                        update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
-                    }
-                    // Append message if it's new and not already in the DOM
-                    if (!document.getElementById(`msg-${msgId}`)) {
-                        appendMessageToChat(msg, msgId);
-                        document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-                    }
-                } else {
-                    // If not in the current chat, show notification
-                    showNotification(`New message from ${friendNickname}!`);
-                }
-            } else if (msg.sender === currentUser.uid && currentChatUID === friendUID) {
-                // If sender is current user and message is in current chat, update seen status
-                const messageBubble = document.getElementById(`msg-${msgId}`);
-                if (messageBubble) {
-                    const seenIndicator = messageBubble.querySelector('.seen-indicator');
-                    if (seenIndicator && msg.seenBy?.[friendUID]) {
-                        seenIndicator.innerText = "Seen";
-                    }
-                }
-            }
-        });
-
-        allFriendsListeners[friendUID] = { chatRef, listener };
-    }
-
-    function showNotification(message) {
-        const notificationDiv = document.getElementById("newMessageNotification");
-        const notificationText = document.getElementById("notificationText");
-        notificationText.innerText = message;
-        notificationDiv.classList.add("show");
-        notificationSound.play();
-
-        setTimeout(() => {
-            notificationDiv.classList.remove("show");
-        }, 3000);
-    }
-
-    // Check auth state on load and initialize UI
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            currentUser = user;
-            const uid = currentUser.uid;
-            get(ref(db, 'users/' + uid)).then(snap => {
-                const nickname = snap.val().nickname || "User";
-                document.getElementById("userNickname").innerText = "Welcome, " + nickname;
-                showPage('friendListPage'); // Show friend list page
-                setupPresence(); // Setup online presence when user is authenticated
-                loadFriendList();
-                setupNewMessageListeners();
-            });
-        } else {
-            showPage('authPage'); // Show auth page
-        }
-    });
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update, onChildChanged, onValue, onDisconnect, limitToLast } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyC1l66DhDXfAMOa2WPxocPWS_H3xGbTO_E",
+authDomain: "tracker-37839.firebaseapp.com",
+projectId: "tracker-37839",
+storageBucket: "tracker-37839.appspot.com",
+messagingSenderId: "569377443416",
+appId: "1:569377443416:web:cb67316b895567be75042d",
+databaseURL: "https://tracker-37839-default-rtdb.firebaseio.com"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth();
+
+let currentUser = null;
+let currentChatUID = null;
+let currentMessagesRef = null;
+let currentOnChildAddedListener = null;
+let currentOnChildChangedListener = null;
+let pendingFriendToAdd = null;
+let allFriendsListeners = {};
+let friendStatusListeners = {}; // To store listeners for friend online status
+let latestMessageListeners = {}; // To store listeners for latest messages
+
+// Audio for notification
+const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
+
+// --- Page Management ---
+function showPage(pageId) {
+document.querySelectorAll('.page').forEach(page => {
+page.classList.remove('active');
+});
+document.getElementById(pageId).classList.add('active');
+
+// Show/hide theme selector icon based on the active page
+const themeIconFriendList = document.querySelector('#friendListPage .theme-selector-icon');
+const themeIconChatWindow = document.querySelector('#chatWindow .theme-selector-icon');
+
+if (themeIconFriendList) {
+themeIconFriendList.style.display = (pageId === 'friendListPage') ? 'block' : 'none';
+}
+if (themeIconChatWindow) {
+themeIconChatWindow.style.display = (pageId === 'chatWindow') ? 'block' : 'none';
+}
+}
+
+window.goBackToFriendList = function() {
+showPage('friendListPage');
+// Clear any message listeners when going back
+if (currentMessagesRef && currentOnChildAddedListener) {
+off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+}
+if (currentMessagesRef && currentOnChildChangedListener) {
+off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
+}
+currentMessagesRef = null;
+currentChatUID = null;
+document.getElementById("chatFriendNickname").innerText = "None";
+document.getElementById("chatFriendStatus").classList.remove('online'); // Reset status indicator
+};
+// --- End Page Management ---
+
+// --- Theme Management ---
+window.applyTheme = function(themeName) {
+const body = document.body;
+// Remove all existing theme classes
+body.classList.remove(
+'theme-cloud-play',
+'theme-candy',
+'theme-rainbow-dream',
+'theme-space-adventure',
+'theme-dinosaur-roar',
+'theme-unicorn-magic',
+'theme-ocean-explorer',
+'theme-forest-friends',
+'theme-superhero-city',
+'theme-pirate-adventure',
+'theme-farm-fun',
+'theme-arctic-chill',
+'theme-carnival-fun',
+'theme-magical-forest',
+'theme-sports-mania',
+'theme-black-elegant' /* Add new theme class here */
+);
+// Add the new theme class
+if (themeName !== 'cloud-play') { // 'cloud-play' is the default, no class needed
+body.classList.add(`theme-${themeName}`);
+}
+localStorage.setItem('selectedTheme', themeName);
+
+// Update CSS variables for dynamic background elements if needed (e.g., if colors change)
+const root = document.documentElement;
+const computedStyle = getComputedStyle(body);
+const backgroundLight = computedStyle.getPropertyValue('--background-light');
+
+// Extract RGB values for semi-transparent backgrounds
+const getRgbValues = (color) => {
+const tempDiv = document.createElement('div');
+tempDiv.style.color = color;
+document.body.appendChild(tempDiv);
+const rgb = window.getComputedStyle(tempDiv).color.match(/\d+/g);
+document.body.removeChild(tempDiv);
+return rgb ? rgb.join(',') : '30, 30, 30'; // Default if not found
+};
+
+root.style.setProperty('--background-light-rgb', getRgbValues(backgroundLight));
+toggleThemePanel(); // Hide panel after selection
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+const savedTheme = localStorage.getItem('selectedTheme') || 'cloud-play'; // Default to 'cloud-play'
+window.applyTheme(savedTheme);
+});
+
+window.toggleThemePanel = function() {
+const panel = document.getElementById("themeSelectorPanel");
+panel.classList.toggle("visible");
+};
+// --- End Theme Management ---
+
+
+window.toggleAuthForm = function () {
+const login = document.getElementById("loginForm");
+const signup = document.getElementById("signupForm");
+login.style.display = login.style.display === "none" ? "flex" : "none";
+signup.style.display = signup.style.display === "none" ? "flex" : "none";
+};
+
+window.signup = function () {
+const nickname = document.getElementById("nickname").value.trim();
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value.trim();
+if (!nickname || !email || !password) return alert("Please fill in all fields.");
+createUserWithEmailAndPassword(auth, email, password)
+.then(userCred => {
+const uid = userCred.user.uid;
+set(ref(db, 'users/' + uid), { nickname, email, status: 'offline', last_online: Date.now() }); // Set initial status
+alert("Signup successful! Please log in.");
+toggleAuthForm();
+})
+.catch(err => alert("Signup error: " + err.message));
+};
+
+window.login = function () {
+const email = document.getElementById("loginEmail").value.trim();
+const password = document.getElementById("loginPassword").value.trim();
+if (!email || !password) return alert("Please enter email and password.");
+signInWithEmailAndPassword(auth, email, password)
+.then(async userCred => {
+currentUser = userCred.user;
+const uid = currentUser.uid;
+const snap = await get(ref(db, 'users/' + uid));
+if (snap.exists()) {
+const nickname = snap.val().nickname || "User";
+document.getElementById("userNickname").innerText = "Welcome, " + nickname;
+showPage('friendListPage'); // Show friend list page after login
+
+// Clear any existing listeners first
+for (const friendUID in allFriendsListeners) {
+const { chatRef, listener } = allFriendsListeners[friendUID];
+off(chatRef, 'child_added', listener);
+}
+allFriendsListeners = {};
+
+for (const friendUID in friendStatusListeners) {
+off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
+}
+friendStatusListeners = {};
+
+for (const friendUID in latestMessageListeners) {
+off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+}
+latestMessageListeners = {};
+
+setupPresence(); // Setup online presence
+loadFriendList();
+setupNewMessageListeners();
+}
+})
+.catch(err => alert("Login error: " + err.message));
+};
+
+window.logout = function () {
+if (currentUser) {
+// Set user status to offline on logout
+set(ref(db, 'users/' + currentUser.uid + '/status'), 'offline');
+set(ref(db, 'users/' + currentUser.uid + '/last_online'), Date.now());
+}
+
+for (const friendUID in allFriendsListeners) {
+const { chatRef, listener } = allFriendsListeners[friendUID];
+off(chatRef, 'child_added', listener);
+}
+allFriendsListeners = {};
+
+for (const friendUID in friendStatusListeners) {
+off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
+}
+friendStatusListeners = {};
+
+for (const friendUID in latestMessageListeners) {
+off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+}
+latestMessageListeners = {};
+
+if (currentMessagesRef && currentOnChildAddedListener) {
+off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+}
+if (currentMessagesRef && currentOnChildChangedListener) {
+off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
+}
+
+signOut(auth).then(() => {
+showPage('authPage'); // Show auth page after logout
+currentChatUID = null;
+document.getElementById("chatFriendNickname").innerText = "None";
+document.getElementById("chatFriendStatus").classList.remove('online');
+document.getElementById("messages").innerHTML = "";
+currentUser = null;
+});
+};
+
+// --- Presence System ---
+function setupPresence() {
+const userStatusRef = ref(db, 'users/' + currentUser.uid + '/status');
+const userLastOnlineRef = ref(db, 'users/' + currentUser.uid + '/last_online');
+const connectedRef = ref(db, '.info/connected');
+
+onValue(connectedRef, (snap) => {
+if (snap.val() === true) {
+// We're connected! Set our status to online.
+set(userStatusRef, 'online');
+set(userLastOnlineRef, Date.now());
+
+// When I disconnect, set my status to offline and update last_online
+onDisconnect(userStatusRef).set('offline');
+onDisconnect(userLastOnlineRef).set(Date.now());
+} else {
+// We are not connected, Firebase will automatically handle onDisconnect
+// No need to explicitly set offline here, as onDisconnect will do it.
+}
+});
+}
+// --- End Presence System ---
+
+async function addFriendConfirmed(friendData) {
+const friendUID = friendData.uid;
+const nickname = friendData.nickname || "Friend";
+
+try {
+const friendSnap = await get(ref(db, 'friends/' + currentUser.uid + '/' + friendUID));
+if (friendSnap.exists()) {
+alert(`${nickname} is already your friend!`);
+} else {
+await set(ref(db, 'friends/' + currentUser.uid + '/' + friendUID), {
+uid: friendUID,
+email: friendData.email,
+nickname: nickname
+});
+alert(`${nickname} added to your friends!`);
+loadFriendList();
+setupNewMessageListenerForFriend(friendUID, nickname); // Ensure this is called for new friends
+}
+} catch (error) {
+console.error("Error adding friend:", error);
+alert("Error adding friend: " + error.message);
+}
+}
+
+window.removeFriend = function (friendUID, nickname) {
+if (!confirm(`Are you sure you want to remove ${nickname} from your friends?`)) {
+return;
+}
+remove(ref(db, 'friends/' + currentUser.uid + '/' + friendUID))
+.then(() => {
+alert(`${nickname} has been removed.`);
+loadFriendList();
+if (currentChatUID === friendUID) {
+currentChatUID = null;
+document.getElementById("chatFriendNickname").innerText = "None";
+document.getElementById("chatFriendStatus").classList.remove('online');
+document.getElementById("messages").innerHTML = "";
+if (currentMessagesRef && currentOnChildAddedListener) {
+off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+}
+if (currentMessagesRef && currentOnChildChangedListener) {
+off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
+}
+showPage('friendListPage'); // Go back to friend list if current chat friend is removed
+}
+if (allFriendsListeners[friendUID]) {
+const { chatRef, listener } = allFriendsListeners[friendUID];
+off(chatRef, 'child_added', listener);
+delete allFriendsListeners[friendUID];
+}
+if (friendStatusListeners[friendUID]) {
+off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
+delete friendStatusListeners[friendUID];
+}
+if (latestMessageListeners[friendUID]) {
+off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+delete latestMessageListeners[friendUID];
+}
+})
+.catch(error => {
+alert("Error removing friend: " + error.message);
+});
+};
+
+function loadFriendList() {
+const list = document.getElementById("friendList");
+// Clear existing content and remove any duplicate listeners
+list.innerHTML = "";
+for (const friendUID in allFriendsListeners) {
+const { chatRef, listener } = allFriendsListeners[friendUID];
+off(chatRef, 'child_added', listener);
+}
+allFriendsListeners = {};
+
+for (const friendUID in friendStatusListeners) {
+off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
+}
+friendStatusListeners = {};
+
+for (const friendUID in latestMessageListeners) {
+off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+}
+latestMessageListeners = {};
+
+
+get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
+if (snapshot.exists()) {
+snapshot.forEach(child => {
+const f = child.val();
+const friendItem = document.createElement("div");
+friendItem.className = "friend-item-large";
+friendItem.onclick = () => startChat(f.uid, f.nickname || "Friend");
+friendItem.id = `friend-item-${f.uid}`; // Add ID for easy access
+
+const avatarDiv = document.createElement("div");
+avatarDiv.className = "friend-avatar";
+avatarDiv.innerHTML = `<i class="fas fa-user-circle"></i>`;
+
+const friendInfoContainer = document.createElement("div");
+friendInfoContainer.className = "friend-info-container";
+
+const nicknameSpan = document.createElement("span");
+nicknameSpan.className = "friend-nickname";
+nicknameSpan.innerText = f.nickname || "Friend";
+
+const statusIndicator = document.createElement("div");
+statusIndicator.className = "online-status-indicator";
+statusIndicator.id = `status-indicator-${f.uid}`; // Add ID for status updates
+nicknameSpan.appendChild(statusIndicator); // Append status indicator to nickname span
+
+const latestMessagePreview = document.createElement("div");
+latestMessagePreview.className = "latest-message-preview";
+latestMessagePreview.id = `latest-message-${f.uid}`;
+latestMessagePreview.innerText = "No messages yet."; // Default text
+
+friendInfoContainer.appendChild(nicknameSpan);
+friendInfoContainer.appendChild(latestMessagePreview);
+
+const removeBtn = document.createElement("button");
+removeBtn.className = "friend-remove-btn";
+removeBtn.innerHTML = `<i class="fas fa-times-circle"></i>`;
+removeBtn.title = `Remove ${f.nickname || "Friend"}`;
+removeBtn.onclick = (event) => {
+event.stopPropagation();
+removeFriend(f.uid, f.nickname || "Friend");
+};
+
+friendItem.appendChild(avatarDiv);
+friendItem.appendChild(friendInfoContainer);
+friendItem.appendChild(removeBtn);
+list.appendChild(friendItem);
+
+// Setup listener for friend's online status
+const friendStatusRef = ref(db, 'users/' + f.uid + '/status');
+friendStatusListeners[f.uid] = onValue(friendStatusRef, (statusSnap) => {
+const status = statusSnap.val();
+const indicator = document.getElementById(`status-indicator-${f.uid}`);
+if (indicator) {
+if (status === 'online') {
+indicator.classList.add('online');
+} else {
+indicator.classList.remove('online');
+}
+}
+});
+
+// Setup listener for latest message preview
+const chatId = getChatID(currentUser.uid, f.uid);
+const chatMessagesRef = query(ref(db, 'messages/' + chatId), limitToLast(1));
+latestMessageListeners[f.uid] = {
+ref: chatMessagesRef,
+listener: onChildAdded(chatMessagesRef, (messageSnapshot) => {
+const msg = messageSnapshot.val();
+const previewElement = document.getElementById(`latest-message-${f.uid}`);
+if (previewElement) {
+let previewText = msg.text;
+if (msg.sender === currentUser.uid) {
+previewText = `You: ${previewText}`;
+}
+previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+}
+})
+};
+});
+} else {
+list.innerHTML = "<p style='text-align: center; color: var(--secondary-color);'>No friends yet. Search and add some!</p>";
+}
+});
+}
+
+let searchTimeout;
+window.searchUsers = function () {
+clearTimeout(searchTimeout);
+const searchTerm = document.getElementById("searchUser").value.trim().toLowerCase();
+const searchResultsDiv = document.getElementById("searchResults");
+searchResultsDiv.innerHTML = "";
+
+if (searchTerm.length === 0) {
+searchResultsDiv.classList.remove("visible");
+return;
+}
+
+searchTimeout = setTimeout(async () => {
+try {
+const usersRef = ref(db, 'users');
+const nicknameQuery = query(usersRef, orderByChild('nickname'), startAt(searchTerm), endAt(searchTerm + '\uf8ff'));
+const nicknameSnapshot = await get(nicknameQuery);
+
+const emailQuery = query(usersRef, orderByChild('email'), startAt(searchTerm), endAt(searchTerm + '\uf8ff'));
+const emailSnapshot = await get(emailQuery);
+
+const uniqueUsers = new Map();
+
+nicknameSnapshot.forEach(child => {
+const user = child.val();
+if (child.key !== currentUser.uid) {
+uniqueUsers.set(child.key, { uid: child.key, ...user });
+}
+});
+
+emailSnapshot.forEach(child => {
+const user = child.val();
+if (child.key !== currentUser.uid) {
+uniqueUsers.set(child.key, { uid: child.key, ...user });
+}
+});
+
+if (uniqueUsers.size > 0) {
+uniqueUsers.forEach(user => {
+const resultItem = document.createElement("div");
+resultItem.className = "search-result-item";
+
+const userInfoDisplay = document.createElement("div");
+userInfoDisplay.className = "user-info-display";
+userInfoDisplay.innerHTML = `<i class="fas fa-user"></i> ${user.nickname} (${user.email})`;
+
+const addFriendBtn = document.createElement("button");
+addFriendBtn.className = "add-friend-search-btn";
+addFriendBtn.innerHTML = `<i class="fas fa-plus-circle"></i>`;
+addFriendBtn.title = `Add ${user.nickname}`;
+addFriendBtn.onclick = (event) => {
+event.stopPropagation();
+showAddFriendModal(user);
+};
+
+resultItem.appendChild(userInfoDisplay);
+resultItem.appendChild(addFriendBtn);
+
+searchResultsDiv.appendChild(resultItem);
+});
+searchResultsDiv.classList.add("visible");
+} else {
+const noResult = document.createElement("div");
+noResult.className = "search-result-item";
+noResult.innerText = "No users found.";
+searchResultsDiv.appendChild(noResult);
+searchResultsDiv.classList.add("visible");
+}
+} catch (error) {
+console.error("Error searching users:", error);
+searchResultsDiv.innerHTML = `<div class="search-result-item">Error searching: ${error.message}</div>`;
+searchResultsDiv.classList.add("visible");
+}
+}, 300);
+};
+
+function showAddFriendModal(user) {
+pendingFriendToAdd = user;
+document.getElementById("addFriendModalText").innerText = `Add ${user.nickname || user.email} as a friend?`;
+document.getElementById("addFriendModal").classList.add("visible");
+}
+
+window.confirmAddFriend = function(addConfirmed) {
+document.getElementById("addFriendModal").classList.remove("visible");
+if (addConfirmed && pendingFriendToAdd) {
+addFriendConfirmed(pendingFriendToAdd);
+}
+pendingFriendToAdd = null;
+};
+
+function startChat(friendUID, nickname) {
+if (currentMessagesRef && currentOnChildAddedListener) {
+off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
+}
+if (currentMessagesRef && currentOnChildChangedListener) {
+off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
+}
+
+currentChatUID = friendUID;
+document.getElementById("chatFriendNickname").innerText = nickname;
+
+// Setup listener for chat friend's online status
+const chatFriendStatusRef = ref(db, 'users/' + friendUID + '/status');
+if (friendStatusListeners['chatFriend']) { // Clear previous chat friend listener if exists
+off(chatFriendStatusRef, 'value', friendStatusListeners['chatFriend']);
+}
+friendStatusListeners['chatFriend'] = onValue(chatFriendStatusRef, (statusSnap) => {
+const status = statusSnap.val();
+const indicator = document.getElementById("chatFriendStatus");
+if (indicator) {
+if (status === 'online') {
+indicator.classList.add('online');
+} else {
+indicator.classList.remove('online');
+}
+}
+});
+
+const chatId = getChatID(currentUser.uid, friendUID);
+currentMessagesRef = ref(db, 'messages/' + chatId);
+document.getElementById("messages").innerHTML = "";
+
+get(currentMessagesRef).then(snapshot => {
+snapshot.forEach(child => {
+const msg = child.val();
+const msgId = child.key;
+appendMessageToChat(msg, msgId);
+
+// Mark message as seen if it's from the other user and not already seen
+if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
+update(child.ref, { [`seenBy/${currentUser.uid}`]: true });
+}
+});
+document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+});
+
+currentOnChildAddedListener = snapshot => {
+const msg = snapshot.val();
+const msgId = snapshot.key;
+// Only append if it's a new message not already loaded by get()
+if (!document.getElementById(`msg-${msgId}`)) {
+appendMessageToChat(msg, msgId);
+}
+
+// Update latest message preview in friend list if on friendListPage
+const previewElement = document.getElementById(`latest-message-${currentChatUID}`);
+if (previewElement) {
+let previewText = msg.text;
+if (msg.sender === currentUser.uid) {
+previewText = `You: ${previewText}`;
+}
+previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+}
+
+// Mark message as seen if it's from the other user and not already seen
+if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
+update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
+}
+document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+};
+onChildAdded(currentMessagesRef, currentOnChildAddedListener);
+
+currentOnChildChangedListener = snapshot => {
+const msg = snapshot.val();
+const msgId = snapshot.key;
+const messageBubble = document.getElementById(`msg-${msgId}`);
+
+if (messageBubble && msg.sender === currentUser.uid) {
+const seenIndicator = messageBubble.querySelector('.seen-indicator');
+if (seenIndicator) {
+if (msg.seenBy?.[currentChatUID]) {
+seenIndicator.innerText = "Seen";
+} else {
+seenIndicator.innerText = "Sent";
+}
+}
+} else if (messageBubble && msg.sender !== currentUser.uid && currentChatUID === friendUID) {
+// If a received message's seenBy status changes (e.g., by another device), update it
+if (!msg.seenBy?.[currentUser.uid]) {
+update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
+}
+}
+};
+onChildChanged(currentMessagesRef, currentOnChildChangedListener);
+
+showPage('chatWindow'); // Transition to chat window
+}
+
+function formatTimestamp(timestamp) {
+const date = new Date(timestamp);
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+if (messageDate.getTime() === today.getTime()) {
+return timeString; // Today, just show time
+} else {
+// Not today, show date and time
+const options = { month: 'short', day: 'numeric', year: 'numeric' };
+const dateString = date.toLocaleDateString([], options);
+return `${timeString} ${dateString}`;
+}
+}
+
+function appendMessageToChat(msg, msgId) {
+const div = document.createElement("div");
+div.className = "bubble " + (msg.sender === currentUser.uid ? "sent" : "received");
+div.id = `msg-${msgId}`;
+
+const messageContentDiv = document.createElement("div");
+messageContentDiv.className = "message-content";
+messageContentDiv.innerText = msg.text;
+div.appendChild(messageContentDiv);
+
+const messageMetaDiv = document.createElement("div");
+messageMetaDiv.className = "message-meta";
+
+const timestampSpan = document.createElement("span");
+timestampSpan.className = "timestamp";
+timestampSpan.innerText = formatTimestamp(msg.timestamp);
+messageMetaDiv.appendChild(timestampSpan);
+
+if (msg.sender === currentUser.uid) {
+const seenIndicator = document.createElement("span");
+seenIndicator.className = "seen-indicator";
+seenIndicator.innerText = msg.seenBy?.[currentChatUID] ? "Seen" : "Sent";
+messageMetaDiv.appendChild(seenIndicator);
+}
+div.appendChild(messageMetaDiv);
+document.getElementById("messages").appendChild(div);
+}
+
+window.sendMessage = function () {
+const msgInput = document.getElementById("messageInput");
+const msgText = msgInput.value.trim();
+
+if (msgText) {
+if (currentChatUID === null) {
+alert("Please select a friend to chat with first.");
+return;
+}
+const chatId = getChatID(currentUser.uid, currentChatUID);
+push(ref(db, 'messages/' + chatId), {
+sender: currentUser.uid,
+text: msgText,
+timestamp: Date.now(),
+seenBy: { [currentUser.uid]: true } // Mark as seen by sender immediately
+});
+msgInput.value = "";
+} else {
+alert("Please type a message to send.");
+}
+};
+
+function getChatID(uid1, uid2) {
+return uid1 < uid2 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
+}
+
+const emojis = ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕"];
+
+window.toggleEmojiPicker = function() {
+const panel = document.getElementById("emojiPanel");
+panel.classList.toggle("visible");
+if (panel.classList.contains("visible") && panel.innerHTML === "") {
+panel.innerHTML = emojis.map(emoji =>
+`<div class="emoji-item" onclick="insertEmoji('${emoji}')">${emoji}</div>`
+).join("");
+}
+};
+
+window.insertEmoji = function(emoji) {
+const input = document.getElementById("messageInput");
+input.value += emoji;
+input.focus();
+document.getElementById("emojiPanel").classList.remove("visible");
+};
+
+document.addEventListener('click', function(event) {
+const emojiPanel = document.getElementById("emojiPanel");
+const emojiBtn = document.querySelector(".emoji-picker-btn");
+if (emojiPanel && emojiBtn && emojiPanel.classList.contains("visible") && !emojiPanel.contains(event.target) && event.target !== emojiBtn) {
+emojiPanel.classList.remove("visible");
+}
+
+const searchResultsDiv = document.getElementById("searchResults");
+const searchInput = document.getElementById("searchUser");
+if (searchResultsDiv && searchInput && searchResultsDiv.classList.contains("visible") && !searchResultsDiv.contains(event.target) && event.target !== searchInput) {
+if (!event.target.closest('.add-friend-search-btn')) {
+searchResultsDiv.classList.remove("visible");
+}
+}
+
+const addFriendModal = document.getElementById("addFriendModal");
+const addFriendModalContent = document.querySelector("#addFriendModal .modal-content");
+if (addFriendModal && addFriendModalContent && addFriendModal.classList.contains("visible") && !addFriendModalContent.contains(event.target)) {
+confirmAddFriend(false);
+}
+
+const themeSelectorPanel = document.getElementById("themeSelectorPanel");
+const themeSelectorIcon = document.querySelector(".theme-selector-icon");
+// Check if the click is outside the panel and not on the icon itself
+if (themeSelectorPanel && themeSelectorIcon && themeSelectorPanel.classList.contains("visible") && !themeSelectorPanel.contains(event.target) && !themeSelectorIcon.contains(event.target)) {
+themeSelectorPanel.classList.remove("visible");
+}
+});
+
+document.getElementById("messageInput").addEventListener("keypress", function(event) {
+if (event.key === "Enter") {
+event.preventDefault();
+sendMessage();
+}
+});
+
+// --- New Message Notification and Seen Functionality ---
+
+function setupNewMessageListeners() {
+for (const friendUID in allFriendsListeners) {
+const { chatRef, listener } = allFriendsListeners[friendUID];
+off(chatRef, 'child_added', listener);
+}
+allFriendsListeners = {};
+
+get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
+if (snapshot.exists()) {
+snapshot.forEach(child => {
+const friend = child.val();
+setupNewMessageListenerForFriend(friend.uid, friend.nickname);
+});
+}
+});
+}
+
+function setupNewMessageListenerForFriend(friendUID, friendNickname) {
+const chatId = getChatID(currentUser.uid, friendUID);
+const chatRef = ref(db, 'messages/' + chatId);
+
+if (allFriendsListeners[friendUID]) {
+off(allFriendsListeners[friendUID].chatRef, 'child_added', allFriendsListeners[friendUID].listener);
+}
+
+const listener = onChildAdded(chatRef, snapshot => {
+const msg = snapshot.val();
+const msgId = snapshot.key;
+
+// Update latest message preview in friend list
+const previewElement = document.getElementById(`latest-message-${friendUID}`);
+if (previewElement) {
+let previewText = msg.text;
+if (msg.sender === currentUser.uid) {
+previewText = `You: ${previewText}`;
+}
+previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+}
+
+if (msg.sender === friendUID) {
+if (currentChatUID === friendUID) {
+// If in the current chat, mark as seen immediately if not already
+if (!msg.seenBy?.[currentUser.uid]) {
+update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
+}
+// Append message if it's new and not already in the DOM
+if (!document.getElementById(`msg-${msgId}`)) {
+appendMessageToChat(msg, msgId);
+document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+}
+} else {
+// If not in the current chat, show notification
+showNotification(`New message from ${friendNickname}!`);
+}
+} else if (msg.sender === currentUser.uid && currentChatUID === friendUID) {
+// If sender is current user and message is in current chat, update seen status
+const messageBubble = document.getElementById(`msg-${msgId}`);
+if (messageBubble) {
+const seenIndicator = messageBubble.querySelector('.seen-indicator');
+if (seenIndicator && msg.seenBy?.[friendUID]) {
+seenIndicator.innerText = "Seen";
+}
+}
+}
+});
+
+allFriendsListeners[friendUID] = { chatRef, listener };
+}
+
+function showNotification(message) {
+const notificationDiv = document.getElementById("newMessageNotification");
+const notificationText = document.getElementById("notificationText");
+notificationText.innerText = message;
+notificationDiv.classList.add("show");
+notificationSound.play();
+
+setTimeout(() => {
+notificationDiv.classList.remove("show");
+}, 3000);
+}
+
+// Check auth state on load and initialize UI
+auth.onAuthStateChanged(user => {
+if (user) {
+currentUser = user;
+const uid = currentUser.uid;
+get(ref(db, 'users/' + uid)).then(snap => {
+const nickname = snap.val().nickname || "User";
+document.getElementById("userNickname").innerText = "Welcome, " + nickname;
+showPage('friendListPage'); // Show friend list page
+setupPresence(); // Setup online presence when user is authenticated
+loadFriendList();
+setupNewMessageListeners();
+});
+} else {
+showPage('authPage'); // Show auth page
+}
+});
 </script>
 </body>
 </html>
