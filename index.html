@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +38,16 @@
 --font-family-playful: 'Comic Sans MS', cursive, sans-serif;
 --font-family-fancy: 'Brush Script MT', cursive, sans-serif;
 --font-family-blocky: 'Press Start 2P', cursive, sans-serif; /* Requires import */
+--font-family-cute: 'Pacifico', cursive; /* Example: Requires import */
+--font-family-handwritten: 'Caveat', cursive; /* Example: Requires import */
+--font-family-modern: 'Roboto', sans-serif; /* Example: Requires import */
+--font-family-pixel: 'Press Start 2P', cursive; /* Example: Requires import */
+--font-family-elegant: 'Lora', serif; /* Example: Requires import */
+--font-family-funky: 'Bangers', cursive; /* Example: Requires import */
+--font-family-quirky: 'Indie Flower', cursive; /* Example: Requires import */
+--font-family-tech: 'Share Tech Mono', monospace; /* Example: Requires import */
+--font-family-retro: 'Permanent Marker', cursive; /* Example: Requires import */
+--font-family-storybook: 'Gochi Hand', cursive; /* Example: Requires import */
 }
 
 /* Candy Theme (Kid-Friendly) */
@@ -452,6 +461,36 @@ font-family: var(--font-family-fancy);
 }
 body.font-style-blocky {
 font-family: var(--font-family-blocky);
+}
+body.font-style-cute {
+font-family: var(--font-family-cute);
+}
+body.font-style-handwritten {
+font-family: var(--font-family-handwritten);
+}
+body.font-style-modern {
+font-family: var(--font-family-modern);
+}
+body.font-style-pixel {
+font-family: var(--font-family-pixel);
+}
+body.font-style-elegant {
+font-family: var(--font-family-elegant);
+}
+body.font-style-funky {
+font-family: var(--font-family-funky);
+}
+body.font-style-quirky {
+font-family: var(--font-family-quirky);
+}
+body.font-style-tech {
+font-family: var(--font-family-tech);
+}
+body.font-style-retro {
+font-family: var(--font-family-retro);
+}
+body.font-style-storybook {
+font-family: var(--font-family-storybook);
 }
 
 
@@ -1538,6 +1577,16 @@ max-height: 60vh; /* Example: 60% of viewport height */
 <button title="Playful Font" onclick="applyFontStyle('playful')"><i class="fas fa-pencil-alt"></i> Playful</button>
 <button title="Fancy Font" onclick="applyFontStyle('fancy')"><i class="fas fa-feather-alt"></i> Fancy</button>
 <button title="Blocky Font" onclick="applyFontStyle('blocky')"><i class="fas fa-cube"></i> Blocky</button>
+<button title="Cute Font" onclick="applyFontStyle('cute')"><i class="fas fa-heart"></i> Cute</button>
+<button title="Handwritten Font" onclick="applyFontStyle('handwritten')"><i class="fas fa-signature"></i> Handwritten</button>
+<button title="Modern Font" onclick="applyFontStyle('modern')"><i class="fas fa-laptop-code"></i> Modern</button>
+<button title="Pixel Font" onclick="applyFontStyle('pixel')"><i class="fas fa-gamepad"></i> Pixel</button>
+<button title="Elegant Font" onclick="applyFontStyle('elegant')"><i class="fas fa-gem"></i> Elegant</button>
+<button title="Funky Font" onclick="applyFontStyle('funky')"><i class="fas fa-headphones-alt"></i> Funky</button>
+<button title="Quirky Font" onclick="applyFontStyle('quirky')"><i class="fas fa-lightbulb"></i> Quirky</button>
+<button title="Tech Font" onclick="applyFontStyle('tech')"><i class="fas fa-microchip"></i> Tech</button>
+<button title="Retro Font" onclick="applyFontStyle('retro')"><i class="fas fa-compact-disc"></i> Retro</button>
+<button title="Storybook Font" onclick="applyFontStyle('storybook')"><i class="fas fa-book-open"></i> Storybook</button>
 </div>
 
 <!-- Add Friend Confirmation Modal -->
@@ -1685,7 +1734,17 @@ const body = document.body;
 body.classList.remove(
 'font-style-playful',
 'font-style-fancy',
-'font-style-blocky'
+'font-style-blocky',
+'font-style-cute',
+'font-style-handwritten',
+'font-style-modern',
+'font-style-pixel',
+'font-style-elegant',
+'font-style-funky',
+'font-style-quirky',
+'font-style-tech',
+'font-style-retro',
+'font-style-storybook'
 );
 // Add the new font style class, unless it's 'default'
 if (fontStyleName !== 'default') {
