@@ -463,6 +463,11 @@ body {
     background-color: var(--border-color);
     transform: translateY(-2px);
 }
+.friend-item-large .friend-info-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 .friend-item-large .friend-avatar {
     width: 70px; /* Larger avatar */
     height: 70px;
@@ -480,10 +485,18 @@ body {
     font-size: 1.2rem; /* Larger nickname */
     font-weight: bold;
     color: var(--text-color);
-    flex-grow: 1;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.friend-item-large .latest-message-preview {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Ensure it doesn't overflow its container */
 }
 .friend-item-large .friend-remove-btn {
     background: none;
@@ -591,6 +604,8 @@ body {
     position: relative;
     transition: background-color 0.3s ease, color 0.3s ease;
     color: var(--text-color); /* Ensure text color is readable */
+    display: flex;
+    flex-direction: column;
 }
 .sent {
     align-self: flex-end;
@@ -602,15 +617,24 @@ body {
     background-color: var(--bubble-received);
     border-bottom-left-radius: 10px; /* Pointy corner for received */
 }
-.seen-indicator {
-    font-size: 0.8rem; /* Slightly larger seen indicator */
-    color: rgba(54, 69, 79, 0.8); /* Adjusted for light backgrounds */
-    text-align: right;
-    margin-top: 5px;
-    display: block;
+.message-content {
+    margin-bottom: 5px; /* Space between text and timestamp/seen */
 }
-.bubble.sent .seen-indicator {
-    margin-right: 8px;
+.message-meta {
+    font-size: 0.75rem; /* Smaller font for meta info */
+    color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+.bubble.received .message-meta {
+    justify-content: flex-start;
+}
+.seen-indicator {
+    font-size: 0.75rem; /* Consistent with timestamp */
+    color: rgba(54, 69, 79, 0.8); /* Adjusted for light backgrounds */
 }
 
 #chatWindow .message-input {
@@ -916,6 +940,9 @@ body {
     .friend-item-large .friend-nickname {
         font-size: 1.1rem;
     }
+    .friend-item-large .latest-message-preview {
+        font-size: 0.8rem;
+    }
     .friend-item-large .friend-remove-btn {
         font-size: 1.2rem;
     }
@@ -1074,7 +1101,7 @@ body {
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update, onChildChanged, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+    import { getDatabase, ref, set, get, push, onChildAdded, off, remove, query, orderByChild, startAt, endAt, update, onChildChanged, onValue, onDisconnect, limitToLast } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -1099,6 +1126,7 @@ body {
     let pendingFriendToAdd = null;
     let allFriendsListeners = {};
     let friendStatusListeners = {}; // To store listeners for friend online status
+    let latestMessageListeners = {}; // To store listeners for latest messages
 
     // Audio for notification
     const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
@@ -1234,6 +1262,11 @@ body {
                     }
                     friendStatusListeners = {};
 
+                    for (const friendUID in latestMessageListeners) {
+                        off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+                    }
+                    latestMessageListeners = {};
+
                     setupPresence(); // Setup online presence
                     loadFriendList();
                     setupNewMessageListeners();
@@ -1259,6 +1292,11 @@ body {
             off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
         }
         friendStatusListeners = {};
+
+        for (const friendUID in latestMessageListeners) {
+            off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+        }
+        latestMessageListeners = {};
 
         if (currentMessagesRef && currentOnChildAddedListener) {
             off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
@@ -1316,7 +1354,7 @@ body {
                 });
                 alert(`${nickname} added to your friends!`);
                 loadFriendList();
-                setupNewMessageListenerForFriend(friendUID, nickname);
+                setupNewMessageListenerForFriend(friendUID, nickname); // Ensure this is called for new friends
             }
         } catch (error) {
             console.error("Error adding friend:", error);
@@ -1354,6 +1392,10 @@ body {
                     off(ref(db, 'users/' + friendUID + '/status'), 'value', friendStatusListeners[friendUID]);
                     delete friendStatusListeners[friendUID];
                 }
+                if (latestMessageListeners[friendUID]) {
+                    off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+                    delete latestMessageListeners[friendUID];
+                }
             })
             .catch(error => {
                 alert("Error removing friend: " + error.message);
@@ -1375,6 +1417,12 @@ body {
         }
         friendStatusListeners = {};
 
+        for (const friendUID in latestMessageListeners) {
+            off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
+        }
+        latestMessageListeners = {};
+
+
         get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
             if (snapshot.exists()) {
                 snapshot.forEach(child => {
@@ -1388,6 +1436,9 @@ body {
                     avatarDiv.className = "friend-avatar";
                     avatarDiv.innerHTML = `<i class="fas fa-user-circle"></i>`;
 
+                    const friendInfoContainer = document.createElement("div");
+                    friendInfoContainer.className = "friend-info-container";
+
                     const nicknameSpan = document.createElement("span");
                     nicknameSpan.className = "friend-nickname";
                     nicknameSpan.innerText = f.nickname || "Friend";
@@ -1396,6 +1447,14 @@ body {
                     statusIndicator.className = "online-status-indicator";
                     statusIndicator.id = `status-indicator-${f.uid}`; // Add ID for status updates
                     nicknameSpan.appendChild(statusIndicator); // Append status indicator to nickname span
+
+                    const latestMessagePreview = document.createElement("div");
+                    latestMessagePreview.className = "latest-message-preview";
+                    latestMessagePreview.id = `latest-message-${f.uid}`;
+                    latestMessagePreview.innerText = "No messages yet."; // Default text
+
+                    friendInfoContainer.appendChild(nicknameSpan);
+                    friendInfoContainer.appendChild(latestMessagePreview);
 
                     const removeBtn = document.createElement("button");
                     removeBtn.className = "friend-remove-btn";
@@ -1407,7 +1466,7 @@ body {
                     };
 
                     friendItem.appendChild(avatarDiv);
-                    friendItem.appendChild(nicknameSpan);
+                    friendItem.appendChild(friendInfoContainer);
                     friendItem.appendChild(removeBtn);
                     list.appendChild(friendItem);
 
@@ -1424,6 +1483,24 @@ body {
                             }
                         }
                     });
+
+                    // Setup listener for latest message preview
+                    const chatId = getChatID(currentUser.uid, f.uid);
+                    const chatMessagesRef = query(ref(db, 'messages/' + chatId), limitToLast(1));
+                    latestMessageListeners[f.uid] = {
+                        ref: chatMessagesRef,
+                        listener: onChildAdded(chatMessagesRef, (messageSnapshot) => {
+                            const msg = messageSnapshot.val();
+                            const previewElement = document.getElementById(`latest-message-${f.uid}`);
+                            if (previewElement) {
+                                let previewText = msg.text;
+                                if (msg.sender === currentUser.uid) {
+                                    previewText = `You: ${previewText}`;
+                                }
+                                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+                            }
+                        })
+                    };
                 });
             } else {
                 list.innerHTML = "<p style='text-align: center; color: var(--secondary-color);'>No friends yet. Search and add some!</p>";
@@ -1559,6 +1636,7 @@ body {
                 const msgId = child.key;
                 appendMessageToChat(msg, msgId);
 
+                // Mark message as seen if it's from the other user and not already seen
                 if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
                     update(child.ref, { [`seenBy/${currentUser.uid}`]: true });
                 }
@@ -1569,17 +1647,23 @@ body {
         currentOnChildAddedListener = snapshot => {
             const msg = snapshot.val();
             const msgId = snapshot.key;
-            appendMessageToChat(msg, msgId);
+            // Only append if it's a new message not already loaded by get()
+            if (!document.getElementById(`msg-${msgId}`)) {
+                appendMessageToChat(msg, msgId);
+            }
 
-            if (msg.sender === currentUser.uid && msg.seenBy?.[currentChatUID]) {
-                const messageBubble = document.getElementById(`msg-${msgId}`);
-                if (messageBubble) {
-                    const seenIndicator = messageBubble.querySelector('.seen-indicator');
-                    if (seenIndicator) {
-                        seenIndicator.innerText = "Seen";
-                    }
+            // Update latest message preview in friend list if on friendListPage
+            const previewElement = document.getElementById(`latest-message-${currentChatUID}`);
+            if (previewElement) {
+                let previewText = msg.text;
+                if (msg.sender === currentUser.uid) {
+                    previewText = `You: ${previewText}`;
                 }
-            } else if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
+                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+            }
+
+            // Mark message as seen if it's from the other user and not already seen
+            if (msg.sender !== currentUser.uid && !msg.seenBy?.[currentUser.uid]) {
                 update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
             }
             document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
@@ -1601,6 +1685,7 @@ body {
                     }
                 }
             } else if (messageBubble && msg.sender !== currentUser.uid && currentChatUID === friendUID) {
+                // If a received message's seenBy status changes (e.g., by another device), update it
                 if (!msg.seenBy?.[currentUser.uid]) {
                     update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
                 }
@@ -1611,21 +1696,49 @@ body {
         showPage('chatWindow'); // Transition to chat window
     }
 
+    function formatTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+        const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        if (messageDate.getTime() === today.getTime()) {
+            return timeString; // Today, just show time
+        } else {
+            // Not today, show date and time
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            const dateString = date.toLocaleDateString([], options);
+            return `${timeString} ${dateString}`;
+        }
+    }
+
     function appendMessageToChat(msg, msgId) {
         const div = document.createElement("div");
         div.className = "bubble " + (msg.sender === currentUser.uid ? "sent" : "received");
         div.id = `msg-${msgId}`;
 
-        let messageContent = msg.text;
+        const messageContentDiv = document.createElement("div");
+        messageContentDiv.className = "message-content";
+        messageContentDiv.innerText = msg.text;
+        div.appendChild(messageContentDiv);
+
+        const messageMetaDiv = document.createElement("div");
+        messageMetaDiv.className = "message-meta";
+
+        const timestampSpan = document.createElement("span");
+        timestampSpan.className = "timestamp";
+        timestampSpan.innerText = formatTimestamp(msg.timestamp);
+        messageMetaDiv.appendChild(timestampSpan);
 
         if (msg.sender === currentUser.uid) {
             const seenIndicator = document.createElement("span");
             seenIndicator.className = "seen-indicator";
             seenIndicator.innerText = msg.seenBy?.[currentChatUID] ? "Seen" : "Sent";
-            div.innerHTML = `${messageContent}<br>${seenIndicator.outerHTML}`;
-        } else {
-            div.innerHTML = messageContent;
+            messageMetaDiv.appendChild(seenIndicator);
         }
+        div.appendChild(messageMetaDiv);
         document.getElementById("messages").appendChild(div);
     }
 
@@ -1643,7 +1756,7 @@ body {
                 sender: currentUser.uid,
                 text: msgText,
                 timestamp: Date.now(),
-                seenBy: { [currentUser.uid]: true }
+                seenBy: { [currentUser.uid]: true } // Mark as seen by sender immediately
             });
             msgInput.value = "";
         } else {
@@ -1740,19 +1853,33 @@ body {
             const msg = snapshot.val();
             const msgId = snapshot.key;
 
+            // Update latest message preview in friend list
+            const previewElement = document.getElementById(`latest-message-${friendUID}`);
+            if (previewElement) {
+                let previewText = msg.text;
+                if (msg.sender === currentUser.uid) {
+                    previewText = `You: ${previewText}`;
+                }
+                previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+            }
+
             if (msg.sender === friendUID) {
                 if (currentChatUID === friendUID) {
+                    // If in the current chat, mark as seen immediately if not already
                     if (!msg.seenBy?.[currentUser.uid]) {
                         update(snapshot.ref, { [`seenBy/${currentUser.uid}`]: true });
                     }
+                    // Append message if it's new and not already in the DOM
                     if (!document.getElementById(`msg-${msgId}`)) {
                         appendMessageToChat(msg, msgId);
                         document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
                     }
                 } else {
+                    // If not in the current chat, show notification
                     showNotification(`New message from ${friendNickname}!`);
                 }
             } else if (msg.sender === currentUser.uid && currentChatUID === friendUID) {
+                // If sender is current user and message is in current chat, update seen status
                 const messageBubble = document.getElementById(`msg-${msgId}`);
                 if (messageBubble) {
                     const seenIndicator = messageBubble.querySelector('.seen-indicator');
