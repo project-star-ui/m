@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Messmisan Messenger</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Optional: Google Fonts for 'Press Start 2P' if you want to use it for 'Blocky' theme -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
 <style>
 /* Cloud Play Theme (Default - Kid-Friendly) */
 :root {
@@ -30,6 +33,12 @@
 /* Bubble Text Colors (Default - Light Bubbles, Dark Text) */
 --bubble-text-light: #36454F; /* Charcoal */
 --bubble-text-dark: #FFFFFF; /* White */
+
+/* Font Families */
+--font-family-default: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+--font-family-playful: 'Comic Sans MS', cursive, sans-serif;
+--font-family-fancy: 'Brush Script MT', cursive, sans-serif;
+--font-family-blocky: 'Press Start 2P', cursive, sans-serif; /* Requires import */
 }
 
 /* Candy Theme (Kid-Friendly) */
@@ -425,13 +434,27 @@ body.theme-black-elegant {
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More readable font */
+font-family: var(--font-family-default); /* Use default font variable */
 background-color: var(--background-dark);
 color: var(--text-color);
 width: 100vw;
 height: 100vh;
 overflow: hidden; /* Default to hidden for desktop, handled by media query for mobile */
+transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
 }
+
+/* Font Style Classes */
+body.font-style-playful {
+font-family: var(--font-family-playful);
+}
+body.font-style-fancy {
+font-family: var(--font-family-fancy);
+}
+body.font-style-blocky {
+font-family: var(--font-family-blocky);
+}
+
+
 .main-container {
 display: flex;
 width: 100%;
@@ -521,7 +544,7 @@ font-size: 1.1rem;
 background: var(--input-bg);
 color: var(--text-color);
 box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
-transition: background-color 0.3s ease, color 0.3s ease;
+transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
 }
 .auth-container input::placeholder {
 color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
@@ -535,7 +558,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 10px;
-transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease;
+transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease, font-family 0.3s ease;
 box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 .auth-container button:hover {
@@ -552,7 +575,7 @@ color: var(--accent-color);
 margin-bottom: 30px;
 font-size: 2.5rem; /* Larger heading */
 text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-transition: color 0.3s ease;
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 .switch-link {
 text-align: center;
@@ -560,7 +583,7 @@ margin-top: 15px;
 color: var(--accent-color);
 cursor: pointer;
 font-size: 1.1rem;
-transition: color 0.2s ease;
+transition: color 0.2s ease, font-family 0.3s ease;
 }
 .switch-link:hover {
 color: var(--secondary-color);
@@ -588,6 +611,7 @@ z-index: 1;
 font-size: 1.8rem; /* Larger user info */
 font-weight: bold;
 color: var(--accent-color);
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 #friendListPage .header .logout-btn {
 background-color: var(--logout-btn-bg);
@@ -600,7 +624,7 @@ font-size: 1rem;
 display: flex;
 align-items: center;
 gap: 8px;
-transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, font-family 0.3s ease;
 box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 #friendListPage .header .logout-btn:hover {
@@ -624,6 +648,7 @@ margin-bottom: 20px;
 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 position: relative;
 z-index: 1;
+transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 #friendListPage .search-container {
@@ -642,6 +667,7 @@ background: var(--input-bg);
 color: var(--text-color);
 font-size: 1.1rem;
 box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
 }
 #friendListPage .search-container input::placeholder {
 color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
@@ -660,6 +686,7 @@ overflow-y: auto;
 z-index: 10; /* Ensure search results are on top */
 box-shadow: 0 8px 15px rgba(0,0,0,0.4);
 display: none;
+transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #friendListPage .search-results.visible {
 display: block;
@@ -672,7 +699,7 @@ align-items: center;
 justify-content: space-between;
 gap: 10px;
 border-bottom: 1px solid var(--border-color);
-transition: background-color 0.2s ease;
+transition: background-color 0.2s ease, font-family 0.3s ease;
 }
 .search-result-item:last-child {
 border-bottom: none;
@@ -682,6 +709,7 @@ background-color: var(--input-bg);
 }
 .search-result-item i {
 color: var(--accent-color);
+transition: color 0.3s ease;
 }
 .search-result-item .user-info-display {
 display: flex;
@@ -689,6 +717,7 @@ align-items: center;
 gap: 10px;
 flex-grow: 1;
 color: var(--text-color); /* Ensure text color is readable */
+transition: color 0.3s ease;
 }
 .add-friend-search-btn {
 background: none;
@@ -698,7 +727,7 @@ font-size: 1.5rem; /* Larger icon */
 cursor: pointer;
 padding: 8px;
 border-radius: 50%;
-transition: background-color 0.2s ease, transform 0.2s ease;
+transition: background-color 0.2s ease, transform 0.2s ease, color 0.3s ease;
 flex-shrink: 0;
 }
 .add-friend-search-btn:hover {
@@ -718,6 +747,7 @@ background-color: rgba(var(--background-light-rgb, 30, 30, 30), 0.9); /* Semi-tr
 box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 position: relative;
 z-index: 1; /* Lowered z-index to be below search-container */
+transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #friendListPage .friends-list-section::-webkit-scrollbar {
 width: 10px; /* Wider scrollbar */
@@ -767,6 +797,7 @@ font-size: 3rem; /* Larger icon */
 color: var(--accent-color);
 border: 3px solid var(--primary-color);
 margin-right: 15px;
+transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 .friend-item-large .friend-nickname {
 font-size: 1.2rem; /* Larger nickname */
@@ -775,6 +806,7 @@ color: var(--text-color);
 display: flex;
 align-items: center;
 gap: 10px;
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 .friend-item-large .latest-message-preview {
 font-size: 0.9rem;
@@ -784,6 +816,7 @@ white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 max-width: 100%; /* Ensure it doesn't overflow its container */
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 .friend-item-large .friend-remove-btn {
 background: none;
@@ -808,6 +841,7 @@ display: inline-block;
 margin-left: 8px;
 flex-shrink: 0;
 box-shadow: 0 0 5px rgba(0,0,0,0.3);
+transition: background-color 0.3s ease;
 }
 .online-status-indicator.online {
 background-color: var(--online-color);
@@ -831,6 +865,7 @@ top: 0;
 left: 0;
 right: 0;
 z-index: 100;
+transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #chatWindow .chat-header .back-btn {
 background: none;
@@ -854,6 +889,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 12px;
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 
 #chatWindow .messages {
@@ -889,8 +925,8 @@ line-height: 1.6;
 word-wrap: break-word;
 box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 position: relative;
-transition: background-color 0.3s ease, color 0.3s ease;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
+transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
+font-family: inherit; /* Inherit font from body */
 display: flex;
 flex-direction: column;
 }
@@ -909,7 +945,7 @@ margin-bottom: 5px; /* Space between text and timestamp/seen */
 }
 .message-meta {
 font-size: 0.75rem; /* Smaller font for meta info */
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
+font-family: inherit; /* Inherit font from body */
 text-align: right;
 display: flex;
 justify-content: flex-end;
@@ -921,7 +957,7 @@ justify-content: flex-start;
 }
 .seen-indicator {
 font-size: 0.75rem; /* Consistent with timestamp */
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sans-serif font style */
+font-family: inherit; /* Inherit font from body */
 }
 
 /* Dynamic text color for bubbles */
@@ -979,6 +1015,7 @@ bottom: 0;
 left: 0;
 right: 0;
 z-index: 100;
+transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #chatWindow .message-input input {
 flex: 1;
@@ -989,6 +1026,7 @@ border: none;
 border-radius: 30px; /* Very rounded */
 font-size: 1.1rem;
 box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
 }
 #chatWindow .message-input input::placeholder {
 color: rgba(54, 69, 79, 0.7); /* Adjusted for light backgrounds */
@@ -1004,7 +1042,7 @@ cursor: pointer;
 display: flex;
 align-items: center;
 gap: 10px;
-transition: background-color 0.2s ease, transform 0.1s ease;
+transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease, font-family 0.3s ease;
 box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 #chatWindow .message-input button:hover {
@@ -1038,6 +1076,7 @@ display: none;
 width: 320px; /* Slightly wider */
 height: 220px; /* Slightly taller */
 overflow-y: auto;
+transition: background-color 0.3s ease;
 }
 .emoji-panel.visible {
 display: grid;
@@ -1093,6 +1132,7 @@ transform: translateY(0);
 color: var(--accent-color);
 margin-bottom: 25px;
 font-size: 1.8rem; /* Larger heading */
+transition: color 0.3s ease, font-family 0.3s ease;
 }
 .modal-content .modal-buttons {
 display: flex;
@@ -1105,7 +1145,7 @@ border-radius: 10px; /* More rounded */
 border: none;
 font-size: 1.1rem;
 cursor: pointer;
-transition: background-color 0.2s ease, transform 0.1s ease;
+transition: background-color 0.2s ease, transform 0.1s ease, font-family 0.3s ease;
 box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .modal-content .modal-buttons button.yes {
@@ -1141,7 +1181,7 @@ align-items: center;
 gap: 12px;
 opacity: 0;
 transform: translateY(-60px); /* More pronounced animation */
-transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+transition: opacity 0.5s ease-out, transform 0.5s ease-out, background-color 0.3s ease, color 0.3s ease;
 }
 .new-message-notification.show {
 opacity: 1;
@@ -1166,6 +1206,22 @@ margin-right: 15px; /* Space between icon and logout button */
 transform: scale(1.1);
 }
 
+/* Font Style Selector Icon */
+.font-style-selector-icon {
+background: none;
+border: none;
+color: var(--accent-color);
+font-size: 1.8rem;
+cursor: pointer;
+padding: 8px;
+transition: transform 0.2s ease, color 0.3s ease;
+margin-right: 15px; /* Space between icon and theme selector */
+}
+.font-style-selector-icon:hover {
+transform: scale(1.1);
+}
+
+
 /* Floating Theme Selector Panel */
 .floating-theme-selector {
 position: fixed;
@@ -1182,33 +1238,61 @@ display: none; /* Hidden by default */
 flex-direction: column;
 gap: 10px;
 max-width: 300px;
-/* Added for scrolling */
 max-height: 300px; /* Adjust this value to control how many themes are visible before scrolling */
 overflow-y: auto;
+transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Scrollbar styling for theme selector */
-.floating-theme-selector::-webkit-scrollbar {
+/* Floating Font Style Selector Panel */
+.floating-font-style-selector {
+position: fixed;
+top: 50%; /* Center vertically */
+left: 50%;
+transform: translate(-50%, -50%); /* Center horizontally and vertically */
+background-color: var(--background-light);
+border: 2px solid var(--border-color);
+border-radius: 15px;
+padding: 20px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+z-index: 1000; /* Above other content */
+display: none; /* Hidden by default */
+flex-direction: column;
+gap: 10px;
+max-width: 300px;
+max-height: 300px; /* Adjust this value to control how many themes are visible before scrolling */
+overflow-y: auto;
+transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* Scrollbar styling for theme/font style selector */
+.floating-theme-selector::-webkit-scrollbar,
+.floating-font-style-selector::-webkit-scrollbar {
 width: 10px;
 }
-.floating-theme-selector::-webkit-scrollbar-track {
+.floating-theme-selector::-webkit-scrollbar-track,
+.floating-font-style-selector::-webkit-scrollbar-track {
 background: var(--background-dark);
 border-radius: 10px;
 }
-.floating-theme-selector::-webkit-scrollbar-thumb {
+.floating-theme-selector::-webkit-scrollbar-thumb,
+.floating-font-style-selector::-webkit-scrollbar-thumb {
 background: var(--primary-color);
 border-radius: 10px;
 }
-.floating-theme-selector::-webkit-scrollbar-thumb:hover {
+.floating-theme-selector::-webkit-scrollbar-thumb:hover,
+.floating-font-style-selector::-webkit-scrollbar-thumb:hover {
 background: var(--secondary-color);
 }
 
 
-.floating-theme-selector.visible {
+.floating-theme-selector.visible,
+.floating-font-style-selector.visible {
 display: flex;
 }
 
-.floating-theme-selector button {
+.floating-theme-selector button,
+.floating-font-style-selector button {
 background-color: var(--input-bg);
 border: 1px solid var(--border-color);
 border-radius: 10px;
@@ -1220,15 +1304,17 @@ gap: 10px;
 cursor: pointer;
 font-size: 1rem;
 color: var(--text-color);
-transition: background-color 0.2s ease, transform 0.1s ease;
+transition: background-color 0.2s ease, transform 0.1s ease, font-family 0.3s ease;
 }
 
-.floating-theme-selector button:hover {
+.floating-theme-selector button:hover,
+.floating-font-style-selector button:hover {
 background-color: var(--primary-color);
 transform: translateX(5px);
 }
 
-.floating-theme-selector button i {
+.floating-theme-selector button i,
+.floating-font-style-selector button i {
 font-size: 1.2rem;
 color: var(--accent-color);
 }
@@ -1334,12 +1420,14 @@ padding: 12px 20px;
 font-size: 1rem;
 }
 
-.theme-selector-icon {
+.theme-selector-icon,
+.font-style-selector-icon {
 font-size: 1.5rem;
 margin-right: 10px;
 }
 
-.floating-theme-selector {
+.floating-theme-selector,
+.floating-font-style-selector {
 width: 90%;
 padding: 15px;
 /* Adjust max-height for mobile if needed */
@@ -1381,6 +1469,7 @@ max-height: 60vh; /* Example: 60% of viewport height */
 </div>
 <div class="header">
 <span class="user-info" id="userNickname">Welcome, User</span>
+<button class="font-style-selector-icon" onclick="toggleFontStylePanel()"><i class="fas fa-font"></i></button>
 <button class="theme-selector-icon" onclick="toggleThemePanel()"><i class="fas fa-palette"></i></button>
 <button class="logout-btn" onclick="logout()"><i class="fas fa-door-open"></i> Bye Bye!</button>
 </div>
@@ -1443,6 +1532,14 @@ max-height: 60vh; /* Example: 60% of viewport height */
 <button title="Black Elegant Theme" onclick="applyTheme('black-elegant')"><i class="fas fa-moon" style="color: #E0BBE4;"></i> Black Elegant</button>
 </div>
 
+<!-- Floating Font Style Selector Panel -->
+<div class="floating-font-style-selector" id="fontStyleSelectorPanel">
+<button title="Default Font" onclick="applyFontStyle('default')"><i class="fas fa-align-left"></i> Default</button>
+<button title="Playful Font" onclick="applyFontStyle('playful')"><i class="fas fa-pencil-alt"></i> Playful</button>
+<button title="Fancy Font" onclick="applyFontStyle('fancy')"><i class="fas fa-feather-alt"></i> Fancy</button>
+<button title="Blocky Font" onclick="applyFontStyle('blocky')"><i class="fas fa-cube"></i> Blocky</button>
+</div>
+
 <!-- Add Friend Confirmation Modal -->
 <div class="modal-overlay" id="addFriendModal">
 <div class="modal-content">
@@ -1499,15 +1596,15 @@ page.classList.remove('active');
 });
 document.getElementById(pageId).classList.add('active');
 
-// Show/hide theme selector icon based on the active page
+// Show/hide theme and font style selector icons based on the active page
 const themeIconFriendList = document.querySelector('#friendListPage .theme-selector-icon');
-const themeIconChatWindow = document.querySelector('#chatWindow .theme-selector-icon');
+const fontStyleIconFriendList = document.querySelector('#friendListPage .font-style-selector-icon');
 
 if (themeIconFriendList) {
 themeIconFriendList.style.display = (pageId === 'friendListPage') ? 'block' : 'none';
 }
-if (themeIconChatWindow) {
-themeIconChatWindow.style.display = (pageId === 'chatWindow') ? 'block' : 'none';
+if (fontStyleIconFriendList) {
+fontStyleIconFriendList.style.display = (pageId === 'friendListPage') ? 'block' : 'none';
 }
 }
 
@@ -1547,7 +1644,7 @@ body.classList.remove(
 'theme-carnival-fun',
 'theme-magical-forest',
 'theme-sports-mania',
-'theme-black-elegant' /* Add new theme class here */
+'theme-black-elegant'
 );
 // Add the new theme class
 if (themeName !== 'cloud-play') { // 'cloud-play' is the default, no class needed
@@ -1555,12 +1652,11 @@ body.classList.add(`theme-${themeName}`);
 }
 localStorage.setItem('selectedTheme', themeName);
 
-// Update CSS variables for dynamic background elements if needed (e.g., if colors change)
+// Update CSS variables for semi-transparent backgrounds
 const root = document.documentElement;
 const computedStyle = getComputedStyle(body);
 const backgroundLight = computedStyle.getPropertyValue('--background-light');
 
-// Extract RGB values for semi-transparent backgrounds
 const getRgbValues = (color) => {
 const tempDiv = document.createElement('div');
 tempDiv.style.color = color;
@@ -1574,16 +1670,47 @@ root.style.setProperty('--background-light-rgb', getRgbValues(backgroundLight));
 toggleThemePanel(); // Hide panel after selection
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-const savedTheme = localStorage.getItem('selectedTheme') || 'cloud-play'; // Default to 'cloud-play'
-window.applyTheme(savedTheme);
-});
-
 window.toggleThemePanel = function() {
 const panel = document.getElementById("themeSelectorPanel");
 panel.classList.toggle("visible");
+// Close font style panel if open
+document.getElementById("fontStyleSelectorPanel").classList.remove("visible");
 };
 // --- End Theme Management ---
+
+// --- Font Style Management ---
+window.applyFontStyle = function(fontStyleName) {
+const body = document.body;
+// Remove all existing font style classes
+body.classList.remove(
+'font-style-playful',
+'font-style-fancy',
+'font-style-blocky'
+);
+// Add the new font style class, unless it's 'default'
+if (fontStyleName !== 'default') {
+body.classList.add(`font-style-${fontStyleName}`);
+}
+localStorage.setItem('selectedFontStyle', fontStyleName);
+toggleFontStylePanel(); // Hide panel after selection
+};
+
+window.toggleFontStylePanel = function() {
+const panel = document.getElementById("fontStyleSelectorPanel");
+panel.classList.toggle("visible");
+// Close theme panel if open
+document.getElementById("themeSelectorPanel").classList.remove("visible");
+};
+// --- End Font Style Management ---
+
+
+document.addEventListener('DOMContentLoaded', () => {
+const savedTheme = localStorage.getItem('selectedTheme') || 'cloud-play'; // Default to 'cloud-play'
+window.applyTheme(savedTheme); // Apply theme without hiding panel initially
+
+const savedFontStyle = localStorage.getItem('selectedFontStyle') || 'default'; // Default to 'default'
+window.applyFontStyle(savedFontStyle); // Apply font style without hiding panel initially
+});
 
 
 window.toggleAuthForm = function () {
@@ -2182,9 +2309,17 @@ confirmAddFriend(false);
 
 const themeSelectorPanel = document.getElementById("themeSelectorPanel");
 const themeSelectorIcon = document.querySelector(".theme-selector-icon");
-// Check if the click is outside the panel and not on the icon itself
+const fontStyleSelectorPanel = document.getElementById("fontStyleSelectorPanel");
+const fontStyleSelectorIcon = document.querySelector(".font-style-selector-icon");
+
+// Close theme panel if click is outside and not on its icon
 if (themeSelectorPanel && themeSelectorIcon && themeSelectorPanel.classList.contains("visible") && !themeSelectorPanel.contains(event.target) && !themeSelectorIcon.contains(event.target)) {
 themeSelectorPanel.classList.remove("visible");
+}
+
+// Close font style panel if click is outside and not on its icon
+if (fontStyleSelectorPanel && fontStyleSelectorIcon && fontStyleSelectorPanel.classList.contains("visible") && !fontStyleSelectorPanel.contains(event.target) && !fontStyleSelectorIcon.contains(event.target)) {
+fontStyleSelectorPanel.classList.remove("visible");
 }
 });
 
