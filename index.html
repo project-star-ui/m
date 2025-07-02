@@ -1044,6 +1044,7 @@ color: var(--bubble-text-light); /* Ensure dark text for secondary color bubbles
 
 #chatWindow .message-input {
 display: flex;
+flex-wrap: wrap; /* Allow items to wrap */
 padding: 18px 25px; /* More padding */
 border-top: 1px solid var(--border-color);
 background-color: var(--background-light);
@@ -1093,13 +1094,13 @@ transform: translateY(0);
 box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.emoji-picker-btn {
+.emoji-picker-btn, .attachment-btn {
 color: var(--accent-color);
 cursor: pointer;
 font-size: 1.8rem; /* Larger emoji button */
 transition: all 0.2s;
 }
-.emoji-picker-btn:hover {
+.emoji-picker-btn:hover, .attachment-btn:hover {
 transform: scale(1.2);
 }
 .emoji-panel {
@@ -1132,6 +1133,107 @@ transition: transform 0.1s;
 .emoji-item:hover {
 transform: scale(1.3);
 }
+
+/* Attachment Input Container */
+.attachment-input-container {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 10px; /* Space between attachment area and message input */
+padding: 10px;
+background-color: var(--input-bg);
+border-radius: 15px;
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+display: none; /* Hidden by default */
+}
+.attachment-input-container.visible {
+display: flex;
+}
+
+.file-input-wrapper {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.file-input-wrapper label {
+background-color: var(--primary-color);
+color: var(--text-color);
+padding: 8px 15px;
+border-radius: 20px;
+cursor: pointer;
+font-size: 0.9rem;
+transition: background-color 0.2s ease;
+}
+.file-input-wrapper label:hover {
+background-color: var(--secondary-color);
+}
+
+.file-input-wrapper input[type="file"] {
+display: none; /* Hide default file input */
+}
+
+.file-preview-container {
+display: flex;
+flex-wrap: wrap;
+gap: 5px;
+max-height: 80px; /* Limit height for previews */
+overflow-y: auto;
+padding-right: 5px; /* Space for scrollbar */
+}
+
+.file-preview-item {
+background-color: var(--background-dark);
+color: var(--text-color);
+padding: 5px 10px;
+border-radius: 10px;
+font-size: 0.8rem;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.file-preview-item .remove-file-btn {
+background: none;
+border: none;
+color: #FF4500;
+cursor: pointer;
+font-size: 0.9rem;
+}
+
+.attachment-actions {
+display: flex;
+justify-content: flex-end;
+gap: 10px;
+margin-top: 5px;
+}
+
+.attachment-actions button {
+padding: 8px 15px;
+border-radius: 20px;
+border: none;
+cursor: pointer;
+font-size: 0.9rem;
+transition: background-color 0.2s ease;
+}
+
+.attachment-actions .send-attachment-btn {
+background-color: var(--notification-bg); /* Green for send */
+color: var(--notification-text);
+}
+.attachment-actions .send-attachment-btn:hover {
+background-color: #28A745;
+}
+
+.attachment-actions .attachment-clear-btn {
+background-color: var(--logout-btn-bg); /* Red for clear */
+color: var(--notification-text);
+}
+.attachment-actions .attachment-clear-btn:hover {
+background-color: var(--logout-btn-hover);
+}
+
 
 /* Add Friend Confirmation Modal */
 .modal-overlay {
@@ -1543,10 +1645,31 @@ max-height: 60vh; /* Example: 60% of viewport height */
 </div>
 <div class="messages" id="messages"></div>
 <div class="message-input">
-<div class="emoji-panel" id="emojiPanel"></div>
-<input id="messageInput" placeholder="Type your super message..." />
-<span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
-<button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
+    <!-- Attachment Input Container -->
+    <div class="attachment-input-container" id="attachmentInputContainer">
+        <div class="file-input-wrapper">
+            <label for="fileInput">
+                <i class="fas fa-paperclip"></i> Attach Files
+            </label>
+            <input type="file" id="fileInput" multiple onchange="handleFileSelect(event)" />
+            <div class="file-preview-container" id="filePreviewContainer">
+                <!-- File previews will be displayed here -->
+            </div>
+        </div>
+        <div class="attachment-actions">
+            <button class="attachment-clear-btn" onclick="clearAttachments()">
+                <i class="fas fa-times-circle"></i> Clear
+            </button>
+            <button class="send-attachment-btn" id="sendAttachmentButton" onclick="sendAttachment()" style="display: none;">
+                <i class="fas fa-paper-plane"></i> Send Attachments
+            </button>
+        </div>
+    </div>
+
+    <input id="messageInput" placeholder="Type your super message..." />
+    <span class="attachment-btn" onclick="toggleAttachmentInput()">📎</span>
+    <span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
+    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
 </div>
 </div>
 </div>
@@ -1635,8 +1758,15 @@ let allFriendsListeners = {};
 let friendStatusListeners = {}; // To store listeners for friend online status
 let latestMessageListeners = {}; // To store listeners for latest messages
 
+// --- Google Apps Script Web App URL ---
+// IMPORTANT: REPLACE THIS WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz4C9vAf_zWQB_R5naR9MreuHlFUP4Lnsb-q69OqADGaHkJPouuzN62LTP7i0TzNYWn/exec"; // e.g., "https://script.google.com/macros/s/AKfycb..."
+
 // Audio for notification
 const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
+
+// --- Attachment Feature Variables ---
+let selectedFiles = []; // Stores File objects for attachments
 
 // --- Page Management ---
 function showPage(pageId) {
@@ -1670,6 +1800,7 @@ currentMessagesRef = null;
 currentChatUID = null;
 document.getElementById("chatFriendNickname").innerText = "None";
 document.getElementById("chatFriendStatus").classList.remove('online'); // Reset status indicator
+clearAttachments(); // Clear any pending attachments
 };
 // --- End Page Management ---
 
@@ -1870,6 +2001,7 @@ document.getElementById("chatFriendNickname").innerText = "None";
 document.getElementById("chatFriendStatus").classList.remove('online');
 document.getElementById("messages").innerHTML = "";
 currentUser = null;
+clearAttachments(); // Clear attachments on logout
 });
 };
 
@@ -2279,7 +2411,35 @@ div.id = `msg-${msgId}`;
 
 const messageContentDiv = document.createElement("div");
 messageContentDiv.className = "message-content";
-messageContentDiv.innerText = msg.text;
+
+if (msg.type === 'attachment' && msg.attachments) {
+    let attachmentHtml = '';
+    msg.attachments.forEach(att => {
+        // Check if it's an image or video to potentially embed
+        if (att.mimeType.startsWith('image/')) {
+            attachmentHtml += `<p><a href="${att.url}" target="_blank" style="color: inherit; text-decoration: underline;">
+                                <img src="${att.url}" alt="${att.name}" style="max-width: 100%; height: auto; display: block; margin-bottom: 5px; border-radius: 8px;">
+                                ${att.name} <i class="fas fa-external-link-alt"></i>
+                                </a></p>`;
+        } else if (att.mimeType.startsWith('video/')) {
+            attachmentHtml += `<p><a href="${att.url}" target="_blank" style="color: inherit; text-decoration: underline;">
+                                <video controls style="max-width: 100%; height: auto; display: block; margin-bottom: 5px; border-radius: 8px;">
+                                    <source src="${att.url}" type="${att.mimeType}">
+                                    Your browser does not support the video tag.
+                                </video>
+                                ${att.name} <i class="fas fa-external-link-alt"></i>
+                                </a></p>`;
+        } else {
+            attachmentHtml += `<p><a href="${att.url}" target="_blank" style="color: inherit; text-decoration: underline;">
+                                <i class="fas fa-file"></i> ${att.name} <i class="fas fa-external-link-alt"></i>
+                                </a></p>`;
+        }
+    });
+    messageContentDiv.innerHTML = attachmentHtml;
+} else {
+    messageContentDiv.innerText = msg.text;
+}
+
 div.appendChild(messageContentDiv);
 
 const messageMetaDiv = document.createElement("div");
@@ -2304,21 +2464,25 @@ window.sendMessage = function () {
 const msgInput = document.getElementById("messageInput");
 const msgText = msgInput.value.trim();
 
-if (msgText) {
-if (currentChatUID === null) {
-alert("Please select a friend to chat with first.");
-return;
-}
-const chatId = getChatID(currentUser.uid, currentChatUID);
-push(ref(db, 'messages/' + chatId), {
-sender: currentUser.uid,
-text: msgText,
-timestamp: Date.now(),
-seenBy: { [currentUser.uid]: true } // Mark as seen by sender immediately
-});
-msgInput.value = "";
+if (selectedFiles.length > 0) {
+    // If there are selected files, prioritize sending them as attachments
+    sendAttachment();
+} else if (msgText) {
+    if (currentChatUID === null) {
+        alert("Please select a friend to chat with first.");
+        return;
+    }
+    const chatId = getChatID(currentUser.uid, currentChatUID);
+    push(ref(db, 'messages/' + chatId), {
+        sender: currentUser.uid,
+        text: msgText,
+        timestamp: Date.now(),
+        seenBy: { [currentUser.uid]: true }, // Mark as seen by sender immediately
+        type: 'text' // Explicitly mark as text message
+    });
+    msgInput.value = "";
 } else {
-alert("Please type a message to send.");
+    alert("Please type a message or select files to send.");
 }
 };
 
@@ -2344,6 +2508,137 @@ input.value += emoji;
 input.focus();
 document.getElementById("emojiPanel").classList.remove("visible");
 };
+
+// --- Attachment Feature Functions ---
+window.toggleAttachmentInput = function() {
+    const container = document.getElementById("attachmentInputContainer");
+    container.classList.toggle("visible");
+    // Hide emoji panel if attachment input is shown
+    document.getElementById("emojiPanel").classList.remove("visible");
+};
+
+window.handleFileSelect = function(event) {
+    const files = event.target.files;
+    selectedFiles = Array.from(files); // Convert FileList to Array
+    updateFilePreview();
+};
+
+function updateFilePreview() {
+    const previewContainer = document.getElementById("filePreviewContainer");
+    const sendAttachmentBtn = document.getElementById("sendAttachmentButton");
+    previewContainer.innerHTML = "";
+
+    if (selectedFiles.length > 0) {
+        selectedFiles.forEach((file, index) => {
+            const fileItem = document.createElement("div");
+            fileItem.className = "file-preview-item";
+            fileItem.innerHTML = `
+                <span>${file.name}</span>
+                <button class="remove-file-btn" onclick="removeFile(${index})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            previewContainer.appendChild(fileItem);
+        });
+        sendAttachmentBtn.style.display = "block"; // Show send button
+    } else {
+        sendAttachmentBtn.style.display = "none"; // Hide send button
+    }
+}
+
+window.removeFile = function(index) {
+    selectedFiles.splice(index, 1); // Remove file from array
+    updateFilePreview(); // Update display
+};
+
+window.clearAttachments = function() {
+    selectedFiles = [];
+    document.getElementById("fileInput").value = ""; // Clear file input
+    updateFilePreview();
+    document.getElementById("attachmentInputContainer").classList.remove("visible"); // Hide container
+};
+
+window.sendAttachment = async function() {
+    if (selectedFiles.length === 0) {
+        alert("No files selected to send.");
+        return;
+    }
+    if (currentChatUID === null) {
+        alert("Please select a friend to chat with first.");
+        clearAttachments();
+        return;
+    }
+
+    const filesToUpload = [];
+    for (const file of selectedFiles) {
+        filesToUpload.push(new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64Data = reader.result.split(',')[1]; // Get base64 string
+                resolve({
+                    fileName: file.name,
+                    mimeType: file.type,
+                    base64: base64Data
+                });
+            };
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(file);
+        }));
+    }
+
+    try {
+        // Show a temporary message or loading indicator
+        const loadingMessageId = push(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID)), {
+            sender: currentUser.uid,
+            text: "Uploading attachments...",
+            timestamp: Date.now(),
+            seenBy: { [currentUser.uid]: true },
+            type: 'status' // Custom type for loading message
+        }).key;
+
+        const uploadedFileDetails = await Promise.all(filesToUpload);
+
+        // Call Google Apps Script to upload files
+        const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: JSON.stringify({ files: uploadedFileDetails }) // Send as JSON
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Remove loading message
+            remove(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID) + '/' + loadingMessageId));
+
+            // Send message with attachment links
+            push(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID)), {
+                sender: currentUser.uid,
+                text: "Sent attachments:", // Optional text
+                timestamp: Date.now(),
+                seenBy: { [currentUser.uid]: true },
+                type: 'attachment', // Custom type for attachments
+                attachments: result.fileLinks // Array of {name, url, mimeType}
+            });
+            alert("Attachments sent successfully!");
+            clearAttachments(); // Clear selected files after sending
+        } else {
+            // Update loading message to an error message
+            update(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID) + '/' + loadingMessageId), {
+                text: `Failed to upload attachments: ${result.error}`,
+                type: 'error'
+            });
+            alert("Failed to upload attachments: " + result.error);
+        }
+    } catch (error) {
+        console.error("Error sending attachments:", error);
+        alert("An error occurred while sending attachments: " + error.message);
+    }
+};
+// --- End Attachment Feature Functions ---
+
 
 document.addEventListener('click', function(event) {
 const emojiPanel = document.getElementById("emojiPanel");
@@ -2379,6 +2674,13 @@ themeSelectorPanel.classList.remove("visible");
 // Close font style panel if click is outside and not on its icon
 if (fontStyleSelectorPanel && fontStyleSelectorIcon && fontStyleSelectorPanel.classList.contains("visible") && !fontStyleSelectorPanel.contains(event.target) && !fontStyleSelectorIcon.contains(event.target)) {
 fontStyleSelectorPanel.classList.remove("visible");
+}
+
+// Close attachment input if click is outside and not on its icon
+const attachmentInputContainer = document.getElementById("attachmentInputContainer");
+const attachmentBtn = document.querySelector(".attachment-btn");
+if (attachmentInputContainer && attachmentBtn && attachmentInputContainer.classList.contains("visible") && !attachmentInputContainer.contains(event.target) && event.target !== attachmentBtn && !event.target.closest('.attachment-input-container')) {
+    attachmentInputContainer.classList.remove("visible");
 }
 });
 
@@ -2423,11 +2725,17 @@ const msgId = snapshot.key;
 // Update latest message preview in friend list
 const previewElement = document.getElementById(`latest-message-${friendUID}`);
 if (previewElement) {
-let previewText = msg.text;
-if (msg.sender === currentUser.uid) {
-previewText = `You: ${previewText}`;
-}
-previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
+    let previewText = msg.text || ''; // Default to empty string if no text
+    if (msg.type === 'attachment' && msg.attachments && msg.attachments.length > 0) {
+        previewText = `Attachment: ${msg.attachments[0].name}`;
+        if (msg.attachments.length > 1) {
+            previewText += ` (+${msg.attachments.length - 1} more)`;
+        }
+    }
+    if (msg.sender === currentUser.uid) {
+        previewText = `You: ${previewText}`;
+    }
+    previewElement.innerText = previewText.substring(0, 30) + (previewText.length > 30 ? '...' : '');
 }
 
 if (msg.sender === friendUID) {
