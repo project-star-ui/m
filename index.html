@@ -65,7 +65,7 @@ body.theme-candy {
 --notification-bg: #32CD32; /* Lime Green */
 --notification-text: #fff;
 --logout-btn-bg: #FF4500; /* Orange Red */
---logout-btn-hover: #E53F00;
+--logout-btn-hover: #E55337;
 
 /* Online Status Colors */
 --online-color: #32CD32; /* Lime Green */
@@ -1543,10 +1543,21 @@ position: fixed;
 bottom: 0;
 left: 0;
 right: 0;
-padding: 15px;
+padding: 10px 15px; /* Adjusted padding for mobile */
+flex-wrap: nowrap; /* Force single line for mobile */
+gap: 8px; /* Reduced gap for mobile */
 }
-.bubble {
-max-width: 90%;
+#chatWindow .message-input input {
+padding: 10px 15px; /* Adjusted padding for mobile */
+font-size: 0.95rem; /* Adjusted font size for mobile */
+}
+#chatWindow .message-input button {
+padding: 10px 18px; /* Adjusted padding for mobile */
+font-size: 0.95rem; /* Adjusted font size for mobile */
+}
+.emoji-picker-btn, .attachment-btn {
+font-size: 1.5rem; /* Adjusted font size for mobile */
+padding: 5px; /* Adjusted padding for mobile */
 }
 .emoji-panel {
 bottom: 70px;
@@ -1573,6 +1584,11 @@ width: 90%;
 padding: 15px;
 /* Adjust max-height for mobile if needed */
 max-height: 60vh; /* Example: 60% of viewport height */
+}
+
+.attachment-input-container.visible {
+    margin-bottom: 5px; /* Reduced margin for mobile */
+    padding: 8px; /* Reduced padding for mobile */
 }
 }
 </style>
