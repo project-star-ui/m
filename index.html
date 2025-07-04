@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Indie+Flower:wght@300;400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -241,7 +241,7 @@
     --pastel-bg-light: #F8F8FF; /* Ghost White */
     --pastel-text: #36454F; /* Charcoal */
     --pastel-input-bg: #E6E6FA; /* Lavender */
-    --pastel-border: #DDA0DD; /* Plum */
+    --pastel-border: #DDA0DD;
     --pastel-bubble-sent: #FF69B4;
     --pastel-bubble-received: #E6E6FA;
     --pastel-notification-bg: #87CEEB;
@@ -353,7 +353,7 @@ body.theme-royal-blue {
     --notification-bg: var(--royal-notification-bg);
     --royal-notification-text: #0D1A2B;
     --logout-btn-bg: var(--royal-logout-btn-bg);
-    --logout-btn-hover: var(--royal-logout-btn-hover);
+    --royal-logout-btn-hover: var(--royal-logout-btn-hover);
     --online-color: var(--royal-online);
     --offline-color: var(--royal-offline);
     --bubble-text-light: var(--royal-bubble-text-light);
@@ -426,7 +426,7 @@ body.theme-midnight-blue {
 body.theme-warm-earth {
     --primary-color: var(--earth-primary);
     --secondary-color: var(--earth-secondary);
-    --accent-color: var(--earth-accent);
+    --earth-accent: #8B4513; /* Saddle Brown */
     --earth-bg-dark: #362F2D;
     --earth-bg-light: #4A423F;
     --earth-text: #F5DEB3; /* Wheat */
@@ -1240,44 +1240,23 @@ body.font-style-bold-modern {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.emoji-picker-btn, .attachment-btn, .camera-btn {
+.attachment-btn {
     color: var(--accent-color);
     cursor: pointer;
     font-size: 1.6rem; /* Slightly smaller emoji button */
     transition: all 0.2s;
 }
-.emoji-picker-btn:hover, .attachment-btn:hover, .camera-btn:hover {
+.attachment-btn:hover {
     transform: scale(1.15);
 }
-.emoji-panel {
-    position: absolute;
-    bottom: 70px; /* Adjusted for smaller input area */
-    right: 20px; /* Adjusted for smaller padding */
-    background: var(--background-light);
-    border-radius: 12px; /* Modern rounded */
-    padding: 12px; /* Reduced padding */
-    box-shadow: 0 0 12px rgba(0,0,0,0.5);
-    z-index: 100;
-    display: none;
-    width: 280px; /* Slightly narrower */
-    height: 180px; /* Slightly shorter */
-    overflow-y: auto;
-    transition: background-color 0.3s ease;
-}
-.emoji-panel.visible {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px; /* Reduced space between emojis */
-}
-.emoji-item {
-    font-size: 1.6rem; /* Slightly smaller emojis */
+.camera-btn {
+    color: var(--accent-color);
     cursor: pointer;
-    padding: 6px;
-    text-align: center;
-    transition: transform 0.1s;
+    font-size: 1.6rem;
+    transition: all 0.2s;
 }
-.emoji-item:hover {
-    transform: scale(1.2);
+.camera-btn:hover {
+    transform: scale(1.15);
 }
 
 /* Attachment Input Container */
@@ -1378,99 +1357,6 @@ body.font-style-bold-modern {
 }
 .attachment-actions .attachment-clear-btn:hover {
     background-color: var(--logout-btn-hover);
-}
-
-/* Camera Modal */
-.camera-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1002;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.camera-modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-.camera-modal-content {
-    background-color: var(--background-light);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-.camera-modal-content video {
-    max-width: 100%;
-    max-height: 70vh;
-    background-color: black;
-    border-radius: 10px;
-}
-.camera-modal-content canvas {
-    display: none; /* Hidden until capture */
-    max-width: 100%;
-    max-height: 70vh;
-    border-radius: 10px;
-}
-.camera-controls {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.camera-controls button {
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    background-color: var(--primary-color);
-    color: var(--bubble-text-dark);
-}
-.camera-controls button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-1px);
-}
-.camera-controls button.record-btn {
-    background-color: #dc3545; /* Red for record */
-}
-.camera-controls button.record-btn:hover {
-    background-color: #c82333;
-}
-.camera-controls button.stop-record-btn {
-    background-color: #ffc107; /* Yellow for stop */
-    color: var(--notification-text);
-}
-.camera-controls button.stop-record-btn:hover {
-    background-color: #e0a800;
-}
-.camera-controls button.send-captured-btn {
-    background-color: var(--notification-bg);
-    color: var(--notification-text);
-}
-.camera-controls button.send-captured-btn:hover {
-    background-color: #00BFA5;
-}
-.camera-controls button.retake-btn {
-    background-color: var(--input-bg);
-    color: var(--text-color);
-}
-.camera-controls button.retake-btn:hover {
-    background-color: var(--border-color);
 }
 
 
@@ -1702,6 +1588,131 @@ body.font-style-bold-modern {
     color: var(--accent-color);
 }
 
+/* Camera View Styles */
+#cameraView {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-dark);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#cameraFeed {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    background-color: black;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+#cameraControls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#cameraControls button {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#cameraControls button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+#cameraControls button:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+}
+
+#photoCanvas, #capturedVideo {
+    display: none; /* Hidden until media is captured */
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Media Preview Modal */
+#mediaPreviewModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+#mediaPreviewContent {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#mediaPreviewContent img, #mediaPreviewContent video {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 8px;
+}
+
+#mediaPreviewButtons {
+    display: flex;
+    gap: 15px;
+}
+
+#mediaPreviewButtons button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#mediaPreviewButtons .send-media-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#mediaPreviewButtons .send-media-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+#mediaPreviewButtons .retake-media-btn {
+    background-color: var(--logout-btn-bg);
+    color: white;
+}
+
+#mediaPreviewButtons .retake-media-btn:hover {
+    background-color: var(--logout-btn-hover);
+}
+
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     body {
@@ -1792,15 +1803,9 @@ body.font-style-bold-modern {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
-    .emoji-picker-btn, .attachment-btn, .camera-btn {
+    .attachment-btn, .camera-btn {
         font-size: 1.4rem;
         padding: 4px;
-    }
-    .emoji-panel {
-        bottom: 60px;
-        right: 12px;
-        width: 250px;
-        height: 160px;
     }
     .new-message-notification {
         top: 12px;
@@ -1825,6 +1830,15 @@ body.font-style-bold-modern {
     .attachment-input-container.visible {
         margin-bottom: 4px;
         padding: 6px;
+    }
+
+    #cameraControls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #cameraControls button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
     }
 }
 </style>
@@ -1926,8 +1940,7 @@ body.font-style-bold-modern {
 
             <input id="messageInput" placeholder="Type your super message..." />
             <span class="attachment-btn" onclick="toggleAttachmentInput()">📎</span>
-            <span class="camera-btn" onclick="openCameraModal()">📸</span> <!-- New Camera Button -->
-            <span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
+            <span class="camera-btn" onclick="openCamera()">📸</span>
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
         </div>
     </div>
@@ -1991,22 +2004,34 @@ body.font-style-bold-modern {
     <span id="notificationText">New message from someone!</span>
 </div>
 
-<!-- Camera Modal -->
-<div class="camera-modal-overlay" id="cameraModal">
-    <div class="camera-modal-content">
-        <video id="cameraFeed" autoplay playsinline></video>
-        <canvas id="cameraCanvas" style="display:none;"></canvas>
-        <div class="camera-controls">
-            <button id="startCameraButton" onclick="startCamera()"><i class="fas fa-video"></i> Start Camera</button>
-            <button id="takePictureButton" onclick="takePicture()" style="display:none;"><i class="fas fa-camera"></i> Take Picture</button>
-            <button id="startRecordingButton" onclick="startRecording()" class="record-btn" style="display:none;"><i class="fas fa-circle"></i> Record Video</button>
-            <button id="stopRecordingButton" onclick="stopRecording()" class="stop-record-btn" style="display:none;"><i class="fas fa-stop-circle"></i> Stop Recording</button>
-            <button id="sendCapturedButton" onclick="sendCapturedMedia()" class="send-captured-btn" style="display:none;"><i class="fas fa-paper-plane"></i> Send</button>
-            <button id="retakeButton" onclick="retakeMedia()" class="retake-btn" style="display:none;"><i class="fas fa-redo"></i> Retake</button>
-            <button id="closeCameraButton" onclick="closeCameraModal()"><i class="fas fa-times"></i> Close</button>
+<!-- Camera View -->
+<div id="cameraView">
+    <video id="cameraFeed" autoplay playsinline></video>
+    <canvas id="photoCanvas" style="display:none;"></canvas>
+    <video id="capturedVideo" controls style="display:none;"></video>
+
+    <div id="cameraControls">
+        <button id="startCameraButton" onclick="startCamera()">Start Camera</button>
+        <button id="stopCameraButton" onclick="stopCamera()" style="display:none;">Stop Camera</button>
+        <button id="flipCameraButton" onclick="flipCamera()" style="display:none;">Flip Camera</button>
+        <button id="capturePhotoButton" onclick="capturePhoto()" style="display:none;">Capture Photo</button>
+        <button id="startRecordingButton" onclick="startRecording()" style="display:none;">Start Recording</button>
+        <button id="stopRecordingButton" onclick="stopRecording()" style="display:none;">Stop Recording</button>
+    </div>
+</div>
+
+<!-- Media Preview Modal -->
+<div class="modal-overlay" id="mediaPreviewModal">
+    <div id="mediaPreviewContent">
+        <img id="previewImage" style="display:none;">
+        <video id="previewVideo" controls style="display:none;"></video>
+        <div id="mediaPreviewButtons">
+            <button class="send-media-btn" onclick="sendCapturedMedia()">Send</button>
+            <button class="retake-media-btn" onclick="retakeMedia()">Retake</button>
         </div>
     </div>
 </div>
+
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
@@ -2048,11 +2073,13 @@ body.font-style-bold-modern {
     // --- Attachment Feature Variables ---
     let selectedFiles = []; // Stores File objects for attachments
 
-    // --- Camera Feature Variables ---
+    // --- Camera Variables ---
     let mediaStream = null;
     let mediaRecorder = null;
     let recordedChunks = [];
     let capturedMediaBlob = null; // Stores the captured image or video blob
+    let capturedMediaType = null; // 'image' or 'video'
+    let currentCameraFacingMode = 'user'; // 'user' for front camera, 'environment' for back camera
 
     // --- Page Management ---
     function showPage(pageId) {
@@ -2089,7 +2116,6 @@ body.font-style-bold-modern {
         document.getElementById("chatFriendStatus").classList.remove('online'); // Reset status indicator
         clearAttachments(); // Clear any pending attachments
         cancelReply(); // Clear any pending replies
-        closeCameraModal(); // Ensure camera is off when leaving chat
     };
     // --- End Page Management ---
 
@@ -2277,7 +2303,6 @@ body.font-style-bold-modern {
             currentUser = null;
             clearAttachments(); // Clear attachments on logout
             cancelReply(); // Clear any pending replies
-            closeCameraModal(); // Ensure camera is off on logout
         });
     };
 
@@ -2864,34 +2889,15 @@ body.font-style-bold-modern {
         return uid1 < uid2 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
     }
 
-    const emojis = ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕"];
-
-    window.toggleEmojiPicker = function() {
-        const panel = document.getElementById("emojiPanel");
-        panel.classList.toggle("visible");
-        if (panel.classList.contains("visible") && panel.innerHTML === "") {
-            panel.innerHTML = emojis.map(emoji =>
-                `<div class="emoji-item" onclick="insertEmoji('${emoji}')">${emoji}</div>`
-            ).join("");
-        }
-    };
-
-    window.insertEmoji = function(emoji) {
-        const input = document.getElementById("messageInput");
-        input.value += emoji;
-        input.focus();
-        document.getElementById("emojiPanel").classList.remove("visible");
-    };
+    // Removed emoji picker related functions and variables
 
     // --- Attachment Feature Functions ---
     window.toggleAttachmentInput = function() {
         const container = document.getElementById("attachmentInputContainer");
         container.classList.toggle("visible");
-        // Hide emoji panel if attachment input is shown
-        document.getElementById("emojiPanel").classList.remove("visible");
-        // Hide camera button if attachment input is shown
-        document.getElementById("cameraModal").classList.remove("visible");
-        closeCameraModal(); // Ensure camera is off
+        // Hide camera view if attachment input is shown
+        document.getElementById("cameraView").style.display = 'none';
+        stopCamera(); // Stop camera if it's running
     };
 
     window.handleFileSelect = function(event) {
@@ -3023,98 +3029,122 @@ body.font-style-bold-modern {
     };
     // --- End Attachment Feature Functions ---
 
-    // --- Camera Feature Functions ---
-    const cameraModal = document.getElementById('cameraModal');
-    const cameraFeed = document.getElementById('cameraFeed');
-    const cameraCanvas = document.getElementById('cameraCanvas');
-    const takePictureButton = document.getElementById('takePictureButton');
-    const startRecordingButton = document.getElementById('startRecordingButton');
-    const stopRecordingButton = document.getElementById('stopRecordingButton');
-    const sendCapturedButton = document.getElementById('sendCapturedButton');
-    const retakeButton = document.getElementById('retakeButton');
-    const startCameraButton = document.getElementById('startCameraButton');
-
-    window.openCameraModal = function() {
+    // --- Camera Functionality ---
+    window.openCamera = function() {
         if (currentChatUID === null) {
-            alert("Please select a friend to chat with first before using the camera.");
+            alert("Please select a friend to chat with before opening the camera.");
             return;
         }
-        cameraModal.classList.add('visible');
-        startCameraButton.style.display = 'block';
-        takePictureButton.style.display = 'none';
-        startRecordingButton.style.display = 'none';
-        stopRecordingButton.style.display = 'none';
-        sendCapturedButton.style.display = 'none';
-        retakeButton.style.display = 'none';
-        cameraFeed.style.display = 'block';
-        cameraCanvas.style.display = 'none';
-        capturedMediaBlob = null;
-        recordedChunks = [];
-
-        // Hide other input options
-        document.getElementById("emojiPanel").classList.remove("visible");
-        document.getElementById("attachmentInputContainer").classList.remove("visible");
-        clearAttachments();
+        document.getElementById("cameraView").style.display = 'flex';
+        document.getElementById("chatWindow").style.display = 'none'; // Hide chat window
+        document.getElementById("attachmentInputContainer").classList.remove("visible"); // Hide attachment input
+        startCamera();
     };
 
-    window.closeCameraModal = function() {
-        cameraModal.classList.remove('visible');
+    window.startCamera = async function() {
+        const cameraFeed = document.getElementById('cameraFeed');
+        const startCameraButton = document.getElementById('startCameraButton');
+        const stopCameraButton = document.getElementById('stopCameraButton');
+        const flipCameraButton = document.getElementById('flipCameraButton');
+        const capturePhotoButton = document.getElementById('capturePhotoButton');
+        const startRecordingButton = document.getElementById('startRecordingButton');
+        const stopRecordingButton = document.getElementById('stopRecordingButton');
+
+        // Stop any existing tracks before starting new ones
+        if (mediaStream) {
+            mediaStream.getTracks().forEach(track => track.stop());
+        }
+
+        try {
+            mediaStream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: currentCameraFacingMode },
+                audio: true
+            });
+            cameraFeed.srcObject = mediaStream;
+            cameraFeed.style.display = 'block';
+            document.getElementById('photoCanvas').style.display = 'none';
+            document.getElementById('capturedVideo').style.display = 'none';
+
+            startCameraButton.style.display = 'none';
+            stopCameraButton.style.display = 'inline-block';
+            flipCameraButton.style.display = 'inline-block'; // Show flip button
+            capturePhotoButton.style.display = 'inline-block';
+            startRecordingButton.style.display = 'inline-block';
+            stopRecordingButton.style.display = 'none'; // Initially hidden
+        } catch (err) {
+            console.error("Error accessing camera: ", err);
+            alert("Could not access camera. Please ensure you have granted permissions.");
+            document.getElementById("cameraView").style.display = 'none'; // Hide camera view on error
+            document.getElementById("chatWindow").style.display = 'flex'; // Show chat window
+        }
+    };
+
+    window.stopCamera = function() {
+        const cameraFeed = document.getElementById('cameraFeed');
+        const startCameraButton = document.getElementById('startCameraButton');
+        const stopCameraButton = document.getElementById('stopCameraButton');
+        const flipCameraButton = document.getElementById('flipCameraButton');
+        const capturePhotoButton = document.getElementById('capturePhotoButton');
+        const startRecordingButton = document.getElementById('startRecordingButton');
+        const stopRecordingButton = document.getElementById('stopRecordingButton');
+
         if (mediaStream) {
             mediaStream.getTracks().forEach(track => track.stop());
             mediaStream = null;
         }
-        if (mediaRecorder) {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
             mediaRecorder.stop();
-            mediaRecorder = null;
         }
         cameraFeed.srcObject = null;
-        capturedMediaBlob = null;
-        recordedChunks = [];
-        // Reset button states
-        startCameraButton.style.display = 'block';
-        takePictureButton.style.display = 'none';
+        cameraFeed.style.display = 'none';
+        document.getElementById('photoCanvas').style.display = 'none';
+        document.getElementById('capturedVideo').style.display = 'none';
+
+        startCameraButton.style.display = 'inline-block';
+        stopCameraButton.style.display = 'none';
+        flipCameraButton.style.display = 'none'; // Hide flip button
+        capturePhotoButton.style.display = 'none';
         startRecordingButton.style.display = 'none';
         stopRecordingButton.style.display = 'none';
-        sendCapturedButton.style.display = 'none';
-        retakeButton.style.display = 'none';
-        cameraFeed.style.display = 'block';
-        cameraCanvas.style.display = 'none';
+
+        document.getElementById("cameraView").style.display = 'none'; // Hide camera view
+        document.getElementById("chatWindow").style.display = 'flex'; // Show chat window
     };
 
-    window.startCamera = async function() {
-        try {
-            mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            cameraFeed.srcObject = mediaStream;
-            startCameraButton.style.display = 'none';
-            takePictureButton.style.display = 'block';
-            startRecordingButton.style.display = 'block';
-        } catch (err) {
-            console.error("Error accessing camera: ", err);
-            alert("Could not access camera. Please ensure you have a camera and have granted permissions.");
-        }
+    window.flipCamera = function() {
+        currentCameraFacingMode = (currentCameraFacingMode === 'user') ? 'environment' : 'user';
+        startCamera(); // Restart camera with new facing mode
     };
 
-    window.takePicture = function() {
-        if (!mediaStream) return;
+    window.capturePhoto = function() {
+        const cameraFeed = document.getElementById('cameraFeed');
+        const photoCanvas = document.getElementById('photoCanvas');
+        const context = photoCanvas.getContext('2d');
 
-        cameraCanvas.width = cameraFeed.videoWidth;
-        cameraCanvas.height = cameraFeed.videoHeight;
-        const context = cameraCanvas.getContext('2d');
-        context.drawImage(cameraFeed, 0, 0, cameraCanvas.width, cameraCanvas.height);
+        photoCanvas.width = cameraFeed.videoWidth;
+        photoCanvas.height = cameraFeed.videoHeight;
+        context.drawImage(cameraFeed, 0, 0, photoCanvas.width, photoCanvas.height);
 
-        cameraCanvas.toBlob(blob => {
+        photoCanvas.toBlob(function(blob) {
             capturedMediaBlob = blob;
-            cameraFeed.style.display = 'none';
-            cameraCanvas.style.display = 'block';
-            takePictureButton.style.display = 'none';
-            startRecordingButton.style.display = 'none';
-            sendCapturedButton.style.display = 'block';
-            retakeButton.style.display = 'block';
-        }, 'image/png'); // You can change format to 'image/jpeg'
+            capturedMediaType = 'image';
+            showMediaPreview(URL.createObjectURL(blob), 'image');
+        }, 'image/png');
+
+        cameraFeed.style.display = 'none';
+        photoCanvas.style.display = 'block';
+        document.getElementById('capturePhotoButton').style.display = 'none';
+        document.getElementById('startRecordingButton').style.display = 'none';
+        document.getElementById('stopRecordingButton').style.display = 'none';
+        document.getElementById('flipCameraButton').style.display = 'none'; // Hide flip button after capture
     };
 
     window.startRecording = function() {
-        if (!mediaStream) return;
+        const cameraFeed = document.getElementById('cameraFeed');
+        const startRecordingButton = document.getElementById('startRecordingButton');
+        const stopRecordingButton = document.getElementById('stopRecordingButton');
+        const capturePhotoButton = document.getElementById('capturePhotoButton');
+        const flipCameraButton = document.getElementById('flipCameraButton');
 
         recordedChunks = [];
         mediaRecorder = new MediaRecorder(mediaStream);
@@ -3126,122 +3156,92 @@ body.font-style-bold-modern {
         };
 
         mediaRecorder.onstop = () => {
-            capturedMediaBlob = new Blob(recordedChunks, { type: 'video/webm' }); // Or 'video/mp4' if supported
-            const videoURL = URL.createObjectURL(capturedMediaBlob);
-            cameraFeed.src = videoURL; // Play recorded video in the feed
-            cameraFeed.controls = true; // Add controls for playback
-
-            takePictureButton.style.display = 'none';
-            startRecordingButton.style.display = 'none';
-            stopRecordingButton.style.display = 'none';
-            sendCapturedButton.style.display = 'block';
-            retakeButton.style.display = 'block';
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            capturedMediaBlob = blob;
+            capturedMediaType = 'video';
+            showMediaPreview(URL.createObjectURL(blob), 'video');
+            recordedChunks = []; // Clear chunks for next recording
         };
 
         mediaRecorder.start();
-        takePictureButton.style.display = 'none';
         startRecordingButton.style.display = 'none';
-        stopRecordingButton.style.display = 'block';
+        stopRecordingButton.style.display = 'inline-block';
+        capturePhotoButton.style.display = 'none'; // Disable photo capture during recording
+        flipCameraButton.style.display = 'none'; // Hide flip button during recording
     };
 
     window.stopRecording = function() {
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        const startRecordingButton = document.getElementById('startRecordingButton');
+        const stopRecordingButton = document.getElementById('stopRecordingButton');
+        const capturePhotoButton = document.getElementById('capturePhotoButton');
+        const flipCameraButton = document.getElementById('flipCameraButton');
+
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
             mediaRecorder.stop();
+        }
+        startRecordingButton.style.display = 'inline-block';
+        stopRecordingButton.style.display = 'none';
+        capturePhotoButton.style.display = 'inline-block'; // Re-enable photo capture
+        flipCameraButton.style.display = 'inline-block'; // Re-enable flip button
+    };
+
+    function showMediaPreview(mediaUrl, type) {
+        const mediaPreviewModal = document.getElementById('mediaPreviewModal');
+        const previewImage = document.getElementById('previewImage');
+        const previewVideo = document.getElementById('previewVideo');
+
+        previewImage.style.display = 'none';
+        previewVideo.style.display = 'none';
+
+        if (type === 'image') {
+            previewImage.src = mediaUrl;
+            previewImage.style.display = 'block';
+        } else if (type === 'video') {
+            previewVideo.src = mediaUrl;
+            previewVideo.style.display = 'block';
+        }
+
+        mediaPreviewModal.classList.add('visible');
+        document.getElementById("cameraView").style.display = 'none'; // Hide camera view
+    }
+
+    window.sendCapturedMedia = function() {
+        if (capturedMediaBlob && currentChatUID) {
+            // Create a File object from the Blob
+            const fileName = `${capturedMediaType}_${Date.now()}.${capturedMediaType === 'image' ? 'png' : 'webm'}`;
+            const mediaFile = new File([capturedMediaBlob], fileName, { type: capturedMediaBlob.type });
+
+            // Add to selectedFiles and send using existing attachment function
+            selectedFiles = [mediaFile];
+            sendAttachment(); // This will handle the upload and message sending
+
+            // Reset camera and preview state
+            capturedMediaBlob = null;
+            capturedMediaType = null;
+            document.getElementById('mediaPreviewModal').classList.remove('visible');
+            stopCamera(); // Stop camera and return to chat
+        } else {
+            alert("No media captured to send or no friend selected.");
+            retakeMedia(); // Go back to camera if no media or friend
         }
     };
 
     window.retakeMedia = function() {
         capturedMediaBlob = null;
-        recordedChunks = [];
-        cameraFeed.src = null;
-        cameraFeed.srcObject = mediaStream; // Show live feed again
-        cameraFeed.controls = false; // Remove controls
-        cameraFeed.style.display = 'block';
-        cameraCanvas.style.display = 'none';
-        takePictureButton.style.display = 'block';
-        startRecordingButton.style.display = 'block';
-        sendCapturedButton.style.display = 'none';
-        retakeButton.style.display = 'none';
+        capturedMediaType = null;
+        document.getElementById('mediaPreviewModal').classList.remove('visible');
+        document.getElementById('previewImage').src = '';
+        document.getElementById('previewVideo').src = '';
+        document.getElementById('photoCanvas').style.display = 'none';
+        document.getElementById('capturedVideo').style.display = 'none';
+        document.getElementById("cameraView").style.display = 'flex'; // Show camera view again
+        document.getElementById('cameraFeed').style.display = 'block'; // Show camera feed
+        document.getElementById('capturePhotoButton').style.display = 'inline-block';
+        document.getElementById('startRecordingButton').style.display = 'inline-block';
+        document.getElementById('stopRecordingButton').style.display = 'none';
+        document.getElementById('flipCameraButton').style.display = 'inline-block'; // Show flip button again
     };
-
-    window.sendCapturedMedia = async function() {
-        if (!capturedMediaBlob) {
-            alert("No media captured to send.");
-            return;
-        }
-        if (currentChatUID === null) {
-            alert("Please select a friend to chat with first.");
-            return;
-        }
-
-        const fileName = capturedMediaBlob.type.startsWith('image/') ? `image_${Date.now()}.png` : `video_${Date.now()}.webm`;
-        const fileType = capturedMediaBlob.type;
-
-        const reader = new FileReader();
-        reader.readAsDataURL(capturedMediaBlob);
-        reader.onloadend = async () => {
-            const base64Data = reader.result.split(',')[1];
-
-            const filesToUpload = [{
-                fileName: fileName,
-                mimeType: fileType,
-                base64: base64Data
-            }];
-
-            try {
-                // Show a temporary message or loading indicator
-                const loadingMessageId = push(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID)), {
-                    sender: currentUser.uid,
-                    text: "Uploading captured media...",
-                    timestamp: Date.now(),
-                    seenBy: { [currentUser.uid]: true },
-                    type: 'status'
-                }).key;
-
-                const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: JSON.stringify({ files: filesToUpload })
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    remove(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID) + '/' + loadingMessageId));
-
-                    const messageData = {
-                        sender: currentUser.uid,
-                        text: capturedMediaBlob.type.startsWith('image/') ? "Sent image:" : "Sent video:",
-                        timestamp: Date.now(),
-                        seenBy: { [currentUser.uid]: true },
-                        type: 'attachment',
-                        attachments: result.fileLinks
-                    };
-
-                    if (replyingToMessage) {
-                        messageData.replyTo = replyingToMessage;
-                        cancelReply();
-                    }
-
-                    push(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID)), messageData);
-                    alert("Media sent successfully!");
-                    closeCameraModal(); // Close camera after sending
-                } else {
-                    update(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID) + '/' + loadingMessageId), {
-                        text: `Failed to upload media: ${result.error}`,
-                        type: 'error'
-                    });
-                    alert("Failed to upload media: " + result.error);
-                }
-            } catch (error) {
-                console.error("Error sending captured media:", error);
-                alert("An error occurred while sending captured media: " + error.message);
-            }
-        };
-    };
-    // --- End Camera Feature Functions ---
+    // --- End Camera Functionality ---
 
 
     // --- Reply Functionality ---
@@ -3263,11 +3263,7 @@ body.font-style-bold-modern {
 
 
     document.addEventListener('click', function(event) {
-        const emojiPanel = document.getElementById("emojiPanel");
-        const emojiBtn = document.querySelector(".emoji-picker-btn");
-        if (emojiPanel && emojiBtn && emojiPanel.classList.contains("visible") && !emojiPanel.contains(event.target) && event.target !== emojiBtn) {
-            emojiPanel.classList.remove("visible");
-        }
+        // Removed emoji panel closing logic
 
         const searchResultsDiv = document.getElementById("searchResults");
         const searchInput = document.getElementById("searchUser");
@@ -3306,12 +3302,12 @@ body.font-style-bold-modern {
             attachmentInputContainer.classList.remove("visible");
         }
 
-        // Close camera modal if click is outside and not on its content
-        const cameraModalOverlay = document.getElementById("cameraModal");
-        const cameraModalContent = document.querySelector("#cameraModal .camera-modal-content");
+        // Close camera view if click is outside and not on its icon or controls
+        const cameraView = document.getElementById("cameraView");
         const cameraBtn = document.querySelector(".camera-btn");
-        if (cameraModalOverlay && cameraModalContent && cameraModalOverlay.classList.contains("visible") && !cameraModalContent.contains(event.target) && event.target !== cameraBtn && !event.target.closest('.camera-modal-content')) {
-            closeCameraModal();
+        const mediaPreviewModal = document.getElementById("mediaPreviewModal");
+        if (cameraView && cameraBtn && cameraView.style.display === 'flex' && !cameraView.contains(event.target) && event.target !== cameraBtn && !event.target.closest('#cameraControls') && !mediaPreviewModal.classList.contains('visible')) {
+            stopCamera(); // Stop camera and hide view
         }
     });
 
