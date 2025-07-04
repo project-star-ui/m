@@ -1240,13 +1240,13 @@ body.font-style-bold-modern {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.attachment-btn {
+.emoji-picker-btn, .attachment-btn {
     color: var(--accent-color);
     cursor: pointer;
     font-size: 1.6rem; /* Slightly smaller emoji button */
     transition: all 0.2s;
 }
-.attachment-btn:hover {
+.emoji-picker-btn:hover, .attachment-btn:hover {
     transform: scale(1.15);
 }
 .camera-btn {
@@ -1257,6 +1257,37 @@ body.font-style-bold-modern {
 }
 .camera-btn:hover {
     transform: scale(1.15);
+}
+
+.emoji-panel {
+    position: absolute;
+    bottom: 70px; /* Adjusted for smaller input area */
+    right: 20px; /* Adjusted for smaller padding */
+    background: var(--background-light);
+    border-radius: 12px; /* Modern rounded */
+    padding: 12px; /* Reduced padding */
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    z-index: 100;
+    display: none;
+    width: 280px; /* Slightly narrower */
+    height: 180px; /* Slightly shorter */
+    overflow-y: auto;
+    transition: background-color 0.3s ease;
+}
+.emoji-panel.visible {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px; /* Reduced space between emojis */
+}
+.emoji-item {
+    font-size: 1.6rem; /* Slightly smaller emojis */
+    cursor: pointer;
+    padding: 6px;
+    text-align: center;
+    transition: transform 0.1s;
+}
+.emoji-item:hover {
+    transform: scale(1.2);
 }
 
 /* Attachment Input Container */
@@ -1803,9 +1834,15 @@ body.font-style-bold-modern {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
-    .attachment-btn, .camera-btn {
+    .emoji-picker-btn, .attachment-btn, .camera-btn {
         font-size: 1.4rem;
         padding: 4px;
+    }
+    .emoji-panel {
+        bottom: 60px;
+        right: 12px;
+        width: 250px;
+        height: 160px;
     }
     .new-message-notification {
         top: 12px;
@@ -1941,6 +1978,7 @@ body.font-style-bold-modern {
             <input id="messageInput" placeholder="Type your super message..." />
             <span class="attachment-btn" onclick="toggleAttachmentInput()">📎</span>
             <span class="camera-btn" onclick="openCamera()">📸</span>
+            <span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
         </div>
     </div>
@@ -2889,12 +2927,31 @@ body.font-style-bold-modern {
         return uid1 < uid2 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
     }
 
-    // Removed emoji picker related functions and variables
+    const emojis = ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕"];
+
+    window.toggleEmojiPicker = function() {
+        const panel = document.getElementById("emojiPanel");
+        panel.classList.toggle("visible");
+        if (panel.classList.contains("visible") && panel.innerHTML === "") {
+            panel.innerHTML = emojis.map(emoji =>
+                `<div class="emoji-item" onclick="insertEmoji('${emoji}')">${emoji}</div>`
+            ).join("");
+        }
+    };
+
+    window.insertEmoji = function(emoji) {
+        const input = document.getElementById("messageInput");
+        input.value += emoji;
+        input.focus();
+        document.getElementById("emojiPanel").classList.remove("visible");
+    };
 
     // --- Attachment Feature Functions ---
     window.toggleAttachmentInput = function() {
         const container = document.getElementById("attachmentInputContainer");
         container.classList.toggle("visible");
+        // Hide emoji panel if attachment input is shown
+        document.getElementById("emojiPanel").classList.remove("visible");
         // Hide camera view if attachment input is shown
         document.getElementById("cameraView").style.display = 'none';
         stopCamera(); // Stop camera if it's running
@@ -3038,6 +3095,7 @@ body.font-style-bold-modern {
         document.getElementById("cameraView").style.display = 'flex';
         document.getElementById("chatWindow").style.display = 'none'; // Hide chat window
         document.getElementById("attachmentInputContainer").classList.remove("visible"); // Hide attachment input
+        document.getElementById("emojiPanel").classList.remove("visible"); // Hide emoji panel
         startCamera();
     };
 
@@ -3131,8 +3189,8 @@ body.font-style-bold-modern {
             showMediaPreview(URL.createObjectURL(blob), 'image');
         }, 'image/png');
 
+        // Hide camera feed and controls, show canvas (though preview modal will cover it)
         cameraFeed.style.display = 'none';
-        photoCanvas.style.display = 'block';
         document.getElementById('capturePhotoButton').style.display = 'none';
         document.getElementById('startRecordingButton').style.display = 'none';
         document.getElementById('stopRecordingButton').style.display = 'none';
@@ -3263,7 +3321,11 @@ body.font-style-bold-modern {
 
 
     document.addEventListener('click', function(event) {
-        // Removed emoji panel closing logic
+        const emojiPanel = document.getElementById("emojiPanel");
+        const emojiBtn = document.querySelector(".emoji-picker-btn");
+        if (emojiPanel && emojiBtn && emojiPanel.classList.contains("visible") && !emojiPanel.contains(event.target) && event.target !== emojiBtn) {
+            emojiPanel.classList.remove("visible");
+        }
 
         const searchResultsDiv = document.getElementById("searchResults");
         const searchInput = document.getElementById("searchUser");
