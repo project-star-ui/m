@@ -1188,7 +1188,7 @@ body.font-style-bold-modern {
 
 #chatWindow .message-input {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Changed from wrap to nowrap */
     padding: 15px 20px; /* Reduced padding */
     border-top: 1px solid var(--border-color);
     background-color: var(--background-light);
@@ -1200,6 +1200,7 @@ body.font-style-bold-modern {
     right: 0;
     z-index: 100;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    align-items: center; /* Align items vertically in the center */
 }
 #chatWindow .message-input input {
     flex: 1;
@@ -1230,6 +1231,7 @@ body.font-style-bold-modern {
     gap: 8px;
     transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease, box-shadow 0.2s ease, font-family 0.3s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 #chatWindow .message-input button:hover {
     background-color: var(--secondary-color);
@@ -1240,13 +1242,14 @@ body.font-style-bold-modern {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.emoji-picker-btn, .attachment-btn {
+.attachment-btn {
     color: var(--accent-color);
     cursor: pointer;
     font-size: 1.6rem; /* Slightly smaller emoji button */
     transition: all 0.2s;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
-.emoji-picker-btn:hover, .attachment-btn:hover {
+.attachment-btn:hover {
     transform: scale(1.15);
 }
 .camera-btn {
@@ -1254,41 +1257,14 @@ body.font-style-bold-modern {
     cursor: pointer;
     font-size: 1.6rem;
     transition: all 0.2s;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 .camera-btn:hover {
     transform: scale(1.15);
 }
 
-.emoji-panel {
-    position: absolute;
-    bottom: 70px; /* Adjusted for smaller input area */
-    right: 20px; /* Adjusted for smaller padding */
-    background: var(--background-light);
-    border-radius: 12px; /* Modern rounded */
-    padding: 12px; /* Reduced padding */
-    box-shadow: 0 0 12px rgba(0,0,0,0.5);
-    z-index: 100;
-    display: none;
-    width: 280px; /* Slightly narrower */
-    height: 180px; /* Slightly shorter */
-    overflow-y: auto;
-    transition: background-color 0.3s ease;
-}
-.emoji-panel.visible {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px; /* Reduced space between emojis */
-}
-.emoji-item {
-    font-size: 1.6rem; /* Slightly smaller emojis */
-    cursor: pointer;
-    padding: 6px;
-    text-align: center;
-    transition: transform 0.1s;
-}
-.emoji-item:hover {
-    transform: scale(1.2);
-}
+/* Removed .emoji-picker-btn and .emoji-panel styles */
+
 
 /* Attachment Input Container */
 .attachment-input-container {
@@ -1302,6 +1278,11 @@ body.font-style-bold-modern {
     border-radius: 10px; /* Modern rounded */
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
     display: none;
+    position: absolute; /* Position absolutely to not affect message-input flex layout */
+    bottom: 100%; /* Place above the message input */
+    left: 0;
+    right: 0;
+    z-index: 99; /* Below message input but above chat bubbles */
 }
 .attachment-input-container.visible {
     display: flex;
@@ -1834,16 +1815,11 @@ body.font-style-bold-modern {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
-    .emoji-picker-btn, .attachment-btn, .camera-btn {
+    .attachment-btn, .camera-btn { /* Removed .emoji-picker-btn */
         font-size: 1.4rem;
         padding: 4px;
     }
-    .emoji-panel {
-        bottom: 60px;
-        right: 12px;
-        width: 250px;
-        height: 160px;
-    }
+    /* Removed .emoji-panel styles for mobile */
     .new-message-notification {
         top: 12px;
         right: 12px;
@@ -1978,7 +1954,6 @@ body.font-style-bold-modern {
             <input id="messageInput" placeholder="Type your super message..." />
             <span class="attachment-btn" onclick="toggleAttachmentInput()">📎</span>
             <span class="camera-btn" onclick="openCamera()">📸</span>
-            <span class="emoji-picker-btn" onclick="toggleEmojiPicker()">😊</span>
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send!</button>
         </div>
     </div>
@@ -2103,7 +2078,7 @@ body.font-style-bold-modern {
 
     // --- Google Apps Script Web App URL ---
     // IMPORTANT: REPLACE THIS WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
-    const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxXrqfWlzAoVgGSTYM1ysvx8_Wir1d5urQ9Ctjl8J8XrZCE3oSxMMJdgsb0UGBMHog9/exec"; // e.g., "https://script.google.com/macros/s/AKfycb..."
+    const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxXrqfWlzAoVgGSTYM1ysurQ9Ctjl8J8XrZCE3oSxMMJdgsb0UGBMHog9/exec"; // e.g., "https://script.google.com/macros/s/AKfycb..."
 
     // Audio for notification
     const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
@@ -2927,31 +2902,12 @@ body.font-style-bold-modern {
         return uid1 < uid2 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
     }
 
-    const emojis = ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕"];
-
-    window.toggleEmojiPicker = function() {
-        const panel = document.getElementById("emojiPanel");
-        panel.classList.toggle("visible");
-        if (panel.classList.contains("visible") && panel.innerHTML === "") {
-            panel.innerHTML = emojis.map(emoji =>
-                `<div class="emoji-item" onclick="insertEmoji('${emoji}')">${emoji}</div>`
-            ).join("");
-        }
-    };
-
-    window.insertEmoji = function(emoji) {
-        const input = document.getElementById("messageInput");
-        input.value += emoji;
-        input.focus();
-        document.getElementById("emojiPanel").classList.remove("visible");
-    };
+    // Removed emojis array and toggleEmojiPicker/insertEmoji functions
 
     // --- Attachment Feature Functions ---
     window.toggleAttachmentInput = function() {
         const container = document.getElementById("attachmentInputContainer");
         container.classList.toggle("visible");
-        // Hide emoji panel if attachment input is shown
-        document.getElementById("emojiPanel").classList.remove("visible");
         // Hide camera view if attachment input is shown
         document.getElementById("cameraView").style.display = 'none';
         stopCamera(); // Stop camera if it's running
@@ -3095,7 +3051,7 @@ body.font-style-bold-modern {
         document.getElementById("cameraView").style.display = 'flex';
         document.getElementById("chatWindow").style.display = 'none'; // Hide chat window
         document.getElementById("attachmentInputContainer").classList.remove("visible"); // Hide attachment input
-        document.getElementById("emojiPanel").classList.remove("visible"); // Hide emoji panel
+        // Removed emoji panel hiding
         startCamera();
     };
 
@@ -3321,11 +3277,7 @@ body.font-style-bold-modern {
 
 
     document.addEventListener('click', function(event) {
-        const emojiPanel = document.getElementById("emojiPanel");
-        const emojiBtn = document.querySelector(".emoji-picker-btn");
-        if (emojiPanel && emojiBtn && emojiPanel.classList.contains("visible") && !emojiPanel.contains(event.target) && event.target !== emojiBtn) {
-            emojiPanel.classList.remove("visible");
-        }
+        // Removed emoji panel closing logic
 
         const searchResultsDiv = document.getElementById("searchResults");
         const searchInput = document.getElementById("searchUser");
