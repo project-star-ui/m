@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -357,7 +356,7 @@ body.theme-royal-blue {
     --royal-logout-btn-hover: var(--royal-logout-btn-hover);
     --online-color: var(--royal-online);
     --offline-color: var(--royal-offline);
-    --bubble-text-light: var(--royal-bubble-text-light);
+    --royal-bubble-text-light: var(--royal-bubble-text-light);
     --royal-bubble-text-dark: #FFFFFF;
 }
 
@@ -997,8 +996,9 @@ body.font-style-bold-modern {
     padding: 15px 20px; /* Reduced padding */
     border-bottom: 1px solid var(--border-color);
     display: flex;
+    flex-direction: column; /* Changed to column to stack nickname and typing indicator */
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     box-shadow: 0 3px 8px rgba(0,0,0,0.3);
     position: fixed;
     top: 0;
@@ -1008,6 +1008,10 @@ body.font-style-bold-modern {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #chatWindow .chat-header .back-btn {
+    position: absolute; /* Position back button absolutely */
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: var(--accent-color);
@@ -1017,7 +1021,7 @@ body.font-style-bold-modern {
     transition: transform 0.2s ease, color 0.3s ease;
 }
 #chatWindow .chat-header .back-btn:hover {
-    transform: translateX(-6px);
+    transform: translateY(-50%) translateX(-6px);
 }
 #chatWindow .chat-header .chat-with-info {
     font-weight: 500; /* Medium weight */
@@ -1031,6 +1035,20 @@ body.font-style-bold-modern {
     gap: 10px;
     transition: color 0.3s ease, font-family 0.3s ease;
 }
+
+/* Typing Indicator Style */
+.typing-indicator {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-top: 5px; /* Space below nickname */
+    display: none; /* Hidden by default */
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+.typing-indicator.visible {
+    display: block;
+}
+
 
 #chatWindow .messages {
     flex: 1;
@@ -1922,6 +1940,7 @@ body.font-style-bold-modern {
                 <span id="chatFriendNickname">None</span>
                 <div id="chatFriendStatus" class="online-status-indicator"></div>
             </span>
+            <div id="typingIndicator" class="typing-indicator">Typing...</div>
         </div>
         <div class="messages" id="messages"></div>
         <div class="message-input">
@@ -2076,6 +2095,8 @@ body.font-style-bold-modern {
     let friendStatusListeners = {}; // To store listeners for friend online status
     let latestMessageListeners = {}; // To store listeners for latest messages
     let replyingToMessage = null; // Stores the message ID and content for replies
+    let typingStatusListeners = {}; // To store listeners for typing status
+    let typingTimeout = null; // To manage typing indicator timeout
 
     // --- Google Apps Script Web App URL ---
     // IMPORTANT: REPLACE THIS WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
@@ -2125,9 +2146,23 @@ body.font-style-bold-modern {
             off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
         }
         currentMessagesRef = null;
+        
+        // Clear typing status for current user when leaving chat
+        if (currentUser && currentChatUID) {
+            const chatId = getChatID(currentUser.uid, currentChatUID);
+            set(ref(db, `chats/${chatId}/typingStatus/${currentUser.uid}`), false);
+        }
+
+        // Clear typing indicator listener for the friend
+        if (currentChatUID && typingStatusListeners[currentChatUID]) {
+            off(typingStatusListeners[currentChatUID].ref, 'value', typingStatusListeners[currentChatUID].listener);
+            delete typingStatusListeners[currentChatUID];
+        }
+
         currentChatUID = null;
         document.getElementById("chatFriendNickname").innerText = "None";
         document.getElementById("chatFriendStatus").classList.remove('online'); // Reset status indicator
+        document.getElementById("typingIndicator").classList.remove('visible'); // Hide typing indicator
         clearAttachments(); // Clear any pending attachments
         cancelReply(); // Clear any pending replies
     };
@@ -2214,6 +2249,13 @@ body.font-style-bold-modern {
 
         const savedTheme = localStorage.getItem('selectedTheme') || 'default'; // Default to 'default'
         window.applyTheme(savedTheme); // Apply theme without hiding panel initially
+
+        // Add event listeners for typing indicator
+        const messageInput = document.getElementById("messageInput");
+        if (messageInput) {
+            messageInput.addEventListener("keydown", () => setTypingStatus(true));
+            messageInput.addEventListener("keyup", () => setTypingStatus(false));
+        }
     });
 
 
@@ -2270,6 +2312,12 @@ body.font-style-bold-modern {
                     }
                     latestMessageListeners = {};
 
+                    for (const friendUID in typingStatusListeners) {
+                        off(typingStatusListeners[friendUID].ref, 'value', typingStatusListeners[friendUID].listener);
+                    }
+                    typingStatusListeners = {};
+
+
                     setupPresence(); // Setup online presence
                     loadFriendList();
                     setupNewMessageListeners();
@@ -2283,6 +2331,12 @@ body.font-style-bold-modern {
             // Set user status to offline on logout
             set(ref(db, 'users/' + currentUser.uid + '/status'), 'offline');
             set(ref(db, 'users/' + currentUser.uid + '/last_online'), Date.now());
+            
+            // Clear own typing status
+            if (currentChatUID) {
+                const chatId = getChatID(currentUser.uid, currentChatUID);
+                set(ref(db, `chats/${chatId}/typingStatus/${currentUser.uid}`), false);
+            }
         }
 
         for (const friendUID in allFriendsListeners) {
@@ -2301,6 +2355,11 @@ body.font-style-bold-modern {
         }
         latestMessageListeners = {};
 
+        for (const friendUID in typingStatusListeners) {
+            off(typingStatusListeners[friendUID].ref, 'value', typingStatusListeners[friendUID].listener);
+        }
+        typingStatusListeners = {};
+
         if (currentMessagesRef && currentOnChildAddedListener) {
             off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
         }
@@ -2313,6 +2372,7 @@ body.font-style-bold-modern {
             currentChatUID = null;
             document.getElementById("chatFriendNickname").innerText = "None";
             document.getElementById("chatFriendStatus").classList.remove('online');
+            document.getElementById("typingIndicator").classList.remove('visible'); // Hide typing indicator
             document.getElementById("messages").innerHTML = "";
             currentUser = null;
             clearAttachments(); // Clear attachments on logout
@@ -2379,6 +2439,7 @@ body.font-style-bold-modern {
                     currentChatUID = null;
                     document.getElementById("chatFriendNickname").innerText = "None";
                     document.getElementById("chatFriendStatus").classList.remove('online');
+                    document.getElementById("typingIndicator").classList.remove('visible'); // Hide typing indicator
                     document.getElementById("messages").innerHTML = "";
                     if (currentMessagesRef && currentOnChildAddedListener) {
                         off(currentMessagesRef, 'child_added', currentOnChildAddedListener);
@@ -2400,6 +2461,10 @@ body.font-style-bold-modern {
                 if (latestMessageListeners[friendUID]) {
                     off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
                     delete latestMessageListeners[friendUID];
+                }
+                if (typingStatusListeners[friendUID]) {
+                    off(typingStatusListeners[friendUID].ref, 'value', typingStatusListeners[friendUID].listener);
+                    delete typingStatusListeners[friendUID];
                 }
             })
             .catch(error => {
@@ -2426,6 +2491,11 @@ body.font-style-bold-modern {
             off(latestMessageListeners[friendUID].ref, 'child_added', latestMessageListeners[friendUID].listener);
         }
         latestMessageListeners = {};
+
+        for (const friendUID in typingStatusListeners) {
+            off(typingStatusListeners[friendUID].ref, 'value', typingStatusListeners[friendUID].listener);
+        }
+        typingStatusListeners = {};
 
 
         get(ref(db, 'friends/' + currentUser.uid)).then(snapshot => {
@@ -2610,9 +2680,22 @@ body.font-style-bold-modern {
         if (currentMessagesRef && currentOnChildChangedListener) {
             off(currentMessagesRef, 'child_changed', currentOnChildChangedListener);
         }
+        
+        // Clear previous typing indicator listener for the friend
+        if (currentChatUID && typingStatusListeners[currentChatUID]) {
+            off(typingStatusListeners[currentChatUID].ref, 'value', typingStatusListeners[currentChatUID].listener);
+            delete typingStatusListeners[currentChatUID];
+        }
+        // Clear own typing status from previous chat if any
+        if (currentUser && currentChatUID) {
+            const prevChatId = getChatID(currentUser.uid, currentChatUID);
+            set(ref(db, `chats/${prevChatId}/typingStatus/${currentUser.uid}`), false);
+        }
+
 
         currentChatUID = friendUID;
         document.getElementById("chatFriendNickname").innerText = nickname;
+        document.getElementById("typingIndicator").classList.remove('visible'); // Hide typing indicator initially
 
         // Setup listener for chat friend's online status
         const chatFriendStatusRef = ref(db, 'users/' + friendUID + '/status');
@@ -2631,7 +2714,25 @@ body.font-style-bold-modern {
             }
         });
 
+        // Setup listener for friend's typing status
         const chatId = getChatID(currentUser.uid, friendUID);
+        const friendTypingStatusRef = ref(db, `chats/${chatId}/typingStatus/${friendUID}`);
+        typingStatusListeners[friendUID] = {
+            ref: friendTypingStatusRef,
+            listener: onValue(friendTypingStatusRef, (snapshot) => {
+                const isTyping = snapshot.val();
+                const typingIndicatorElement = document.getElementById("typingIndicator");
+                if (typingIndicatorElement) {
+                    if (isTyping) {
+                        typingIndicatorElement.classList.add('visible');
+                    } else {
+                        typingIndicatorElement.classList.remove('visible');
+                    }
+                }
+            })
+        };
+
+
         currentMessagesRef = ref(db, 'messages/' + chatId);
         document.getElementById("messages").innerHTML = "";
 
@@ -2894,6 +2995,7 @@ body.font-style-bold-modern {
 
             push(ref(db, 'messages/' + chatId), messageData);
             msgInput.value = "";
+            setTypingStatus(false); // Ensure typing status is cleared after sending message
         } else {
             alert("Please type a message or select files to send.");
         }
@@ -3028,6 +3130,7 @@ body.font-style-bold-modern {
                 push(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID)), messageData);
                 alert("Attachments sent successfully!");
                 clearAttachments(); // Clear selected files after sending
+                setTypingStatus(false); // Ensure typing status is cleared after sending attachment
             } else {
                 // Update loading message to an error message
                 update(ref(db, 'messages/' + getChatID(currentUser.uid, currentChatUID) + '/' + loadingMessageId), {
@@ -3275,6 +3378,33 @@ body.font-style-bold-modern {
         document.getElementById("replyText").innerText = "";
     };
     // --- End Reply Functionality ---
+
+    // --- Typing Indicator Functions ---
+    function setTypingStatus(isTyping) {
+        if (!currentUser || !currentChatUID) return;
+
+        const chatId = getChatID(currentUser.uid, currentChatUID);
+        const userTypingRef = ref(db, `chats/${chatId}/typingStatus/${currentUser.uid}`);
+
+        if (isTyping) {
+            set(userTypingRef, true);
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+            }
+            typingTimeout = setTimeout(() => {
+                set(userTypingRef, false);
+                typingTimeout = null;
+            }, 1500); // Set typing to false after 1.5 seconds of no activity
+        } else {
+            // Only set to false if the timeout hasn't already done it
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+                typingTimeout = null;
+            }
+            set(userTypingRef, false);
+        }
+    }
+    // --- End Typing Indicator Functions ---
 
 
     document.addEventListener('click', function(event) {
